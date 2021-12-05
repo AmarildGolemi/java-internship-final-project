@@ -1,11 +1,10 @@
-package com.lhind.application.utility.model;
+package com.lhind.application.utility.model.TripDto;
 
+import com.lhind.application.utility.model.TripReason;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.sql.Date;
@@ -13,9 +12,8 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserTripDto {
+public class TripDto {
 
-    @NotBlank(message = "Trip reason is mandatory")
     private TripReason tripReason;
 
     @NotBlank(message = "Description is mandatory")
@@ -30,14 +28,8 @@ public class UserTripDto {
     @Size(min = 3, max = 20)
     private String to;
 
-    @NotBlank(message = "Departure date is mandatory")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Future
     private Date departureDate;
 
-    @NotBlank(message = "Arrival date is mandatory")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Future
     private Date arrivalDate;
 
 }

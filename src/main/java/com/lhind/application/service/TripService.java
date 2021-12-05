@@ -1,24 +1,16 @@
 package com.lhind.application.service;
 
-import com.lhind.application.entity.Flight;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.utility.model.Status;
-import com.lhind.application.utility.model.TripReason;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface TripService {
 
-    List<Trip> findAll();
-
     Trip findById(Long id);
 
-    List<Trip> findAllByTripReason(TripReason tripReason);
-
-    List<Trip> findAllByStatus(Status status);
-
-    List<Trip> findAllByTripReasonAndStatus(TripReason tripReason, Status status);
+    List<Trip> findAllWaitingForApproval();
 
     @Transactional
     Trip save(Trip trip);
@@ -33,10 +25,10 @@ public interface TripService {
     Trip sendForApproval(Trip tripToSend);
 
     @Transactional
-    Trip approve(Trip tripToApprove);
+    Trip approve(Long tripId);
 
     @Transactional
-    Trip reject(Trip tripToReject);
+    Trip reject(Long tripId);
 
     @Transactional
     String delete(Trip tripToDelete);

@@ -50,10 +50,9 @@ public class Trip {
     private Boolean isDeleted = Boolean.FALSE;
 
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false, insertable = false, updatable = false)
     private User user;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "trip_flight",
             joinColumns = @JoinColumn(name = "trip_id"),

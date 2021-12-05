@@ -1,22 +1,25 @@
-package com.lhind.application.utility.model;
+package com.lhind.application.utility.model.FlightDto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Size;
 import java.sql.Date;
 
 @NoArgsConstructor
 @Getter
 @Setter
-public class TripDto {
+public class FlightPatchDto {
 
-    private TripReason tripReason;
-    private String description;
+    @Size(min = 3, max = 20)
     private String from;
+
+    @Size(min = 3, max = 20)
     private String to;
+
     private Date departureDate;
+
     private Date arrivalDate;
 
-    private Long userId;
 }

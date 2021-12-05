@@ -67,11 +67,10 @@ public class UserTripServiceImpl implements UserTripService {
 
     @Override
     @Transactional
-    public Trip addTrip(Long userId, Trip trip) {
+    public Trip addTrip(Long userId, Trip tripToAdd) {
         User userToPatch = userService.findById(userId);
 
-        Trip tripToAdd = tripService.save(trip);
-        userToPatch.getTrips().add(tripToAdd);
+        userToPatch.addTrip(tripToAdd);
 
         userService.save(userToPatch);
 
@@ -79,6 +78,7 @@ public class UserTripServiceImpl implements UserTripService {
     }
 
     @Override
+    @Transactional
     public Trip update(Long userId, Long tripId, Trip trip) {
         validaTripId(trip);
 
@@ -89,11 +89,13 @@ public class UserTripServiceImpl implements UserTripService {
                 .orElseThrow(BadRequestException::new);
 
         trip.setId(tripToUpdate.getId());
+        trip.setUser(existingUser);
 
         return tripService.update(trip);
     }
 
     @Override
+    @Transactional
     public Trip patch(Long userId, Long tripId, Trip trip) {
         validaTripId(trip);
 
@@ -113,6 +115,7 @@ public class UserTripServiceImpl implements UserTripService {
     }
 
     @Override
+    @Transactional
     public Trip sendForApproval(Long userId, Long tripId) {
         User existingUser = userService.findById(userId);
 
@@ -124,31 +127,9 @@ public class UserTripServiceImpl implements UserTripService {
         return tripService.sendForApproval(tripToSend);
     }
 
-    @Override
-    public Trip approve(Long userId, Long tripId) {
-        User existingUser = userService.findById(userId);
-
-        Trip tripToApprove = existingUser.getTrips().stream()
-                .filter(tripToFind -> validateTrip(tripId, tripToFind))
-                .findFirst()
-                .orElseThrow(BadRequestException::new);
-
-        return tripService.approve(tripToApprove);
-    }
 
     @Override
-    public Trip reject(Long userId, Long tripId) {
-        User existingUser = userService.findById(userId);
-
-        Trip tripToReject = existingUser.getTrips().stream()
-                .filter(tripToFind -> validateTrip(tripId, tripToFind))
-                .findFirst()
-                .orElseThrow(BadRequestException::new);
-
-        return tripService.reject(tripToReject);
-    }
-
-    @Override
+    @Transactional
     public String delete(Long userId, Long tripId) {
         User existingUser = userService.findById(userId);
 

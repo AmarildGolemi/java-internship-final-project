@@ -6,11 +6,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface FlightService {
+
     List<Flight> findAll();
 
     Flight findById(Long id);
 
-    List<Flight> getAvailableFlights(Flight flight);
+    List<Flight> findAvailableFlights(Flight flight);
 
     @Transactional
     Flight save(Flight flight);

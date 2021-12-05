@@ -29,12 +29,6 @@ public interface UserTripService {
     Trip sendForApproval(Long userId, Long tripId);
 
     @Transactional
-    Trip approve(Long userId, Long tripId);
-
-    @Transactional
-    Trip reject(Long userId, Long tripId);
-
-    @Transactional
     Trip patch(Long userId, Long tripId, Trip trip);
 
     @Transactional

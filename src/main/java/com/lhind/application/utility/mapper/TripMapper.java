@@ -2,7 +2,8 @@ package com.lhind.application.utility.mapper;
 
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.utility.model.TripDto;
+import com.lhind.application.utility.model.TripDto.TripDto;
+import com.lhind.application.utility.model.TripDto.TripPatchDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -21,9 +22,43 @@ public class TripMapper {
         tripDto.setTo(trip.getTo());
         tripDto.setDepartureDate(trip.getDepartureDate());
         tripDto.setArrivalDate(trip.getArrivalDate());
-        tripDto.setUserId(trip.getUser().getId());
 
         return tripDto;
     }
+
+    public Trip tripDtoToTrip(TripDto tripDto) {
+        if (tripDto == null) {
+            return null;
+        }
+
+        Trip trip = new Trip();
+
+        trip.setTripReason(tripDto.getTripReason());
+        trip.setDescription(tripDto.getDescription());
+        trip.setFrom(tripDto.getFrom());
+        trip.setTo(tripDto.getTo());
+        trip.setDepartureDate(tripDto.getDepartureDate());
+        trip.setArrivalDate(tripDto.getArrivalDate());
+
+        return trip;
+    }
+
+    public Trip tripDtoToTrip(TripPatchDto tripDto) {
+        if (tripDto == null) {
+            return null;
+        }
+
+        Trip trip = new Trip();
+
+        trip.setTripReason(tripDto.getTripReason());
+        trip.setDescription(tripDto.getDescription());
+        trip.setFrom(tripDto.getFrom());
+        trip.setTo(tripDto.getTo());
+        trip.setDepartureDate(tripDto.getDepartureDate());
+        trip.setArrivalDate(tripDto.getArrivalDate());
+
+        return trip;
+    }
+
 
 }

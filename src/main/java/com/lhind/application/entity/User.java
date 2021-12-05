@@ -8,9 +8,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @SQLDelete(sql = "UPDATE user SET deleted = true WHERE id=?")
@@ -50,9 +48,15 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Trip> trips = new ArrayList<>();
 
+    public void addTrip(Trip trip) {
+        trip.setUser(this);
+        trips.add(trip);
+    }
+
     @PreRemove
     public void delete() {
         this.isDeleted = true;
     }
+
 
 }

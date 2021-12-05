@@ -39,7 +39,7 @@ public class Flight {
     @Column(name = "deleted")
     private Boolean isDeleted = Boolean.FALSE;
 
-    @ManyToMany(mappedBy = "flights", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "flights", fetch = FetchType.LAZY)
     private List<Trip> trips = new ArrayList<>();
 
     @PreRemove

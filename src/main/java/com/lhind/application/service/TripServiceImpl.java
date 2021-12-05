@@ -5,7 +5,6 @@ import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
 import com.lhind.application.utility.model.Status;
-import com.lhind.application.utility.model.TripReason;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,53 +18,15 @@ public class TripServiceImpl implements TripService {
     private final TripRepository tripRepository;
 
     @Override
-    public List<Trip> findAll() {
-        List<Trip> trips = tripRepository.findAll();
-
-        if (trips.isEmpty()) {
-            //TODO: Log warning.
-        }
-
-        return trips;
-    }
-
-    @Override
     public Trip findById(Long id) {
         return tripRepository.findById(id)
+                .filter(trip -> trip.getStatus().equals(Status.WAITING_FOR_APPROVAL))
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
-    public List<Trip> findAllByTripReason(TripReason tripReason) {
-        List<Trip> filteredTrips = tripRepository.findAllByTripReason(tripReason);
-
-        if (filteredTrips.isEmpty()) {
-            //TODO: Log warning
-        }
-
-        return filteredTrips;
-    }
-
-    @Override
-    public List<Trip> findAllByStatus(Status status) {
-        List<Trip> filteredTrips = tripRepository.findAllByStatus(status);
-
-        if (filteredTrips.isEmpty()) {
-            //TODO: Log warning
-        }
-
-        return filteredTrips;
-    }
-
-    @Override
-    public List<Trip> findAllByTripReasonAndStatus(TripReason tripReason, Status status) {
-        List<Trip> filteredTrips = tripRepository.findAllByTripReasonAndStatus(tripReason, status);
-
-        if (filteredTrips.isEmpty()) {
-            //TODO: Log warning
-        }
-
-        return filteredTrips;
+    public List<Trip> findAllWaitingForApproval() {
+        return tripRepository.findAllByStatus(Status.WAITING_FOR_APPROVAL);
     }
 
     @Override
@@ -86,13 +47,6 @@ public class TripServiceImpl implements TripService {
         patchTrip(tripToPatch, trip);
 
         return tripRepository.save(tripToPatch);
-    }
-
-    private void validateTrip(Trip trip) {
-        if (trip.getId() != null
-                || trip.getStatus() != Status.CREATED) {
-            throw new BadRequestException();
-        }
     }
 
     private void patchTrip(Trip tripToPatch, Trip trip) {
@@ -131,7 +85,9 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Trip approve(Trip tripToApprove) {
+    public Trip approve(Long tripId) {
+        Trip tripToApprove = tripRepository.findById(tripId).orElseThrow(ResourceNotFoundException::new);
+
         tripToApprove.setStatus(Status.APPROVED);
 
         return tripRepository.save(tripToApprove);
@@ -139,7 +95,9 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Trip reject(Trip tripToReject) {
+    public Trip reject(Long tripId) {
+        Trip tripToReject = tripRepository.findById(tripId).orElseThrow(ResourceNotFoundException::new);
+
         tripToReject.setStatus(Status.REJECTED);
 
         return tripRepository.save(tripToReject);
