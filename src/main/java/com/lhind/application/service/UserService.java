@@ -1,6 +1,5 @@
 package com.lhind.application.service;
 
-import com.lhind.application.entity.Trip;
 import com.lhind.application.entity.User;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +22,5 @@ public interface UserService {
 
     @Transactional
     String delete(Long id);
-
-    @Transactional
-    Trip addTrip(Long id, Trip trip);
 
 }

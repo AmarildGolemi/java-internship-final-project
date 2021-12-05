@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +19,13 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public List<Flight> findAll() {
-        return null;
+        List<Flight> flights = flightRepository.findAll();
+
+        if(flights.isEmpty()){
+            //TODO: Log warning.
+        }
+
+        return flights;
     }
 
     @Override

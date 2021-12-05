@@ -9,8 +9,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @SQLDelete(sql = "UPDATE flight SET deleted = true WHERE id=?")
@@ -40,21 +40,11 @@ public class Flight {
     private Boolean isDeleted = Boolean.FALSE;
 
     @ManyToMany(mappedBy = "flights", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<Trip> trips = new HashSet<>();
+    private List<Trip> trips = new ArrayList<>();
 
     @PreRemove
     public void delete() {
         this.isDeleted = true;
     }
 
-    @Override
-    public String toString() {
-        return "Flight{" +
-                "id=" + id +
-                ", from='" + from + '\'' +
-                ", to='" + to + '\'' +
-                ", departureDate=" + departureDate +
-                ", arrivalDate=" + arrivalDate +
-                '}';
-    }
 }

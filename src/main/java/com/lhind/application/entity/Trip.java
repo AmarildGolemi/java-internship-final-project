@@ -10,8 +10,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @SQLDelete(sql = "UPDATE trip SET deleted = true WHERE id=?")
@@ -59,7 +59,7 @@ public class Trip {
             joinColumns = @JoinColumn(name = "trip_id"),
             inverseJoinColumns = @JoinColumn(name = "flight_id")
     )
-    private Set<Flight> flights = new HashSet<>();
+    private List<Flight> flights = new ArrayList<>();
 
     @PreRemove
     public void delete() {

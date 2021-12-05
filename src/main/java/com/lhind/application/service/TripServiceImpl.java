@@ -1,6 +1,5 @@
 package com.lhind.application.service;
 
-import com.lhind.application.entity.Flight;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
@@ -12,19 +11,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class TripServiceImpl implements TripService {
 
-    private final FlightService flightService;
-
     private final TripRepository tripRepository;
 
     @Override
     public List<Trip> findAll() {
-        return tripRepository.findAll();
+        List<Trip> trips = tripRepository.findAll();
+
+        if (trips.isEmpty()) {
+            //TODO: Log warning.
+        }
+
+        return trips;
     }
 
     @Override
@@ -74,27 +76,14 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Trip update(Long id, Trip trip) {
-        validateTrip(trip);
-
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
-
-        Trip tripToUpdate = getTrip(optionalTrip);
-        trip.setId(tripToUpdate.getId());
-
+    public Trip update(Trip trip) {
         return tripRepository.save(trip);
     }
 
     @Override
     @Transactional
-    public Trip patch(Long id, Trip trip) {
-        validateTrip(trip);
-
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
-
-        Trip tripToPatch = getTrip(optionalTrip);
-
-        patchTrip(trip, tripToPatch);
+    public Trip patch(Trip tripToPatch, Trip trip) {
+        patchTrip(tripToPatch, trip);
 
         return tripRepository.save(tripToPatch);
     }
@@ -106,7 +95,7 @@ public class TripServiceImpl implements TripService {
         }
     }
 
-    private void patchTrip(Trip trip, Trip tripToPatch) {
+    private void patchTrip(Trip tripToPatch, Trip trip) {
         if (trip.getTripReason() != null) {
             tripToPatch.setTripReason(trip.getTripReason());
         }
@@ -134,44 +123,7 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public String delete(Long id) {
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
-
-        Trip tripToDelete = getTrip(optionalTrip);
-
-        tripRepository.delete(tripToDelete);
-
-        return "Trip deleted";
-    }
-
-    @Override
-    @Transactional
-    public Trip approve(Long id) {
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
-
-        Trip tripToApprove = getTrip(optionalTrip);
-        tripToApprove.setStatus(Status.APPROVED);
-
-        return tripRepository.save(tripToApprove);
-    }
-
-    @Override
-    @Transactional
-    public Trip reject(Long id) {
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
-
-        Trip tripToReject = getTrip(optionalTrip);
-        tripToReject.setStatus(Status.REJECTED);
-
-        return tripRepository.save(tripToReject);
-    }
-
-    @Override
-    @Transactional
-    public Trip sendForApproval(Long id) {
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
-
-        Trip tripToSend = getTrip(optionalTrip);
+    public Trip sendForApproval(Trip tripToSend) {
         tripToSend.setStatus(Status.WAITING_FOR_APPROVAL);
 
         return tripRepository.save(tripToSend);
@@ -179,26 +131,26 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Flight addFlight(Long id, Long flightId) {
-        Optional<Trip> optionalTrip = tripRepository.findById(id);
+    public Trip approve(Trip tripToApprove) {
+        tripToApprove.setStatus(Status.APPROVED);
 
-        Trip tripToPatch = getTrip(optionalTrip);
-
-        Flight flightToAdd = flightService.findById(flightId);
-
-        tripToPatch.getFlights().add(flightToAdd);
-
-        tripRepository.save(tripToPatch);
-
-        return flightToAdd;
+        return tripRepository.save(tripToApprove);
     }
 
-    private Trip getTrip(Optional<Trip> tripOptional) {
-        if (tripOptional.isEmpty()) {
-            throw new ResourceNotFoundException();
-        }
+    @Override
+    @Transactional
+    public Trip reject(Trip tripToReject) {
+        tripToReject.setStatus(Status.REJECTED);
 
-        return tripOptional.get();
+        return tripRepository.save(tripToReject);
+    }
+
+    @Override
+    @Transactional
+    public String delete(Trip tripToDelete) {
+        tripRepository.delete(tripToDelete);
+
+        return "Trip deleted";
     }
 
 }

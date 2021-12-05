@@ -1,6 +1,5 @@
 package com.lhind.application.service;
 
-import com.lhind.application.entity.Trip;
 import com.lhind.application.entity.User;
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
@@ -16,13 +15,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final TripService tripService;
-
     private final UserRepository userRepository;
 
     @Override
     public List<User> findAll() {
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+
+        if (users.isEmpty()) {
+            //TODO: Log warning.
+        }
+
+        return users;
     }
 
     @Override
@@ -90,20 +93,6 @@ public class UserServiceImpl implements UserService {
         return "User deleted";
     }
 
-    @Override
-    @Transactional
-    public Trip addTrip(Long id, Trip trip) {
-        Optional<User> userOptional = userRepository.findById(id);
-        User userToPatch = getUser(userOptional);
-
-        Trip tripToAdd = tripService.save(trip);
-        userToPatch.getTrips().add(tripToAdd);
-
-        userRepository.save(userToPatch);
-
-        return tripToAdd;
-    }
-
     private User getUser(Optional<User> userOptional) {
         if (userOptional.isEmpty()) {
             throw new ResourceNotFoundException();
@@ -111,6 +100,5 @@ public class UserServiceImpl implements UserService {
 
         return userOptional.get();
     }
-
 
 }

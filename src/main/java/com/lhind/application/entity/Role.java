@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -20,6 +20,6 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles", cascade = CascadeType.ALL)
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
 
 }

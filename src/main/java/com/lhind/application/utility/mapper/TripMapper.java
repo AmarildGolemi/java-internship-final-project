@@ -21,25 +21,9 @@ public class TripMapper {
         tripDto.setTo(trip.getTo());
         tripDto.setDepartureDate(trip.getDepartureDate());
         tripDto.setArrivalDate(trip.getArrivalDate());
+        tripDto.setUserId(trip.getUser().getId());
 
         return tripDto;
-    }
-
-    public Trip tripDtoToTrip(TripDto tripDto) {
-        if (tripDto == null) {
-            return null;
-        }
-
-        Trip trip = new Trip();
-
-        trip.setTripReason(tripDto.getTripReason());
-        trip.setDescription(tripDto.getDescription());
-        trip.setFrom(tripDto.getFrom());
-        trip.setTo(tripDto.getTo());
-        trip.setDepartureDate(tripDto.getDepartureDate());
-        trip.setArrivalDate(tripDto.getArrivalDate());
-
-        return trip;
     }
 
 }

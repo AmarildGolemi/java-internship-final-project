@@ -24,23 +24,20 @@ public interface TripService {
     Trip save(Trip trip);
 
     @Transactional
-    Trip update(Long id, Trip trip);
+    Trip update(Trip trip);
 
     @Transactional
-    Trip approve(Long id);
+    Trip patch(Trip tripToPatch, Trip trip);
 
     @Transactional
-    Trip reject(Long id);
+    Trip sendForApproval(Trip tripToSend);
 
     @Transactional
-    Trip patch(Long id, Trip trip);
+    Trip approve(Trip tripToApprove);
 
     @Transactional
-    String delete(Long id);
+    Trip reject(Trip tripToReject);
 
     @Transactional
-    Trip sendForApproval(Long id);
-
-    @Transactional
-    Flight addFlight(Long id, Long flightId);
+    String delete(Trip tripToDelete);
 }
