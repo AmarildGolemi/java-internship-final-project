@@ -22,7 +22,7 @@ public class UserDto {
     private String lastName;
 
     @NotBlank(message = "Email is mandatory")
-    @Email(message="Please provide a valid email address")
+    @Email(message = "Please provide a valid email address")
     private String email;
 
     @NotBlank(message = "Password is mandatory")

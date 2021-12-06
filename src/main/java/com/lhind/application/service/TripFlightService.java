@@ -1,7 +1,6 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.Flight;
-import com.lhind.application.entity.Trip;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;

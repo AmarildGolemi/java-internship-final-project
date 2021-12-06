@@ -1,7 +1,6 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
 import com.lhind.application.utility.model.Status;

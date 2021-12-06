@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
     private void validateUser(User user) {
         if (user.getId() != null) {
-            throw new BadRequestException();
+            throw new BadRequestException("Id should not be provided.");
         }
     }
 

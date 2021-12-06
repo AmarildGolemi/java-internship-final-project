@@ -66,7 +66,7 @@ public class TripFlightServiceImpl implements TripFlightService {
         Trip tripToPatch = userTripService.findById(userId, tripId);
 
         if (tripToPatch.getStatus() != Status.APPROVED) {
-            throw new BadRequestException();
+            throw new BadRequestException("This trip is not approved by the admin.");
         }
 
         return tripToPatch;

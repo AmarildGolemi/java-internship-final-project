@@ -110,7 +110,7 @@ public class UserTripServiceImpl implements UserTripService {
 
     private void validaTripId(Trip trip) {
         if (trip.getId() != null) {
-            throw new BadRequestException();
+            throw new BadRequestException("Id should not be provided.");
         }
     }
 

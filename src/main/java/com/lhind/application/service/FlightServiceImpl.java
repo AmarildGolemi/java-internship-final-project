@@ -82,7 +82,7 @@ public class FlightServiceImpl implements FlightService {
 
     private void validateFlight(Flight flight) {
         if (flight.getId() != null) {
-            throw new BadRequestException();
+            throw new BadRequestException("Id should not be provided.");
         }
     }
 

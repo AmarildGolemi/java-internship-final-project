@@ -22,12 +22,12 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<Object> handleNotFoundException(Exception exception, WebRequest request) {
-        return new ResponseEntity<>("Resource Not Found.", new HttpHeaders(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>("Resource not found.", new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({BadRequestException.class})
-    public ResponseEntity<Object> handleBadRequestException(Exception exception, WebRequest request) {
-        return new ResponseEntity<>("Id should not be provided.", new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Object> handleBadRequestException(Exception e, WebRequest request) {
+        return new ResponseEntity<>(e.getMessage() == null ? "Cannot process this request." : e.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
     @Override
