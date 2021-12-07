@@ -42,12 +42,12 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<Flight> findAvailableFlights(Flight flight) {
+    public List<Flight> findFlights(Flight flight) {
         String from = flight.getFrom();
         String to = flight.getTo();
         String departureDate = flight.getDepartureDate().toString();
 
-        return flightRepository.getAvailableFlights(from, to, departureDate);
+        return flightRepository.findFlights(from, to, departureDate);
     }
 
     @Override

@@ -11,7 +11,7 @@ public interface TripFlightService {
 
     Flight findById(Long userId, Long tripId, Long flightId);
 
-    List<Flight> findAvailableFlights(Long userId, Long tripId);
+    List<Flight> findFlights(Long userId, Long tripId);
 
     @Transactional
     Flight addFlight(Long userId, Long tripId, Long flightId);

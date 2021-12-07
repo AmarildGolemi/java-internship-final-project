@@ -38,7 +38,7 @@ public class TripFlightServiceImpl implements TripFlightService {
     }
 
     @Override
-    public List<Flight> findAvailableFlights(Long userId, Long tripId) {
+    public List<Flight> findFlights(Long userId, Long tripId) {
         Trip existingTrip = getTrip(userId, tripId);
 
         Flight flightToFind = new Flight();
@@ -46,7 +46,7 @@ public class TripFlightServiceImpl implements TripFlightService {
         flightToFind.setTo(existingTrip.getTo());
         flightToFind.setDepartureDate(existingTrip.getDepartureDate());
 
-        return flightService.findAvailableFlights(flightToFind);
+        return flightService.findFlights(flightToFind);
     }
 
     @Override
@@ -55,6 +55,7 @@ public class TripFlightServiceImpl implements TripFlightService {
         Trip tripToPatch = getTrip(userId, tripId);
 
         Flight flightToAdd = flightService.findById(flightId);
+
         tripToPatch.getFlights().add(flightToAdd);
 
         tripService.save(tripToPatch);

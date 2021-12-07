@@ -11,7 +11,7 @@ public interface FlightService {
 
     Flight findById(Long id);
 
-    List<Flight> findAvailableFlights(Flight flight);
+    List<Flight> findFlights(Flight flight);
 
     @Transactional
     Flight save(Flight flight);

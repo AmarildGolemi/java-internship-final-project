@@ -35,10 +35,10 @@ public class TripFlightController {
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
 
-    @GetMapping("/available")
-    public ResponseEntity<List<FlightDto>> findAvailableFlights(@PathVariable @Min(1) Long userId,
+    @GetMapping("/suggested")
+    public ResponseEntity<List<FlightDto>> findFlights(@PathVariable @Min(1) Long userId,
                                                                 @PathVariable @Min(1) Long tripId) {
-        List<FlightDto> flights = tripFlightService.findAvailableFlights(userId, tripId).stream()
+        List<FlightDto> flights = tripFlightService.findFlights(userId, tripId).stream()
                 .map(FlightMapper::flightToFlightDto)
                 .collect(Collectors.toList());
 

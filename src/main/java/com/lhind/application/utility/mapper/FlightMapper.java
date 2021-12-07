@@ -2,6 +2,7 @@ package com.lhind.application.utility.mapper;
 
 
 import com.lhind.application.entity.Flight;
+import com.lhind.application.utility.model.FlightDto.FindFlightsDto;
 import com.lhind.application.utility.model.FlightDto.FlightDto;
 import com.lhind.application.utility.model.FlightDto.FlightPatchDto;
 import lombok.experimental.UtilityClass;
@@ -50,6 +51,20 @@ public class FlightMapper {
         flight.setTo(flightDto.getTo());
         flight.setDepartureDate(flightDto.getDepartureDate());
         flight.setArrivalDate(flightDto.getArrivalDate());
+
+        return flight;
+    }
+
+    public Flight flightDtoToFlight(FindFlightsDto flightDto) {
+        if (flightDto == null) {
+            return null;
+        }
+
+        Flight flight = new Flight();
+
+        flight.setFrom(flightDto.getFrom());
+        flight.setTo(flightDto.getTo());
+        flight.setDepartureDate(flightDto.getDepartureDate());
 
         return flight;
     }

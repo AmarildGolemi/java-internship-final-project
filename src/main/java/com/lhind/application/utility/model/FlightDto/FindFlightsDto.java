@@ -1,6 +1,5 @@
 package com.lhind.application.utility.model.FlightDto;
 
-import com.lhind.application.utility.validation.FlightAvailableDates;
 import com.lhind.application.utility.validation.FutureDate;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,8 +13,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@FlightAvailableDates
-public class FlightDto {
+public class FindFlightsDto {
 
     @NotBlank(message = "Departing city is mandatory")
     @Size(min = 3, max = 20, message = "Departing city should be between 3 and 20 characters")
@@ -28,9 +26,5 @@ public class FlightDto {
     @FutureDate
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date departureDate;
-
-    @FutureDate
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date arrivalDate;
 
 }

@@ -5,6 +5,7 @@ import com.lhind.application.utility.model.TripReason;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.Hibernate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -12,6 +13,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @SQLDelete(sql = "UPDATE trip SET deleted = true WHERE id=?")
@@ -63,6 +65,19 @@ public class Trip {
     @PreRemove
     public void delete() {
         this.isDeleted = true;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Trip trip = (Trip) o;
+        return id != null && Objects.equals(id, trip.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 
 }

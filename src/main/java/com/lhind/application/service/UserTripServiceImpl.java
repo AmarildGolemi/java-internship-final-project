@@ -70,11 +70,20 @@ public class UserTripServiceImpl implements UserTripService {
     public Trip addTrip(Long userId, Trip tripToAdd) {
         User userToPatch = userService.findById(userId);
 
+        checkTripAlreadyAdded(tripToAdd, userToPatch);
+
         userToPatch.addTrip(tripToAdd);
 
         userService.save(userToPatch);
 
         return tripToAdd;
+    }
+
+    private void checkTripAlreadyAdded(Trip tripToAdd, User userToPatch) {
+        userToPatch.getTrips().stream()
+                .filter(trip -> trip.equals(tripToAdd))
+                .findFirst()
+                .orElseThrow(() -> new BadRequestException("Trip already added"));
     }
 
     @Override

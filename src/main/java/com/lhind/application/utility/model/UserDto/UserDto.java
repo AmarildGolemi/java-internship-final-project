@@ -14,11 +14,11 @@ import javax.validation.constraints.Size;
 public class UserDto {
 
     @NotBlank(message = "First name is mandatory")
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 20, message = "First name should be between 3 and 20 characters")
     private String firstName;
 
     @NotBlank(message = "Last name is mandatory")
-    @Size(min = 3, max = 20)
+    @Size(min = 3, max = 20, message = "Last name should be between 3 and 20 characters")
     private String lastName;
 
     @NotBlank(message = "Email is mandatory")
@@ -26,7 +26,7 @@ public class UserDto {
     private String email;
 
     @NotBlank(message = "Password is mandatory")
-    @Size(min = 4, max = 20)
+    @Size(min = 3, max = 20, message = "Password should be between 3 and 20 characters")
     private String password;
 
 }

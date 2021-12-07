@@ -30,6 +30,6 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
             value = queryDirectFlight + queryFirstConnectedFlight + querySecondConnectedFlight,
             nativeQuery = true
     )
-    List<Flight> getAvailableFlights(String from, String to, String departureDate);
+    List<Flight> findFlights(String from, String to, String departureDate);
 
 }

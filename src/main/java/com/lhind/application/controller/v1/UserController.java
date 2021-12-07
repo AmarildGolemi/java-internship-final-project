@@ -52,7 +52,8 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable @Min(1) Long id, @Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> update(@PathVariable @Min(1) Long id,
+                                          @Valid @RequestBody UserDto userDto) {
         User userToUpdate = UserMapper.userDtoToUser(userDto);
         User updatedUser = userService.update(id, userToUpdate);
 
@@ -60,7 +61,8 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserDto> patch(@PathVariable @Min(1) Long id, @Valid @RequestBody UserPatchDto userDto) {
+    public ResponseEntity<UserDto> patch(@PathVariable @Min(1) Long id,
+                                         @Valid @RequestBody UserPatchDto userDto) {
         User userToPatch = UserMapper.userDtoToUser(userDto);
         User patchedUser = userService.patch(id, userToPatch);
 

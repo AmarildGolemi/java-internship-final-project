@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public User save(User user) {
+        User existingUser = userRepository.findByEmail(user.getEmail());
+
+        if(existingUser != null){
+            throw new BadRequestException("User already exists.");
+        }
+
         return userRepository.save(user);
     }
 

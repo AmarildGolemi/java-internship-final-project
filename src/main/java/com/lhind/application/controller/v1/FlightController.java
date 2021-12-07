@@ -3,6 +3,7 @@ package com.lhind.application.controller.v1;
 import com.lhind.application.entity.Flight;
 import com.lhind.application.service.FlightService;
 import com.lhind.application.utility.mapper.FlightMapper;
+import com.lhind.application.utility.model.FlightDto.FindFlightsDto;
 import com.lhind.application.utility.model.FlightDto.FlightDto;
 import com.lhind.application.utility.model.FlightDto.FlightPatchDto;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,15 @@ public class FlightController {
         Flight existingFlight = flightService.findById(id);
 
         return new ResponseEntity<>(FlightMapper.flightToFlightDto(existingFlight), HttpStatus.OK);
+    }
+
+    @PostMapping("/find")
+    public ResponseEntity<List<FlightDto>> findFlights(@Valid @RequestBody FindFlightsDto flightDto) {
+        List<FlightDto> flights = flightService.findFlights(FlightMapper.flightDtoToFlight(flightDto)).stream()
+                .map(FlightMapper::flightToFlightDto)
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(flights, HttpStatus.OK);
     }
 
     @PostMapping
