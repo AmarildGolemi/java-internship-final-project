@@ -3,9 +3,9 @@ package com.lhind.application.controller.v1;
 import com.lhind.application.entity.Flight;
 import com.lhind.application.service.FlightService;
 import com.lhind.application.utility.mapper.FlightMapper;
-import com.lhind.application.utility.model.FlightDto.FindFlightsDto;
-import com.lhind.application.utility.model.FlightDto.FlightDto;
-import com.lhind.application.utility.model.FlightDto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
+import com.lhind.application.utility.model.flightdto.FlightDto;
+import com.lhind.application.utility.model.flightdto.FlightPatchDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +45,7 @@ public class FlightController {
     }
 
     @PostMapping("/find")
-    public ResponseEntity<List<FlightDto>> findFlights(@Valid @RequestBody FindFlightsDto flightDto) {
+    public ResponseEntity<List<FlightDto>> findFlights(@Valid @RequestBody FlightFilterDto flightDto) {
         List<FlightDto> flights = flightService.findFlights(FlightMapper.flightDtoToFlight(flightDto)).stream()
                 .map(FlightMapper::flightToFlightDto)
                 .collect(Collectors.toList());

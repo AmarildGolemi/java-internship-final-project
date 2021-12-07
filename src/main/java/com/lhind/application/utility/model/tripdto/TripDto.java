@@ -1,7 +1,9 @@
-package com.lhind.application.utility.model.FlightDto;
+package com.lhind.application.utility.model.tripdto;
 
-import com.lhind.application.utility.validation.FlightAvailableDates;
-import com.lhind.application.utility.validation.FutureDate;
+import com.lhind.application.utility.model.TripReason;
+import com.lhind.application.utility.validation.datevalidation.FutureDate;
+import com.lhind.application.utility.validation.tripvalidation.Reason;
+import com.lhind.application.utility.validation.tripvalidation.TripAvailableDates;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,15 +16,22 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@FlightAvailableDates
-public class FlightDto {
+@TripAvailableDates
+public class TripDto {
+
+    @Reason
+    private TripReason tripReason;
+
+    @NotBlank(message = "Description is mandatory")
+    @Size(min = 5, max = 256)
+    private String description;
 
     @NotBlank(message = "Departing city is mandatory")
-    @Size(min = 3, max = 20, message = "Departing city should be between 3 and 20 characters")
+    @Size(min = 3, max = 20)
     private String from;
 
     @NotBlank(message = "Arrival city is mandatory")
-    @Size(min = 3, max = 20, message = "Arrival city should be between 3 and 20 characters")
+    @Size(min = 3, max = 20)
     private String to;
 
     @FutureDate

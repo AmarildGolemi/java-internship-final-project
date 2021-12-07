@@ -1,4 +1,4 @@
-package com.lhind.application.utility.validation;
+package com.lhind.application.utility.validation.tripvalidation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,8 +9,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = TripDateValidation.class)
-public @interface TripAvailableDates {
+@Constraint(validatedBy = TripPatchDateValidation.class)
+public @interface TripPatchAvailableDates {
 
     String message() default "Departure date must be before arrival date";
 

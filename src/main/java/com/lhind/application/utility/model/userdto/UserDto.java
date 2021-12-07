@@ -1,4 +1,4 @@
-package com.lhind.application.utility.model.UserDto;
+package com.lhind.application.utility.model.userdto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

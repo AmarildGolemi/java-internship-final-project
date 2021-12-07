@@ -2,8 +2,8 @@ package com.lhind.application.utility.mapper;
 
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.utility.model.TripDto.TripDto;
-import com.lhind.application.utility.model.TripDto.TripPatchDto;
+import com.lhind.application.utility.model.tripdto.TripDto;
+import com.lhind.application.utility.model.tripdto.TripPatchDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

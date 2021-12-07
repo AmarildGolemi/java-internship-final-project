@@ -1,7 +1,8 @@
-package com.lhind.application.utility.model.FlightDto;
+package com.lhind.application.utility.model.flightdto;
 
-import com.lhind.application.utility.validation.FlightAvailableDates;
-import com.lhind.application.utility.validation.FutureDate;
+import com.lhind.application.utility.validation.datevalidation.FutureDate;
+import com.lhind.application.utility.validation.datevalidation.PatchFutureDate;
+import com.lhind.application.utility.validation.flightvalidation.FlightPatchAvailableDates;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,20 +14,20 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@FlightAvailableDates
+@FlightPatchAvailableDates
 public class FlightPatchDto {
 
-    @Size(min = 3, max = 20, message = "Departing city should be between 3 and 20 characters")
+    @Size(min = 3, max = 20)
     private String from;
 
-    @Size(min = 3, max = 20, message = "Arrival city should be between 3 and 20 characters")
+    @Size(min = 3, max = 20)
     private String to;
 
-    @FutureDate
+    @PatchFutureDate
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date departureDate;
 
-    @FutureDate
+    @PatchFutureDate
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date arrivalDate;
 

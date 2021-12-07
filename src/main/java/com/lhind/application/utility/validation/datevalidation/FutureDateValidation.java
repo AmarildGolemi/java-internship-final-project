@@ -1,4 +1,4 @@
-package com.lhind.application.utility.validation;
+package com.lhind.application.utility.validation.datevalidation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -10,6 +10,10 @@ public class FutureDateValidation implements ConstraintValidator<FutureDate, Dat
 
     @Override
     public boolean isValid(Date date, ConstraintValidatorContext constraintValidatorContext) {
+        if (date == null){
+            return false;
+        }
+
         Period p = Period.between(LocalDate.now(), date.toLocalDate());
 
         return p.getDays() >= 0;

@@ -1,4 +1,4 @@
-package com.lhind.application.utility.validation;
+package com.lhind.application.utility.validation.tripvalidation;
 
 import com.lhind.application.utility.model.TripReason;
 
@@ -15,6 +15,10 @@ public class ReasonValidation implements ConstraintValidator<Reason, TripReason>
 
     @Override
     public boolean isValid(TripReason tripReason, ConstraintValidatorContext constraintValidatorContext) {
+        if(tripReason == null){
+            return true;
+        }
+
         return reasons.contains(tripReason);
     }
 

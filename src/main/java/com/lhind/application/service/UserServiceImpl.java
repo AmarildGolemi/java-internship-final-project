@@ -72,6 +72,12 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(userToPatch);
     }
 
+    @Override
+    @Transactional
+    public void saveUserAfterAddingNewTrip(User user){
+        userRepository.save(user);
+    }
+
     private void validateUser(User user) {
         if (user.getId() != null) {
             throw new BadRequestException("Id should not be provided.");

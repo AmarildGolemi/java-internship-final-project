@@ -1,8 +1,8 @@
 package com.lhind.application.utility.mapper;
 
 import com.lhind.application.entity.User;
-import com.lhind.application.utility.model.UserDto.UserDto;
-import com.lhind.application.utility.model.UserDto.UserPatchDto;
+import com.lhind.application.utility.model.userdto.UserDto;
+import com.lhind.application.utility.model.userdto.UserPatchDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass

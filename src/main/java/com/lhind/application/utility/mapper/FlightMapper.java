@@ -2,9 +2,9 @@ package com.lhind.application.utility.mapper;
 
 
 import com.lhind.application.entity.Flight;
-import com.lhind.application.utility.model.FlightDto.FindFlightsDto;
-import com.lhind.application.utility.model.FlightDto.FlightDto;
-import com.lhind.application.utility.model.FlightDto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
+import com.lhind.application.utility.model.flightdto.FlightDto;
+import com.lhind.application.utility.model.flightdto.FlightPatchDto;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
@@ -55,7 +55,7 @@ public class FlightMapper {
         return flight;
     }
 
-    public Flight flightDtoToFlight(FindFlightsDto flightDto) {
+    public Flight flightDtoToFlight(FlightFilterDto flightDto) {
         if (flightDto == null) {
             return null;
         }

@@ -72,7 +72,13 @@ public class Trip {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
         Trip trip = (Trip) o;
-        return id != null && Objects.equals(id, trip.id);
+
+        return this.tripReason == trip.tripReason
+                && this.description.equals(trip.description)
+                && this.from.equals(trip.from)
+                && this.to.equals(trip.to)
+                && this.departureDate.toLocalDate().isEqual(((Trip) o).departureDate.toLocalDate())
+                && this.arrivalDate.toLocalDate().isEqual(((Trip) o).arrivalDate.toLocalDate());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.lhind.application.utility.validation;
+package com.lhind.application.utility.validation.datevalidation;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,13 +9,12 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = ReasonValidation.class)
-public @interface Reason {
+@Constraint(validatedBy = PatchFutureDateValidation.class)
+public @interface PatchFutureDate {
 
-    String message() default "Trip reason must be a valid reason.";
+    String message() default "Date must be in the future.";
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
-
 }

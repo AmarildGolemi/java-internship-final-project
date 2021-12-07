@@ -3,7 +3,7 @@ package com.lhind.application.controller.v1;
 import com.lhind.application.entity.Flight;
 import com.lhind.application.service.TripFlightService;
 import com.lhind.application.utility.mapper.FlightMapper;
-import com.lhind.application.utility.model.FlightDto.FlightDto;
+import com.lhind.application.utility.model.flightdto.FlightDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

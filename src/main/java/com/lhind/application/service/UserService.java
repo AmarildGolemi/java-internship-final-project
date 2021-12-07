@@ -21,6 +21,9 @@ public interface UserService {
     User patch(Long id, User user);
 
     @Transactional
+    void saveUserAfterAddingNewTrip(User user);
+
+    @Transactional
     String delete(Long id);
 
 }

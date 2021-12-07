@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -74,16 +75,19 @@ public class UserTripServiceImpl implements UserTripService {
 
         userToPatch.addTrip(tripToAdd);
 
-        userService.save(userToPatch);
+        userService.saveUserAfterAddingNewTrip(userToPatch);
 
         return tripToAdd;
     }
 
     private void checkTripAlreadyAdded(Trip tripToAdd, User userToPatch) {
-        userToPatch.getTrips().stream()
-                .filter(trip -> trip.equals(tripToAdd))
-                .findFirst()
-                .orElseThrow(() -> new BadRequestException("Trip already added"));
+        Optional<Trip> existingTrip = userToPatch.getTrips().stream()
+                .filter(tripToAdd::equals)
+                .findFirst();
+
+        if(existingTrip.isPresent()){
+            throw new BadRequestException("Trip already exists.");
+        }
     }
 
     @Override
