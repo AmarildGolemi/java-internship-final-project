@@ -1,16 +1,16 @@
 package com.lhind.application.utility.validation.tripvalidation;
 
-import com.lhind.application.utility.model.tripdto.TripDto;
+import com.lhind.application.utility.model.tripdto.TripCreateDto;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import javax.validation.ValidationException;
 import java.time.Period;
 
-public class TripDateValidation implements ConstraintValidator<TripAvailableDates, TripDto> {
+public class TripDateValidation implements ConstraintValidator<TripAvailableDates, TripCreateDto> {
 
     @Override
-    public boolean isValid(TripDto tripDto, ConstraintValidatorContext constraintValidatorContext) {
+    public boolean isValid(TripCreateDto tripDto, ConstraintValidatorContext constraintValidatorContext) {
         if(tripDto.getDepartureDate() != null && tripDto.getArrivalDate() != null){
             Period p = Period.between(tripDto.getDepartureDate().toLocalDate(), tripDto.getArrivalDate().toLocalDate());
 

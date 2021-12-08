@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @SQLDelete(sql = "UPDATE flight SET deleted = true WHERE id=?")
@@ -36,6 +37,9 @@ public class Flight {
     @Column(nullable = false)
     private Date arrivalDate;
 
+    @Column(nullable = false)
+    private String airline;
+
     @Column(name = "deleted")
     private Boolean isDeleted = Boolean.FALSE;
 
@@ -47,4 +51,21 @@ public class Flight {
         this.isDeleted = true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+
+        return this.from.equals(flight.from)
+                && this.to.equals(flight.to)
+                && this.departureDate.toLocalDate().isEqual(((Flight) o).departureDate.toLocalDate())
+                && this.arrivalDate.toLocalDate().isEqual(((Flight) o).arrivalDate.toLocalDate())
+                && this.airline.equals(flight.airline);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, from, to, departureDate, arrivalDate, airline, isDeleted, trips);
+    }
 }

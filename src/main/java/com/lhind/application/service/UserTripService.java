@@ -1,36 +1,31 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.utility.model.Status;
-import com.lhind.application.utility.model.TripReason;
+import com.lhind.application.utility.model.tripdto.TripFilterDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface UserTripService {
 
-    List<Trip> findAll(Long userId);
+    List<Trip> findAll(String loggedUsername);
 
-    Trip findById(Long userId, Long id);
+    Trip findById(String loggedUsername, Long tripId);
 
-    List<Trip> findAllByTripReason(Long userId, TripReason tripReason);
-
-    List<Trip> findAllByStatus(Long userId, Status status);
-
-    List<Trip> findAllByTripReasonAndStatus(Long userId, TripReason tripReason, Status status);
+    List<Trip> findAllFilteredTrips(String loggedUsername, TripFilterDto tripDto);
 
     @Transactional
-    Trip addTrip(Long userId, Trip trip);
+    Trip addTrip(String loggedUsername, Trip tripToAdd);
 
     @Transactional
-    Trip update(Long userId, Long tripId, Trip trip);
+    Trip update(String loggedUsername, Long tripId, Trip trip);
 
     @Transactional
-    Trip sendForApproval(Long userId, Long tripId);
+    Trip patch(String loggedUsername, Long tripId, Trip trip);
 
     @Transactional
-    Trip patch(Long userId, Long tripId, Trip trip);
+    Trip sendForApproval(String loggedUsername, Long tripId);
 
     @Transactional
-    String delete(Long userId, Long tripId);
+    String delete(String loggedUsername, Long tripId);
 }

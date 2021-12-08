@@ -2,6 +2,7 @@ package com.lhind.application.controller;
 
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
+import com.lhind.application.exception.UserNotLoggedInException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +25,16 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler({ResourceNotFoundException.class})
     public ResponseEntity<Object> handleNotFoundException(Exception exception, WebRequest request) {
+        logger.info("Handling not found exception.");
+
         ObjectError error = new ObjectError("resourceNotFound", "Resource not found.");
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler({BadRequestException.class})
     public ResponseEntity<Object> handleBadRequestException(Exception e, WebRequest request) {
+        logger.info("Handling bad request exception.");
+
         ObjectError error = new ObjectError("badRequest",
                 e.getMessage() == null ? "Cannot process this request." : e.getMessage());
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
@@ -37,18 +42,32 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<Object> handleNumberFormatException(Exception e, WebRequest request) {
+        logger.info("Handling number format exception.");
+
         ObjectError error = new ObjectError("invalidParameter", "Not a valid request parameter");
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Object> handleValidationException(Exception e, WebRequest request) {
+        logger.info("Handling validation exception.");
+
         ObjectError error = new ObjectError("validation", "Both dates should be provided.");
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler({UserNotLoggedInException.class})
+    public ResponseEntity<Object> handleUserNotLoggedInException() {
+        logger.info("Handling not logged in exception.");
+
+        ObjectError error = new ObjectError("authentication", "User is not logged in.");
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.FORBIDDEN);
+    }
+
     @Override
     protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        logger.info("Handling http message not readable exception.");
+
         ObjectError error;
 
         if (ex.getLocalizedMessage().contains("Date")) {
@@ -65,6 +84,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
                                                                   HttpHeaders headers,
                                                                   HttpStatus status,
                                                                   WebRequest request) {
+        logger.info("Handling method argument not valid exception.");
+
         List<ObjectError> errors = ex.getBindingResult().getAllErrors();
 
         errors.forEach(error -> System.out.println(error.toString()));
@@ -74,6 +95,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleConstraintViolationException(HttpServletResponse response) {
+        logger.info("Handling constraint violation exception.");
+
         ObjectError error = new ObjectError("invalidId", "Id should be greater than 0.");
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }

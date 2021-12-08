@@ -13,7 +13,6 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @SQLDelete(sql = "UPDATE trip SET deleted = true WHERE id=?")

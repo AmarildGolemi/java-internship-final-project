@@ -5,11 +5,13 @@ import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.FlightRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class FlightServiceImpl implements FlightService {
@@ -18,27 +20,29 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public List<Flight> findAll() {
+        log.info("Finding all flights.");
+
         List<Flight> flights = flightRepository.findAll();
 
         if (flights.isEmpty()) {
-            //TODO: Log warning.
+            log.warn("Zero flights retrieved from the database.");
         }
+
+        log.info("Returning the list of flights.");
 
         return flights;
     }
 
     @Override
     public Flight findById(Long id) {
+        log.info("Finding flight by flight id: {}.", id);
+
         return flightRepository.findById(id)
-                .orElseThrow(ResourceNotFoundException::new);
-    }
+                .orElseThrow(() -> {
+                    log.error("Found no flights with id: {}", id);
 
-    private Flight getFlight(Optional<Flight> flightOptional) {
-        if (flightOptional.isEmpty()) {
-            throw new ResourceNotFoundException();
-        }
-
-        return flightOptional.get();
+                    throw new ResourceNotFoundException();
+                });
     }
 
     @Override
@@ -47,16 +51,22 @@ public class FlightServiceImpl implements FlightService {
         String to = flight.getTo();
         String departureDate = flight.getDepartureDate().toString();
 
+        log.info("Retrieving flights from {} to {} on date {}.", from, to, departureDate);
+
         return flightRepository.findFlights(from, to, departureDate);
     }
 
     @Override
     public Flight save(Flight flight) {
+        log.info("Saving flight: {}", flight);
+
         return flightRepository.save(flight);
     }
 
     @Override
     public Flight update(Long id, Flight flight) {
+        log.info("Updating flight with id: {}", id);
+
         validateFlight(flight);
 
         Optional<Flight> flightOptional = flightRepository.findById(id);
@@ -64,11 +74,15 @@ public class FlightServiceImpl implements FlightService {
         Flight flightToUpdate = getFlight(flightOptional);
         flight.setId(flightToUpdate.getId());
 
+        log.info("Saving updated flight.");
+
         return flightRepository.save(flight);
     }
 
     @Override
     public Flight patch(Long id, Flight flight) {
+        log.info("Patching flight with id: {}", id);
+
         validateFlight(flight);
 
         Optional<Flight> optionalFlight = flightRepository.findById(id);
@@ -77,11 +91,17 @@ public class FlightServiceImpl implements FlightService {
 
         patchFlight(flight, flightToPatch);
 
+        log.info("Saving updated flight.");
+
         return flightRepository.save(flightToPatch);
     }
 
     private void validateFlight(Flight flight) {
+        log.info("Validating flight id is not provided.");
+
         if (flight.getId() != null) {
+            log.error("Flight id is provided: {}.", flight.getId());
+
             throw new BadRequestException("Id should not be provided.");
         }
     }
@@ -106,12 +126,30 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public String delete(Long id) {
+        log.info("Deleting flight with id: {}", id);
+
         Optional<Flight> optionalFlight = flightRepository.findById(id);
 
         Flight flightToDelete = getFlight(optionalFlight);
 
         flightRepository.delete(flightToDelete);
 
+        log.info("Deleting flight with id: {}.", id);
+
         return "Flight deleted";
+    }
+
+    private Flight getFlight(Optional<Flight> flightOptional) {
+        log.info("Retrieving flight.");
+
+        if (flightOptional.isEmpty()) {
+            log.error("No flight found in the database.");
+
+            throw new ResourceNotFoundException();
+        }
+
+        log.info("Flight found in the database.");
+
+        return flightOptional.get();
     }
 }

@@ -11,19 +11,17 @@ public interface UserService {
 
     User findById(Long id);
 
+    User findByUsername(String username);
+
     @Transactional
     User save(User user);
 
     @Transactional
-    User update(Long id, User user);
-
-    @Transactional
-    User patch(Long id, User user);
+    User patch(String username, User user);
 
     @Transactional
     void saveUserAfterAddingNewTrip(User user);
 
     @Transactional
-    String delete(Long id);
-
+    String delete(String username);
 }

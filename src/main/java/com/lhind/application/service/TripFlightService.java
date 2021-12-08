@@ -7,12 +7,13 @@ import java.util.List;
 
 public interface TripFlightService {
 
-    List<Flight> findAll(Long userId, Long tripId);
 
-    Flight findById(Long userId, Long tripId, Long flightId);
+    List<Flight> findAll(String loggedUsername, Long tripId);
 
-    List<Flight> findFlights(Long userId, Long tripId);
+    Flight findById(String loggedUsername, Long tripId, Long flightId);
+
+    List<Flight> findFlights(String loggedUsername, Long tripId);
 
     @Transactional
-    Flight addFlight(Long userId, Long tripId, Long flightId);
+    Flight addFlight(String loggedUsername, Long tripId, Long flightId);
 }

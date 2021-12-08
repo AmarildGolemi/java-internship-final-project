@@ -1,5 +1,6 @@
 package com.lhind.application.entity;
 
+import com.lhind.application.utility.model.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,14 +23,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String lastName;
 
-    @Column(nullable = false)
-    private String email;
+    @Column(nullable = false, unique = true, length = 20)
+    private String username;
 
     @Column(nullable = false)
     private String password;
@@ -37,15 +38,11 @@ public class User {
     @Column(name = "deleted")
     private Boolean isDeleted = Boolean.FALSE;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private List<Role> roles = new ArrayList<>();
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Trip> trips = new ArrayList<>();
 
     public void addTrip(Trip trip) {

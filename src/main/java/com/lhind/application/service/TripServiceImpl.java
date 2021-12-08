@@ -5,11 +5,13 @@ import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
 import com.lhind.application.utility.model.Status;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class TripServiceImpl implements TripService {
@@ -18,31 +20,53 @@ public class TripServiceImpl implements TripService {
 
     @Override
     public Trip findById(Long id) {
-        return tripRepository.findById(id)
+        log.info("Finding waiting for approval trip with id: {}", id);
+
+        Trip foundTrip = tripRepository.findById(id)
                 .filter(trip -> trip.getStatus().equals(Status.WAITING_FOR_APPROVAL))
-                .orElseThrow(ResourceNotFoundException::new);
+                .orElseThrow(() -> {
+                    log.error("Trip with id: {} not found.", id);
+
+                    throw new ResourceNotFoundException();
+                });
+
+        log.info("Returning trip.");
+
+        return foundTrip;
     }
 
     @Override
     public List<Trip> findAllWaitingForApproval() {
-        return tripRepository.findAllByStatus(Status.WAITING_FOR_APPROVAL);
+        log.info("Finding all trips waiting for approval.");
+
+        List<Trip> foundTrips = tripRepository.findAllByStatus(Status.WAITING_FOR_APPROVAL);
+
+        log.info("Returning list of trips.");
+
+        return foundTrips;
     }
 
     @Override
     @Transactional
     public Trip save(Trip trip) {
+        log.info("Saving trip.");
+
         return tripRepository.save(trip);
     }
 
     @Override
     @Transactional
     public Trip update(Trip trip) {
+        log.info("Updating trip.");
+
         return tripRepository.save(trip);
     }
 
     @Override
     @Transactional
     public Trip patch(Trip tripToPatch, Trip trip) {
+        log.info("Patching trip.");
+
         patchTrip(tripToPatch, trip);
 
         return tripRepository.save(tripToPatch);
@@ -77,6 +101,8 @@ public class TripServiceImpl implements TripService {
     @Override
     @Transactional
     public Trip sendForApproval(Trip tripToSend) {
+        log.info("Sending trip: {} for approval.", tripToSend);
+
         tripToSend.setStatus(Status.WAITING_FOR_APPROVAL);
 
         return tripRepository.save(tripToSend);
@@ -85,7 +111,14 @@ public class TripServiceImpl implements TripService {
     @Override
     @Transactional
     public Trip approve(Long tripId) {
-        Trip tripToApprove = tripRepository.findById(tripId).orElseThrow(ResourceNotFoundException::new);
+        log.info("Approving trip with id: {}", tripId);
+
+        Trip tripToApprove = tripRepository.findById(tripId)
+                .orElseThrow(() -> {
+                    log.error("Trip with id: {} not found.", tripId);
+
+                    throw new ResourceNotFoundException();
+                });
 
         tripToApprove.setStatus(Status.APPROVED);
 
@@ -95,7 +128,14 @@ public class TripServiceImpl implements TripService {
     @Override
     @Transactional
     public Trip reject(Long tripId) {
-        Trip tripToReject = tripRepository.findById(tripId).orElseThrow(ResourceNotFoundException::new);
+        log.info("Rejecting trip with id: {}", tripId);
+
+        Trip tripToReject = tripRepository.findById(tripId)
+                .orElseThrow(() -> {
+                    log.error("Trip with id: {} not found.", tripId);
+
+                    throw new ResourceNotFoundException();
+                });
 
         tripToReject.setStatus(Status.REJECTED);
 
@@ -105,6 +145,8 @@ public class TripServiceImpl implements TripService {
     @Override
     @Transactional
     public String delete(Trip tripToDelete) {
+        log.info("Deleting trip: {}", tripToDelete);
+
         tripRepository.delete(tripToDelete);
 
         return "Trip deleted";
