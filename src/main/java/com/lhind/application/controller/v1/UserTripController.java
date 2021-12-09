@@ -27,7 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserTripController {
 
-    public static final String BASE_URL = "api/v1/users/trips";
+    public static final String BASE_URL = "/api/v1/users/trips";
 
     private final UserTripService userTripService;
     private final AuthenticatedUserService authenticatedUserService;

@@ -27,7 +27,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FlightController {
 
-    public static final String BASE_URL = "api/v1/flights";
+    public static final String BASE_URL = "/api/v1/flights";
 
     private final FlightService flightService;
     private final AuthenticatedUserService authenticatedUserService;
@@ -62,7 +62,7 @@ public class FlightController {
         return new ResponseEntity<>(FlightMapper.flightToFlightDto(existingFlight), HttpStatus.OK);
     }
 
-    @PostMapping("/find")
+    @PostMapping("/filter")
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
     public ResponseEntity<List<FlightDto>> findFlights(@Valid @RequestBody FlightFilterDto flightDto) {
         log.info("Accessing endpoint {}/find to find flight by filters: {}.", BASE_URL, flightDto);

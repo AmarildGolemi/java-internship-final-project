@@ -43,6 +43,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifierFilter(jwtProvider), JwtUsernameAndPasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
+                .antMatchers("/swagger-ui/index.html").permitAll();
+        http.authorizeRequests()
+                .antMatchers("/v2/api-docs").permitAll();
+        http.authorizeRequests()
                 .antMatchers("/api/v1/login").permitAll();
 
         http.authorizeRequests().anyRequest().authenticated();
