@@ -1,8 +1,8 @@
 package com.lhind.application.security.securityconfig;
 
 
-import com.lhind.application.security.jwt.JwtConfig;
-import com.lhind.application.security.jwt.JwtTokenVerifier;
+import com.lhind.application.security.jwt.JwtProvider;
+import com.lhind.application.security.jwt.JwtTokenVerifierFilter;
 import com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import com.lhind.application.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +16,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.crypto.SecretKey;
-
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 
@@ -29,13 +27,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationService authenticationService;
-    private final SecretKey secretKey;
-    private final JwtConfig jwtConfig;
+    private final JwtProvider jwtProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         JwtUsernameAndPasswordAuthenticationFilter jwtUsernameAndPasswordAuthenticationFilter =
-                new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey);
+                new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtProvider);
 
         jwtUsernameAndPasswordAuthenticationFilter.setFilterProcessesUrl("/api/v1/login");
 
@@ -43,7 +40,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(STATELESS);
 
         http.addFilter(jwtUsernameAndPasswordAuthenticationFilter)
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class);
+                .addFilterAfter(new JwtTokenVerifierFilter(jwtProvider), JwtUsernameAndPasswordAuthenticationFilter.class);
 
         http.authorizeRequests()
                 .antMatchers("/api/v1/login").permitAll();

@@ -12,7 +12,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import javax.crypto.SecretKey;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,29 +23,35 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class JwtTokenVerifier extends OncePerRequestFilter {
+public class JwtTokenVerifierFilter extends OncePerRequestFilter {
 
-    private final SecretKey secretKey;
-    private final JwtConfig jwtConfig;
+    private final JwtProvider jwtProvider;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
+        String authorizationHeader = request.getHeader(jwtProvider.getAuthorizationHeader());
 
         if (Strings.isNullOrEmpty(authorizationHeader)
-                || !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
+                || !authorizationHeader.startsWith(jwtProvider.getTokenPrefix())){
             filterChain.doFilter(request, response);
+
             return;
         }
 
-        String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), "");
+        String token = authorizationHeader.replace(jwtProvider.getTokenPrefix(), "");
+
+        if(!jwtProvider.validateTokenIsForALoggedOutUser(token)){
+            filterChain.doFilter(request, response);
+
+            return;
+        }
 
         try {
             Jws<Claims> claimsJws = Jwts.parserBuilder()
-                    .setSigningKey(secretKey)
+                    .setSigningKey(jwtProvider.getSecretKey())
                     .build()
                     .parseClaimsJws(token);
 
@@ -74,4 +79,5 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
         filterChain.doFilter(request, response);
     }
+
 }

@@ -1,0 +1,51 @@
+2021-12-09 17:54:54.876  INFO 988 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 988 (C:\Users\amari\Desktop\trip-application\target\classes started by amari in C:\Users\amari\Desktop\trip-application)
+2021-12-09 17:54:54.876  INFO 988 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-09 17:54:55.148  INFO 988 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-09 17:54:55.148  INFO 988 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-09 17:54:56.978  INFO 988 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-09 17:54:57.228  INFO 988 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 200 ms. Found 3 JPA repository interfaces.
+2021-12-09 17:54:58.849  INFO 988 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-09 17:54:58.864  INFO 988 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-09 17:54:58.864  INFO 988 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-09 17:54:59.099  INFO 988 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-09 17:54:59.099  INFO 988 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3935 ms
+2021-12-09 17:54:59.404  INFO 988 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-09 17:54:59.466  INFO 988 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-09 17:54:59.622  INFO 988 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-09 17:54:59.732  INFO 988 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-09 17:55:00.310  INFO 988 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-09 17:55:00.341  INFO 988 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-09 17:55:01.637  INFO 988 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-09 17:55:01.653  INFO 988 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-09 17:55:02.691  WARN 988 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-09 17:55:02.894  INFO 988 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@71657bcc, org.springframework.security.web.context.SecurityContextPersistenceFilter@512631c5, org.springframework.security.web.header.HeaderWriterFilter@4670bdc7, org.springframework.security.web.authentication.logout.LogoutFilter@c0d0035, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@5d8dccb5, com.lhind.application.security.jwt.JwtTokenVerifierFilter@4e386614, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7e6469d0, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47c25f1d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4255d10d, org.springframework.security.web.session.SessionManagementFilter@50f82bb6, org.springframework.security.web.access.ExceptionTranslationFilter@48d91d23, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c33f31d]
+2021-12-09 17:55:03.504  INFO 988 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-09 17:55:03.582  INFO 988 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-09 17:55:03.597  INFO 988 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 9.857 seconds (JVM running for 11.977)
+2021-12-09 17:56:05.548  INFO 988 --- [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-09 17:56:05.548  INFO 988 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-12-09 17:56:05.626  INFO 988 --- [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-12-09 17:56:05.876  INFO 988 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 988 (C:\Users\amari\Desktop\trip-application\target\classes started by amari in C:\Users\amari\Desktop\trip-application)
+2021-12-09 17:56:05.876  INFO 988 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-09 17:56:07.811  INFO 988 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-09 17:56:07.941  INFO 988 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 124 ms. Found 3 JPA repository interfaces.
+2021-12-09 17:56:08.742  INFO 988 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-09 17:56:08.746  INFO 988 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-09 17:56:08.746  INFO 988 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-09 17:56:08.818  INFO 988 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-09 17:56:08.821  INFO 988 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2930 ms
+2021-12-09 17:56:09.009  INFO 988 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-09 17:56:09.018  INFO 988 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-12-09 17:56:09.057  INFO 988 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-12-09 17:56:09.061  INFO 988 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-09 17:56:13.942  INFO 988 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-09 17:56:13.942  INFO 988 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-09 17:56:15.166  WARN 988 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-09 17:56:15.311  INFO 988 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@766adda4, org.springframework.security.web.context.SecurityContextPersistenceFilter@224cfba1, org.springframework.security.web.header.HeaderWriterFilter@a052ea5, org.springframework.security.web.authentication.logout.LogoutFilter@15b1b2e6, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@5030f16b, com.lhind.application.security.jwt.JwtTokenVerifierFilter@1bc9917c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f14f985, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@c478ac4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@91fef1e, org.springframework.security.web.session.SessionManagementFilter@7b44f74b, org.springframework.security.web.access.ExceptionTranslationFilter@4848b3ae, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b0939b2]
+2021-12-09 17:56:16.016  INFO 988 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-09 17:56:16.061  INFO 988 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-09 17:56:16.071  INFO 988 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 10.278 seconds (JVM running for 84.441)
+2021-12-09 17:56:16.076  INFO 988 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-09 17:56:45.952  INFO 988 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-09 17:56:45.952  INFO 988 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2021-12-09 17:56:45.962  INFO 988 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.

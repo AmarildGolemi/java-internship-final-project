@@ -1,8 +1,10 @@
 package com.lhind.application.controller;
 
 import com.lhind.application.exception.BadRequestException;
+import com.lhind.application.exception.InvalidTokenException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.exception.UserNotLoggedInException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ import javax.validation.ConstraintViolationException;
 import javax.validation.ValidationException;
 import java.util.List;
 
+@Slf4j
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -40,7 +42,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ExceptionHandler(NumberFormatException.class)
     public ResponseEntity<Object> handleNumberFormatException(Exception e, WebRequest request) {
         logger.info("Handling number format exception.");
 
@@ -62,6 +64,14 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
         ObjectError error = new ObjectError("authentication", "User is not logged in.");
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler({InvalidTokenException.class})
+    public ResponseEntity<Object> handleInvalidTokenRequestException(Exception e){
+        log.info("Handling invalid token request exception");
+
+        ObjectError error = new ObjectError("invalidToken", e.getMessage());
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.NOT_ACCEPTABLE);
     }
 
     @Override
