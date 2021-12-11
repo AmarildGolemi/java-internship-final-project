@@ -1,9 +1,10 @@
 package com.lhind.application.utility.mapper;
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.utility.model.tripdto.TripCreateDto;
+import com.lhind.application.utility.model.tripdto.TripPostDto;
 import com.lhind.application.utility.model.tripdto.TripDto;
 import com.lhind.application.utility.model.tripdto.TripPatchDto;
+import com.lhind.application.utility.model.tripdto.TripUpdateDto;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -30,7 +31,24 @@ public class TripMapper {
         return tripDto;
     }
 
-    public Trip tripDtoToTrip(TripCreateDto tripDto) {
+    public Trip tripDtoToTrip(TripPostDto tripDto) {
+        if (tripDto == null) {
+            return null;
+        }
+
+        Trip trip = new Trip();
+
+        trip.setTripReason(tripDto.getTripReason());
+        trip.setDescription(tripDto.getDescription());
+        trip.setFrom(tripDto.getFrom());
+        trip.setTo(tripDto.getTo());
+        trip.setDepartureDate(tripDto.getDepartureDate());
+        trip.setArrivalDate(tripDto.getArrivalDate());
+
+        return trip;
+    }
+
+    public Trip tripDtoToTrip(TripUpdateDto tripDto) {
         if (tripDto == null) {
             return null;
         }

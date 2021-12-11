@@ -1,6 +1,6 @@
 package com.lhind.application.service;
 
-import com.lhind.application.entity.Flight;
+import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -8,12 +8,12 @@ import java.util.List;
 public interface TripFlightService {
 
 
-    List<Flight> findAll(String loggedUsername, Long tripId);
+    List<FlightResponseDto> findAll(String loggedUsername, Long tripId);
 
-    Flight findById(String loggedUsername, Long tripId, Long flightId);
+    FlightResponseDto findById(String loggedUsername, Long tripId, Long flightId);
 
-    List<Flight> findFlights(String loggedUsername, Long tripId);
+    List<FlightResponseDto> findFlights(String loggedUsername, Long tripId);
 
     @Transactional
-    Flight addFlight(String loggedUsername, Long tripId, Long flightId);
+    FlightResponseDto addFlight(String loggedUsername, Long tripId, Long flightId);
 }

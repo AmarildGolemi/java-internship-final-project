@@ -4,10 +4,7 @@ import com.lhind.application.entity.Trip;
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.UserTripService;
 import com.lhind.application.utility.mapper.TripMapper;
-import com.lhind.application.utility.model.tripdto.TripCreateDto;
-import com.lhind.application.utility.model.tripdto.TripDto;
-import com.lhind.application.utility.model.tripdto.TripFilterDto;
-import com.lhind.application.utility.model.tripdto.TripPatchDto;
+import com.lhind.application.utility.model.tripdto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -39,9 +36,7 @@ public class UserTripController {
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        List<TripDto> trips = TripMapper.tripToTripDto(
-                userTripService.findAll(loggedUsername)
-        );
+        List<TripDto> trips = userTripService.findAll(loggedUsername);
 
         log.info("Returning list of trips.");
 
@@ -55,9 +50,7 @@ public class UserTripController {
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        List<TripDto> trips = TripMapper.tripToTripDto(
-                userTripService.findAllFilteredTrips(loggedUsername, tripDto)
-        );
+        List<TripDto> trips = userTripService.findAllFilteredTrips(loggedUsername, tripDto);
 
         log.info("Returning list of trips.");
 
@@ -71,42 +64,36 @@ public class UserTripController {
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        Trip existingTrip = userTripService.findById(loggedUsername, tripId);
+        TripDto foundTrip = userTripService.findById(loggedUsername, tripId);
 
         log.info("Returning trip.");
 
-        return new ResponseEntity<>(TripMapper.tripToTripDto(existingTrip), HttpStatus.OK);
+        return new ResponseEntity<>(foundTrip, HttpStatus.OK);
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<TripDto> addTrip(@Valid @RequestBody TripCreateDto tripDto) {
+    public ResponseEntity<TripDto> addTrip(@Valid @RequestBody TripPostDto tripDto) {
         log.info("Accessing endpoint {} to post new trip on logged user.", BASE_URL);
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        Trip tripToAdd = TripMapper.tripDtoToTrip(tripDto);
-        Trip addedTrip = userTripService.addTrip(loggedUsername, tripToAdd);
+        TripDto addedTrip = userTripService.addTrip(loggedUsername, tripDto);
 
-        log.info("Returning added trip.");
-
-        return new ResponseEntity<>(TripMapper.tripToTripDto(addedTrip), HttpStatus.CREATED);
+        return new ResponseEntity<>(addedTrip, HttpStatus.CREATED);
     }
 
     @PutMapping("/{tripId}")
     @PreAuthorize("hasRole('ROLE_USER')")
     public ResponseEntity<TripDto> update(@PathVariable @Min(1) Long tripId,
-                                          @Valid @RequestBody TripCreateDto tripDto) {
+                                          @Valid @RequestBody TripUpdateDto tripDto) {
         log.info("Accessing endpoint {}/{} to update trip of logged user.", BASE_URL, tripId);
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        Trip tripToUpdate = TripMapper.tripDtoToTrip(tripDto);
-        Trip addedTrip = userTripService.update(loggedUsername, tripId, tripToUpdate);
+        TripDto updatedTrip = userTripService.update(loggedUsername, tripId, tripDto);
 
-        log.info("Returning updated trip.");
-
-        return new ResponseEntity<>(TripMapper.tripToTripDto(addedTrip), HttpStatus.OK);
+        return new ResponseEntity<>(updatedTrip, HttpStatus.OK);
     }
 
     @PatchMapping("/{tripId}")
@@ -117,12 +104,9 @@ public class UserTripController {
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        Trip tripToPatch = TripMapper.tripDtoToTrip(tripDto);
-        Trip patchedTrip = userTripService.patch(loggedUsername, tripId, tripToPatch);
+        TripDto patchedTrip = userTripService.patch(loggedUsername, tripId, tripDto);
 
-        log.info("Returning patched trip.");
-
-        return new ResponseEntity<>(TripMapper.tripToTripDto(patchedTrip), HttpStatus.OK);
+        return new ResponseEntity<>(patchedTrip, HttpStatus.OK);
     }
 
     @PostMapping("/{tripId}")
@@ -132,11 +116,11 @@ public class UserTripController {
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        Trip sentTrip = userTripService.sendForApproval(loggedUsername, tripId);
+        TripDto sentTrip = userTripService.sendForApproval(loggedUsername, tripId);
 
         log.info("Returning sent trip.");
 
-        return new ResponseEntity<>(TripMapper.tripToTripDto(sentTrip), HttpStatus.OK);
+        return new ResponseEntity<>(sentTrip, HttpStatus.OK);
     }
 
     @DeleteMapping("/{tripId}")

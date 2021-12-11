@@ -1,15 +1,16 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.Trip;
+import com.lhind.application.utility.model.tripdto.TripDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface TripService {
 
-    Trip findById(Long id);
+    TripDto findById(Long id);
 
-    List<Trip> findAllWaitingForApproval();
+    List<TripDto> findAllWaitingForApproval();
 
     @Transactional
     Trip save(Trip trip);
@@ -24,10 +25,10 @@ public interface TripService {
     Trip sendForApproval(Trip tripToSend);
 
     @Transactional
-    Trip approve(Long tripId);
+    TripDto approve(Long tripId);
 
     @Transactional
-    Trip reject(Long tripId);
+    TripDto reject(Long tripId);
 
     @Transactional
     String delete(Trip tripToDelete);

@@ -3,7 +3,9 @@ package com.lhind.application.service;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
+import com.lhind.application.utility.mapper.TripMapper;
 import com.lhind.application.utility.model.Status;
+import com.lhind.application.utility.model.tripdto.TripDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,31 +21,25 @@ public class TripServiceImpl implements TripService {
     private final TripRepository tripRepository;
 
     @Override
-    public Trip findById(Long id) {
+    public TripDto findById(Long id) {
         log.info("Finding waiting for approval trip with id: {}", id);
 
-        Trip foundTrip = tripRepository.findById(id)
-                .filter(trip -> trip.getStatus().equals(Status.WAITING_FOR_APPROVAL))
-                .orElseThrow(() -> {
-                    log.error("Trip with id: {} not found.", id);
-
-                    throw new ResourceNotFoundException();
-                });
+        Trip foundTrip = getTrip(id);
 
         log.info("Returning trip.");
 
-        return foundTrip;
+        return TripMapper.tripToTripDto(foundTrip);
     }
 
     @Override
-    public List<Trip> findAllWaitingForApproval() {
+    public List<TripDto> findAllWaitingForApproval() {
         log.info("Finding all trips waiting for approval.");
 
         List<Trip> foundTrips = tripRepository.findAllByStatus(Status.WAITING_FOR_APPROVAL);
 
         log.info("Returning list of trips.");
 
-        return foundTrips;
+        return TripMapper.tripToTripDto(foundTrips);
     }
 
     @Override
@@ -110,36 +106,37 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Trip approve(Long tripId) {
+    public TripDto approve(Long tripId) {
         log.info("Approving trip with id: {}", tripId);
 
-        Trip tripToApprove = tripRepository.findById(tripId)
-                .orElseThrow(() -> {
-                    log.error("Trip with id: {} not found.", tripId);
-
-                    throw new ResourceNotFoundException();
-                });
-
+        Trip tripToApprove = getTrip(tripId);
         tripToApprove.setStatus(Status.APPROVED);
+        Trip approvedTrip = tripRepository.save(tripToApprove);
 
-        return tripRepository.save(tripToApprove);
+        return TripMapper.tripToTripDto(approvedTrip);
     }
 
     @Override
     @Transactional
-    public Trip reject(Long tripId) {
+    public TripDto reject(Long tripId) {
         log.info("Rejecting trip with id: {}", tripId);
 
-        Trip tripToReject = tripRepository.findById(tripId)
+        Trip tripToReject = getTrip(tripId);
+
+        tripToReject.setStatus(Status.REJECTED);
+        Trip rejectedTrip = tripRepository.save(tripToReject);
+
+        return TripMapper.tripToTripDto(rejectedTrip);
+    }
+
+    private Trip getTrip(Long id) {
+        return tripRepository.findById(id)
+                .filter(trip -> trip.getStatus().equals(Status.WAITING_FOR_APPROVAL))
                 .orElseThrow(() -> {
-                    log.error("Trip with id: {} not found.", tripId);
+                    log.error("Trip with id: {} not found.", id);
 
                     throw new ResourceNotFoundException();
                 });
-
-        tripToReject.setStatus(Status.REJECTED);
-
-        return tripRepository.save(tripToReject);
     }
 
     @Override

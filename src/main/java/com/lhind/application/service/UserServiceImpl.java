@@ -4,6 +4,10 @@ import com.lhind.application.entity.User;
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.UserRepository;
+import com.lhind.application.utility.mapper.UserMapper;
+import com.lhind.application.utility.model.userdto.UserDto;
+import com.lhind.application.utility.model.userdto.UserPatchDto;
+import com.lhind.application.utility.model.userdto.UserPostDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public List<User> findAll() {
+    public List<UserDto> findAll() {
         log.info("Finding all users.");
 
         List<User> users = userRepository.findAll();
@@ -33,35 +37,45 @@ public class UserServiceImpl implements UserService {
 
         log.info("Returning the list of users.");
 
-        return users;
+        return UserMapper.userToUserDto(users);
     }
 
     @Override
-    public User findById(Long id) {
+    public UserDto findById(Long id) {
         log.info("Finding user with id: {}", id);
 
-        User foundUser = userRepository.findById(id)
+        User foundUser = getUserById(id);
+
+        log.info("Returning user.");
+
+        return UserMapper.userToUserDto(foundUser);
+    }
+
+    private User getUserById(Long id) {
+        return userRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error("User with id: {} not found", id);
 
                     throw new ResourceNotFoundException();
                 });
-
-        log.info("Returning user.");
-
-        return foundUser;
     }
 
     @Override
-    public User findByUsername(String username) {
+    public UserDto findByUsername(String username) {
         log.info("Finding user by username.");
 
-        User foundUser = userRepository.findByUsername(username)
-                .orElseThrow(() -> {
-                    log.error("User with username: {} not found", username);
+        User foundUser = getUserByUsername(username);
 
-                    throw new ResourceNotFoundException();
-                });
+        log.info("Returning user.");
+
+        return UserMapper.userToUserDto(foundUser);
+    }
+
+    @Override
+    public User getByUsername(String username) {
+        log.info("Finding user by username.");
+
+        User foundUser = getUserByUsername(username);
 
         log.info("Returning user.");
 
@@ -70,13 +84,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User save(User user) {
+    public UserDto save(UserPostDto user) {
         log.info("Saving user: {}.", user);
 
-        checkUserAlreadyExists(user);
+        User userToSave = UserMapper.userDtoToUser(user);
+
+        checkUserAlreadyExists(userToSave);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+
+        User savedUser = userRepository.save(userToSave);
+
+        return UserMapper.userToUserDto(savedUser);
     }
 
     private void checkUserAlreadyExists(User user) {
@@ -84,7 +103,7 @@ public class UserServiceImpl implements UserService {
 
         Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
 
-        if(existingUser.isPresent()){
+        if (existingUser.isPresent()) {
             log.error("User already exists.");
 
             throw new BadRequestException("User already exists.");
@@ -93,39 +112,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User patch(String username, User user) {
+    public UserDto patch(String username, UserPatchDto user) {
         log.info("Patching user with username: {}.", username);
 
-        validateUser(user);
-
-        User userToPatch = getUser(username);
+        User userToPatch = getUserByUsername(username);
 
         patchUser(user, userToPatch);
 
         log.info("Saving patched user.");
 
-        return userRepository.save(userToPatch);
+        User patchedUser = userRepository.save(userToPatch);
+
+        return UserMapper.userToUserDto(patchedUser);
     }
 
-    @Override
-    @Transactional
-    public void saveUserAfterAddingNewTrip(User user){
-        log.info("Saving user after adding new trip.");
-
-        userRepository.save(user);
-    }
-
-    private void validateUser(User user) {
-        log.info("Checking user id is not provided.");
-
-        if (user.getId() != null) {
-            log.error("User id:{} is provided", user.getId());
-
-            throw new BadRequestException("Id should not be provided.");
-        }
-    }
-
-    private void patchUser(User user, User userToPatch) {
+    private void patchUser(UserPatchDto user, User userToPatch) {
         if (user.getFirstName() != null) {
             userToPatch.setFirstName(user.getFirstName());
         }
@@ -143,17 +144,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
+    public void saveUserAfterAddingNewTrip(User user) {
+        log.info("Saving user after adding new trip.");
+
+        userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
     public String delete(String username) {
         log.info("Deleting user with username: {}", username);
 
-        User userToDelete = getUser(username);
+        User userToDelete = getUserByUsername(username);
 
         userRepository.delete(userToDelete);
 
         return "User deleted";
     }
 
-    private User getUser(String username) {
+    private User getUserByUsername(String username) {
         log.info("Finding user in the database.");
 
         Optional<User> userOptional = userRepository.findByUsername(username);

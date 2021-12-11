@@ -1,9 +1,6 @@
 package com.lhind.application.controller;
 
-import com.lhind.application.exception.BadRequestException;
-import com.lhind.application.exception.InvalidTokenException;
-import com.lhind.application.exception.ResourceNotFoundException;
-import com.lhind.application.exception.UserNotLoggedInException;
+import com.lhind.application.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -50,11 +47,19 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler({InvalidDateTimeException.class})
+    public ResponseEntity<Object> handleInvalidDateTimeException(Exception e, WebRequest request) {
+        logger.info("Handling Invalid DateTime Exception.");
+
+        ObjectError error = new ObjectError("invalidDateTime", "Not a valid datetime.");
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<Object> handleValidationException(Exception e, WebRequest request) {
         logger.info("Handling validation exception.");
 
-        ObjectError error = new ObjectError("validation", "Both dates should be provided.");
+        ObjectError error = new ObjectError("validatingDates", "Both dates should be provided.");
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 

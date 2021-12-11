@@ -1,7 +1,8 @@
-package com.lhind.application.utility.model.flightdto;
+package com.lhind.application.utility.model.tripdto;
 
+import com.lhind.application.utility.model.TripReason;
 import com.lhind.application.utility.validation.datevalidation.FutureDate;
-import com.lhind.application.utility.validation.flightvalidation.FlightAvailableDates;
+import com.lhind.application.utility.validation.tripvalidation.Reason;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,8 +15,16 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-@FlightAvailableDates
-public class FlightCreateDto {
+public class TripUpdateDto {
+
+    private Long id;
+
+    @Reason
+    private TripReason tripReason;
+
+    @NotBlank(message = "Description is mandatory")
+    @Size(min = 5, max = 256)
+    private String description;
 
     @NotBlank(message = "Departing city is mandatory")
     @Size(min = 3, max = 20)
@@ -32,10 +41,5 @@ public class FlightCreateDto {
     @FutureDate
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date arrivalDate;
-
-    @NotBlank(message = "Arrival city is mandatory")
-    @Size(min = 3, max = 20)
-    private String airline;
-
 
 }

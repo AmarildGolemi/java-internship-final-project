@@ -1,7 +1,6 @@
 package com.lhind.application.utility.model.flightdto;
 
 import com.lhind.application.utility.validation.datevalidation.PatchFutureDate;
-import com.lhind.application.utility.validation.flightvalidation.FlightPatchAvailableDates;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,11 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Size;
 import java.sql.Date;
+import java.sql.Time;
 
 @NoArgsConstructor
 @Getter
 @Setter
-@FlightPatchAvailableDates
 public class FlightPatchDto {
 
     @Size(min = 3, max = 20)
@@ -26,8 +25,12 @@ public class FlightPatchDto {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date departureDate;
 
+    private Time departureTime;
+
     @PatchFutureDate
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date arrivalDate;
+
+    private Time arrivalTime;
 
 }

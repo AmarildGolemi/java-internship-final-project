@@ -1,9 +1,7 @@
 package com.lhind.application.controller.v1;
 
-import com.lhind.application.entity.Trip;
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.TripService;
-import com.lhind.application.utility.mapper.TripMapper;
 import com.lhind.application.utility.model.tripdto.TripDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,9 +33,7 @@ public class TripController {
 
         authenticatedUserService.getLoggedUsername();
 
-        List<TripDto> trips = TripMapper.tripToTripDto(
-                tripService.findAllWaitingForApproval()
-        );
+        List<TripDto> trips = tripService.findAllWaitingForApproval();
 
         log.info("Returning list of trips waiting for approval.");
 
@@ -51,11 +47,11 @@ public class TripController {
 
         authenticatedUserService.getLoggedUsername();
 
-        Trip existingTrip = tripService.findById(id);
+        TripDto foundTrip = tripService.findById(id);
 
         log.info("Returning trip.");
 
-        return new ResponseEntity<>(TripMapper.tripToTripDto(existingTrip), HttpStatus.OK);
+        return new ResponseEntity<>(foundTrip, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
@@ -65,11 +61,11 @@ public class TripController {
 
         authenticatedUserService.getLoggedUsername();
 
-        Trip approvedTrip = tripService.approve(id);
+        TripDto approvedTrip = tripService.approve(id);
 
         log.info("Returning approved trip.");
 
-        return new ResponseEntity<>(TripMapper.tripToTripDto(approvedTrip), HttpStatus.OK);
+        return new ResponseEntity<>(approvedTrip, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
@@ -79,11 +75,11 @@ public class TripController {
 
         authenticatedUserService.getLoggedUsername();
 
-        Trip rejectedTrip = tripService.reject(id);
+        TripDto rejectedTrip = tripService.reject(id);
 
         log.info("Returning rejected trip.");
 
-        return new ResponseEntity<>(TripMapper.tripToTripDto(rejectedTrip), HttpStatus.OK);
+        return new ResponseEntity<>(rejectedTrip, HttpStatus.OK);
     }
 
 }

@@ -1,26 +1,32 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.Flight;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
+import com.lhind.application.utility.model.flightdto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.FlightRequestDto;
+import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface FlightService {
 
-    List<Flight> findAll();
+    List<FlightResponseDto> findAll();
 
-    Flight findById(Long id);
+    FlightResponseDto findById(Long id);
 
-    List<Flight> findFlights(Flight flight);
+    Flight getById(Long id);
 
-    @Transactional
-    Flight save(Flight flight);
-
-    @Transactional
-    Flight update(Long id, Flight flight);
+    List<FlightResponseDto> findFlights(FlightFilterDto flight);
 
     @Transactional
-    Flight patch(Long id, Flight flight);
+    FlightResponseDto save(FlightRequestDto flight);
+
+    @Transactional
+    FlightResponseDto update(Long id, FlightRequestDto flight);
+
+    @Transactional
+    FlightResponseDto patch(Long id, FlightPatchDto flight);
 
     @Transactional
     String delete(Long id);

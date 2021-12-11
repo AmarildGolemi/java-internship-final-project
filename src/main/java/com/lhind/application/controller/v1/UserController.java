@@ -1,9 +1,7 @@
 package com.lhind.application.controller.v1;
 
-import com.lhind.application.entity.User;
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.UserService;
-import com.lhind.application.utility.mapper.UserMapper;
 import com.lhind.application.utility.model.userdto.UserDto;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
 import com.lhind.application.utility.model.userdto.UserPostDto;
@@ -35,9 +33,7 @@ public class UserController {
 
         authenticatedUserService.getLoggedUsername();
 
-        List<UserDto> users = UserMapper.userToUserDto(
-                userService.findAll()
-        );
+        List<UserDto> users = userService.findAll();
 
         log.info("Returning list of users.");
 
@@ -51,26 +47,25 @@ public class UserController {
 
         authenticatedUserService.getLoggedUsername();
 
-        User existingUser = userService.findByUsername(username);
+        UserDto existingUser = userService.findByUsername(username);
 
         log.info("Returning user.");
 
-        return new ResponseEntity<>(UserMapper.userToUserDto(existingUser), HttpStatus.OK);
+        return new ResponseEntity<>(existingUser, HttpStatus.OK);
     }
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<UserDto> save(@Valid @RequestBody UserPostDto userPostDto) {
-        log.info("Accessing endpoint {} to post new user: {}.", BASE_URL, userPostDto);
+    public ResponseEntity<UserDto> save(@Valid @RequestBody UserPostDto userDto) {
+        log.info("Accessing endpoint {} to post new user: {}.", BASE_URL, userDto);
 
         authenticatedUserService.getLoggedUsername();
 
-        User userToSave = UserMapper.userDtoToUser(userPostDto);
-        User savedUser = userService.save(userToSave);
+        UserDto savedUser = userService.save(userDto);
 
         log.info("Returning new added user.");
 
-        return new ResponseEntity<>(UserMapper.userToUserDto(savedUser), HttpStatus.CREATED);
+        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
     @PatchMapping("/{username}")
@@ -81,12 +76,11 @@ public class UserController {
 
         authenticatedUserService.getLoggedUsername();
 
-        User userToPatch = UserMapper.userDtoToUser(userDto);
-        User patchedUser = userService.patch(username, userToPatch);
+        UserDto patchedUser = userService.patch(username, userDto);
 
         log.info("Returning patched user.");
 
-        return new ResponseEntity<>(UserMapper.userToUserDto(patchedUser), HttpStatus.OK);
+        return new ResponseEntity<>(patchedUser, HttpStatus.OK);
     }
 
     @DeleteMapping("/{username}")

@@ -1,12 +1,12 @@
 package com.lhind.application.utility.model.userdto;
 
-import com.lhind.application.utility.model.Role;
-import com.lhind.application.utility.validation.uservalidation.ValidRole;
+import com.lhind.application.entity.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor
@@ -30,7 +30,7 @@ public class UserPostDto {
     @Size(min = 3, max = 20, message = "Password should be between 3 and 20 characters")
     private String password;
 
-    @ValidRole
+    @NotNull
     private Role role;
 
 }

@@ -4,7 +4,9 @@ import com.lhind.application.entity.Flight;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
-import com.lhind.application.utility.model.Status;
+import com.lhind.application.utility.mapper.FlightMapper;
+import com.lhind.application.utility.model.flightdto.FlightResponseDto;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -24,55 +26,64 @@ public class TripFlightServiceImpl implements TripFlightService {
     private final FlightService flightService;
 
     @Override
-    public List<Flight> findAll(String loggedUsername, Long tripId) {
+    public List<FlightResponseDto> findAll(String loggedUsername, Long tripId) {
         log.info("Finding all flights on trip with id: {} for user: {}", tripId, loggedUsername);
 
-        Trip existingTrip = userTripService.findById(loggedUsername, tripId);
+        Trip foundTrip = userTripService.findApprovedTrip(loggedUsername, tripId);
 
         log.info("Retrieving all flights.");
 
-        return existingTrip.getFlights();
+        List<Flight> flights = foundTrip.getFlights();
+
+        return FlightMapper.flightToFlightDto(flights);
     }
 
     @Override
-    public Flight findById(String loggedUsername, Long tripId, Long flightId) {
+    public FlightResponseDto findById(String loggedUsername, Long tripId, Long flightId) {
         log.info("Finding flight with id: {} on trip with id: {} for user: {}", flightId, tripId, loggedUsername);
 
-        Trip existingTrip = userTripService.findById(loggedUsername, tripId);
+        Trip foundTrip = userTripService.findApprovedTrip(loggedUsername, tripId);
 
         log.info("Retrieving flight on the trip.");
 
-        return existingTrip.getFlights().stream()
+        Flight foundFlight = getFlight(loggedUsername, tripId, flightId, foundTrip);
+
+        return FlightMapper.flightToFlightDto(foundFlight);
+    }
+
+    private Flight getFlight(String loggedUsername, Long tripId, Long flightId, Trip foundTrip) {
+        return foundTrip.getFlights().stream()
                 .filter(flight -> Objects.equals(flight.getId(), flightId))
                 .findFirst()
                 .orElseThrow(() -> {
-                    log.error("No flight with id: {} found in the trip with id: {} for user: {}", flightId, tripId, loggedUsername);
+                    log.error("No flight with id: {} found in the trip with id: {} for user: {}",
+                            flightId, tripId, loggedUsername);
 
                     throw new ResourceNotFoundException();
                 });
     }
 
     @Override
-    public List<Flight> findFlights(String loggedUsername, Long tripId) {
+    public List<FlightResponseDto> findFlights(String loggedUsername, Long tripId) {
         log.info("Finding suggested flights for trip with id: {} for user: {}", tripId, loggedUsername);
 
-        Trip existingTrip = getTrip(loggedUsername, tripId);
+        Trip foundTrip = userTripService.findApprovedTrip(loggedUsername, tripId);
 
-        Flight flightToFind = new Flight();
-        flightToFind.setFrom(existingTrip.getFrom());
-        flightToFind.setTo(existingTrip.getTo());
-        flightToFind.setDepartureDate(existingTrip.getDepartureDate());
+        FlightFilterDto flightToFind = new FlightFilterDto();
+        flightToFind.setFrom(foundTrip.getFrom());
+        flightToFind.setTo(foundTrip.getTo());
+        flightToFind.setDepartureDate(foundTrip.getDepartureDate());
 
         return flightService.findFlights(flightToFind);
     }
 
     @Override
     @Transactional
-    public Flight addFlight(String loggedUsername, Long tripId, Long flightId) {
+    public FlightResponseDto addFlight(String loggedUsername, Long tripId, Long flightId) {
         log.info("Adding flight with id: {} on trip with id: {} for user: {}", flightId, tripId, loggedUsername);
 
-        Trip tripToPatch = getTrip(loggedUsername, tripId);
-        Flight flightToAdd = flightService.findById(flightId);
+        Trip tripToPatch = userTripService.findApprovedTrip(loggedUsername, tripId);
+        Flight flightToAdd = flightService.getById(flightId);
 
         checkFlightAlreadyAdded(tripToPatch, flightToAdd);
 
@@ -82,23 +93,7 @@ public class TripFlightServiceImpl implements TripFlightService {
 
         log.info("Returning added flight.");
 
-        return flightToAdd;
-    }
-
-    private Trip getTrip(String loggedUsername, Long tripId) {
-        log.info("Finding trip with id: {} for user: {}.", tripId, loggedUsername);
-
-        Trip tripToPatch = userTripService.findById(loggedUsername, tripId);
-
-        if (tripToPatch.getStatus() != Status.APPROVED) {
-            log.error("This trip is not approved by the admin.");
-
-            throw new BadRequestException("This trip is not approved by the admin.");
-        }
-
-        log.info("Retrieving trip.");
-
-        return tripToPatch;
+        return FlightMapper.flightToFlightDto(flightToAdd);
     }
 
     private void checkFlightAlreadyAdded(Trip tripToPatch, Flight flightToPatch) {

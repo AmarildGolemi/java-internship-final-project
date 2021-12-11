@@ -1,13 +1,8 @@
 package com.lhind.application.controller.v1;
 
-import com.lhind.application.entity.Flight;
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.FlightService;
-import com.lhind.application.utility.mapper.FlightMapper;
-import com.lhind.application.utility.model.flightdto.FlightCreateDto;
-import com.lhind.application.utility.model.flightdto.FlightDto;
-import com.lhind.application.utility.model.flightdto.FlightFilterDto;
-import com.lhind.application.utility.model.flightdto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -34,14 +29,12 @@ public class FlightController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<List<FlightDto>> findAll() {
+    public ResponseEntity<List<FlightResponseDto>> findAll() {
         log.info("Accessing endpoint {} to find all available flights.", BASE_URL);
 
         authenticatedUserService.getLoggedUsername();
 
-        List<FlightDto> flights = FlightMapper.flightToFlightDto(
-                flightService.findAll()
-        );
+        List<FlightResponseDto> flights = flightService.findAll();
 
         log.info("Returning list of all available flights.");
 
@@ -50,28 +43,26 @@ public class FlightController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<FlightDto> findById(@PathVariable @Min(1) Long id) {
+    public ResponseEntity<FlightResponseDto> findById(@PathVariable @Min(1) Long id) {
         log.info("Accessing endpoint {}/{} to find flight by id.", BASE_URL, id);
 
         authenticatedUserService.getLoggedUsername();
 
-        Flight existingFlight = flightService.findById(id);
+        FlightResponseDto existingFlight = flightService.findById(id);
 
         log.info("Returning flight.");
 
-        return new ResponseEntity<>(FlightMapper.flightToFlightDto(existingFlight), HttpStatus.OK);
+        return new ResponseEntity<>(existingFlight, HttpStatus.OK);
     }
 
     @PostMapping("/filter")
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
-    public ResponseEntity<List<FlightDto>> findFlights(@Valid @RequestBody FlightFilterDto flightDto) {
+    public ResponseEntity<List<FlightResponseDto>> findFlights(@Valid @RequestBody FlightFilterDto flightDto) {
         log.info("Accessing endpoint {}/find to find flight by filters: {}.", BASE_URL, flightDto);
 
         authenticatedUserService.getLoggedUsername();
 
-        List<FlightDto> flights = FlightMapper.flightToFlightDto(
-                flightService.findFlights(FlightMapper.flightDtoToFlight(flightDto))
-        );
+        List<FlightResponseDto> flights = flightService.findFlights(flightDto);
 
         log.info("Returning list of filtered flights.");
 
@@ -80,49 +71,46 @@ public class FlightController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<FlightDto> save(@Valid @RequestBody FlightCreateDto flightDto) {
+    public ResponseEntity<FlightResponseDto> save(@Valid @RequestBody FlightRequestDto flightDto) {
         log.info("Accessing endpoint {} to post a new flight: {}.", BASE_URL, flightDto);
 
         authenticatedUserService.getLoggedUsername();
 
-        Flight flightToSave = FlightMapper.flightDtoToFlight(flightDto);
-        Flight savedFlight = flightService.save(flightToSave);
+        FlightResponseDto savedFlight = flightService.save(flightDto);
 
         log.info("Returning new added flight.");
 
-        return new ResponseEntity<>(FlightMapper.flightToFlightDto(savedFlight), HttpStatus.OK);
+        return new ResponseEntity<>(savedFlight, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<FlightDto> update(@PathVariable Long id,
-                                            @Valid @RequestBody FlightCreateDto flightDto) {
+    public ResponseEntity<FlightResponseDto> update(@PathVariable Long id,
+                                                    @Valid @RequestBody FlightRequestDto flightDto) {
         log.info("Accessing endpoint {}/{} to update flight by id.", BASE_URL, id);
 
         authenticatedUserService.getLoggedUsername();
 
-        Flight flightToUpdate = FlightMapper.flightDtoToFlight(flightDto);
-        Flight updatedFlight = flightService.update(id, flightToUpdate);
+        FlightResponseDto updatedFlight = flightService.update(id, flightDto);
 
         log.info("Returning updated flight.");
 
-        return new ResponseEntity<>(FlightMapper.flightToFlightDto(updatedFlight), HttpStatus.OK);
+        return new ResponseEntity<>(updatedFlight, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<FlightDto> patch(@PathVariable Long id,
-                                           @Valid @RequestBody FlightPatchDto flightDto) {
+    public ResponseEntity<FlightResponseDto> patch(@PathVariable Long id,
+                                                   @Valid @RequestBody FlightPatchDto flightDto) {
         log.info("Accessing endpoint {}/{} to patch flight by id.", BASE_URL, id);
 
         authenticatedUserService.getLoggedUsername();
 
-        Flight flightToPatch = FlightMapper.flightDtoToFlight(flightDto);
-        Flight patchedFlight = flightService.patch(id, flightToPatch);
+        FlightResponseDto patchedFlight = flightService.patch(id, flightDto);
 
         log.info("Returning patched flight.");
 
-        return new ResponseEntity<>(FlightMapper.flightToFlightDto(patchedFlight), HttpStatus.OK);
+        return new ResponseEntity<>(patchedFlight, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

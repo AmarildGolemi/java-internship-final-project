@@ -9,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +36,13 @@ public class Flight {
     private Date departureDate;
 
     @Column(nullable = false)
+    private Time departureTime;
+
+    @Column(nullable = false)
     private Date arrivalDate;
+
+    @Column(nullable = false)
+    private Time arrivalTime;
 
     @Column(nullable = false)
     private String airline;
@@ -61,6 +68,8 @@ public class Flight {
                 && this.to.equals(flight.to)
                 && this.departureDate.toLocalDate().isEqual(((Flight) o).departureDate.toLocalDate())
                 && this.arrivalDate.toLocalDate().isEqual(((Flight) o).arrivalDate.toLocalDate())
+                && this.departureTime.toLocalTime().equals(((Flight) o).departureTime.toLocalTime())
+                && this.arrivalTime.toLocalTime().equals(((Flight) o).arrivalTime.toLocalTime())
                 && this.airline.equals(flight.airline);
     }
 
