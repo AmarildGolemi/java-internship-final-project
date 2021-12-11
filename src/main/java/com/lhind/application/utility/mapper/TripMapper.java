@@ -1,10 +1,9 @@
 package com.lhind.application.utility.mapper;
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.utility.model.tripdto.TripPostDto;
-import com.lhind.application.utility.model.tripdto.TripDto;
 import com.lhind.application.utility.model.tripdto.TripPatchDto;
-import com.lhind.application.utility.model.tripdto.TripUpdateDto;
+import com.lhind.application.utility.model.tripdto.TripRequestDto;
+import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -13,42 +12,25 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class TripMapper {
 
-    public TripDto tripToTripDto(Trip trip) {
+    public TripResponseDto tripToTripDto(Trip trip) {
         if (trip == null) {
             return null;
         }
 
-        TripDto tripDto = new TripDto();
+        TripResponseDto tripResponseDto = new TripResponseDto();
 
-        tripDto.setId(trip.getId());
-        tripDto.setTripReason(trip.getTripReason());
-        tripDto.setDescription(trip.getDescription());
-        tripDto.setFrom(trip.getFrom());
-        tripDto.setTo(trip.getTo());
-        tripDto.setDepartureDate(trip.getDepartureDate());
-        tripDto.setArrivalDate(trip.getArrivalDate());
+        tripResponseDto.setId(trip.getId());
+        tripResponseDto.setTripReason(trip.getTripReason());
+        tripResponseDto.setDescription(trip.getDescription());
+        tripResponseDto.setFrom(trip.getFrom());
+        tripResponseDto.setTo(trip.getTo());
+        tripResponseDto.setDepartureDate(trip.getDepartureDate());
+        tripResponseDto.setArrivalDate(trip.getArrivalDate());
 
-        return tripDto;
+        return tripResponseDto;
     }
 
-    public Trip tripDtoToTrip(TripPostDto tripDto) {
-        if (tripDto == null) {
-            return null;
-        }
-
-        Trip trip = new Trip();
-
-        trip.setTripReason(tripDto.getTripReason());
-        trip.setDescription(tripDto.getDescription());
-        trip.setFrom(tripDto.getFrom());
-        trip.setTo(tripDto.getTo());
-        trip.setDepartureDate(tripDto.getDepartureDate());
-        trip.setArrivalDate(tripDto.getArrivalDate());
-
-        return trip;
-    }
-
-    public Trip tripDtoToTrip(TripUpdateDto tripDto) {
+    public Trip tripDtoToTrip(TripRequestDto tripDto) {
         if (tripDto == null) {
             return null;
         }
@@ -82,7 +64,7 @@ public class TripMapper {
         return trip;
     }
 
-    public List<TripDto> tripToTripDto(List<Trip> trips) {
+    public List<TripResponseDto> tripToTripDto(List<Trip> trips) {
         return trips.stream()
                 .map(TripMapper::tripToTripDto)
                 .collect(Collectors.toList());

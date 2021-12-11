@@ -2,7 +2,10 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.FlightService;
-import com.lhind.application.utility.model.flightdto.*;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
+import com.lhind.application.utility.model.flightdto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.FlightRequestDto;
+import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

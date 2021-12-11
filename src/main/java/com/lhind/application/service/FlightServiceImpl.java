@@ -5,13 +5,17 @@ import com.lhind.application.exception.InvalidDateTimeException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.FlightRepository;
 import com.lhind.application.utility.mapper.FlightMapper;
-import com.lhind.application.utility.model.flightdto.*;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
+import com.lhind.application.utility.model.flightdto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.FlightRequestDto;
+import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
 import java.sql.Date;
+import java.sql.Time;
 import java.time.Duration;
 import java.time.Period;
 import java.util.List;
@@ -77,7 +81,7 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponseDto save(FlightRequestDto flight) {
         log.info("Saving flight: {}", flight);
 
-        validateFlightDates(flight);
+        validateFlightRequestDateTime(flight);
 
         Flight flightToSave = FlightMapper.flightDtoToFlight(flight);
 
@@ -92,7 +96,7 @@ public class FlightServiceImpl implements FlightService {
 
         validateFlightExists(id);
 
-        validateFlightDates(flight);
+        validateFlightRequestDateTime(flight);
 
         Flight flightToUpdate = getFlightToUpdate(id, flight);
         Flight updatedFlight = flightRepository.save(flightToUpdate);
@@ -102,30 +106,30 @@ public class FlightServiceImpl implements FlightService {
         return FlightMapper.flightToFlightDto(updatedFlight);
     }
 
-    private void validateFlightDates(FlightRequestDto flightDto) {
+    private void validateFlightRequestDateTime(FlightRequestDto flightDto) {
         log.info("Validating flight's date and time are valid.");
 
         Date departureDate = flightDto.getDepartureDate();
+        Time departureTime = flightDto.getDepartureTime();
+
         Date arrivalDate = flightDto.getArrivalDate();
+        Time arrivalTime = flightDto.getArrivalTime();
 
-        if (departureDate != null && arrivalDate != null
-                && flightDto.getDepartureTime() != null && flightDto.getArrivalTime() != null) {
+        validateDateAndTimeAreProvided(departureDate, departureTime, arrivalDate, arrivalTime);
 
-            Period dateDifference = Period.between(
-                    departureDate.toLocalDate(), arrivalDate.toLocalDate());
-            Duration timeElapsed = Duration.between(
-                    flightDto.getDepartureTime().toLocalTime(), flightDto.getArrivalTime().toLocalTime());
+        validateDates(departureDate, arrivalDate);
 
-            if (dateDifference.getDays() < 0 && !timeElapsed.isNegative()) {
-                log.error("Date and time are not valid.");
+        validateTime(departureTime, arrivalTime);
 
-                throw new InvalidDateTimeException();
-            }
+    }
 
-        } else {
-            log.error("Both dates and times are not provided.");
+    private void validateDateAndTimeAreProvided(Date departureDate, Time departureTime, Date arrivalDate, Time arrivalTime) {
+        log.info("Validating both date and times are provided.");
 
-            throw new ValidationException();
+        if (departureDate == null || arrivalDate == null || departureTime == null || arrivalTime == null) {
+            log.error("Arrival and departure dates and times are not provided.");
+
+            throw new InvalidDateTimeException();
         }
     }
 
@@ -152,6 +156,8 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponseDto patch(Long id, FlightPatchDto flight) {
         log.info("Patching flight with id: {}", id);
 
+        validateFlightPatchDateTime(flight);
+
         Flight flightToPatch = getFlight(id);
 
         patchFlight(flight, flightToPatch);
@@ -161,6 +167,73 @@ public class FlightServiceImpl implements FlightService {
         Flight patchedFlight = flightRepository.save(flightToPatch);
 
         return FlightMapper.flightToFlightDto(patchedFlight);
+    }
+
+    private void validateFlightPatchDateTime(FlightPatchDto flightDto) {
+        log.info("Validating flight's patch date and time are valid.");
+
+        Date departureDate = flightDto.getDepartureDate();
+        Time departureTime = flightDto.getDepartureTime();
+
+        Date arrivalDate = flightDto.getArrivalDate();
+        Time arrivalTime = flightDto.getArrivalTime();
+
+        validateOneDateIsProvided(departureDate, arrivalDate);
+
+        validateOneTimeIsProvided(departureTime, arrivalTime);
+
+        validateDates(departureDate, arrivalDate);
+
+        validateTime(departureTime, arrivalTime);
+
+    }
+
+    private void validateOneTimeIsProvided(Time departureTime, Time arrivalTime) {
+        if ((departureTime != null && arrivalTime == null)
+                || (departureTime == null && arrivalTime != null)) {
+            log.error("One of the times in not provided to patch.");
+
+            throw new ValidationException("Both times should be provided.");
+        }
+    }
+
+    private void validateOneDateIsProvided(Date departureDate, Date arrivalDate) {
+        if ((departureDate != null && arrivalDate == null)
+                || (departureDate == null && arrivalDate != null)) {
+            log.error("One of the dates in not provided to patch.");
+
+            throw new ValidationException("Both date should be provided.");
+        }
+    }
+
+    private void validateTime(Time departureTime, Time arrivalTime) {
+        log.info("Validating time is valid.");
+
+        if (departureTime != null && arrivalTime != null) {
+            Duration timeElapsed = Duration.between(
+                    departureTime.toLocalTime(), arrivalTime.toLocalTime());
+
+            if (timeElapsed.isNegative()) {
+                log.error("Arrival and departure times are not valid.");
+
+                throw new InvalidDateTimeException();
+            }
+        }
+    }
+
+    private void validateDates(Date departureDate, Date arrivalDate) {
+        log.info("Validating dates are valid.");
+
+        if (departureDate != null && arrivalDate != null) {
+            Period dateDifference = Period.between(
+                    departureDate.toLocalDate(), arrivalDate.toLocalDate());
+
+            if (dateDifference.getDays() < 0) {
+                log.error("Arrival and departure dates are not valid.");
+
+                throw new InvalidDateTimeException();
+            }
+        }
     }
 
     private void patchFlight(FlightPatchDto flight, Flight flightToPatch) {

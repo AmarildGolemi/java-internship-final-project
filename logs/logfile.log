@@ -3334,3 +3334,780 @@ java.sql.SQLIntegrityConstraintViolationException: Column 'departure_time' canno
 2021-12-11 22:29:17.748  INFO 5108 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2021-12-11 22:29:17.748  INFO 5108 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
 2021-12-11 22:29:17.779  INFO 5108 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2021-12-11 23:00:21.713  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:00:21.713  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:00:21.869  INFO 9208 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-12-11 23:00:21.869  INFO 9208 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-12-11 23:00:24.328  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:00:24.598  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 240 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:00:26.603  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:00:26.616  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:00:26.616  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:00:26.798  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:00:26.798  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4929 ms
+2021-12-11 23:00:27.049  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:00:27.108  INFO 9208 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.1.Final
+2021-12-11 23:00:27.263  INFO 9208 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-11 23:00:27.378  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-12-11 23:00:27.883  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-12-11 23:00:27.913  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:00:29.203  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:00:29.213  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:00:30.193  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:00:31.059  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3f81ba1d, org.springframework.security.web.context.SecurityContextPersistenceFilter@125bd6dd, org.springframework.security.web.header.HeaderWriterFilter@480e3067, org.springframework.security.web.authentication.logout.LogoutFilter@cf6ddc6, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@311015ba, com.lhind.application.security.jwt.JwtTokenVerifierFilter@292e795f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a748ada, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@575448dc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@486dd8c0, org.springframework.security.web.session.SessionManagementFilter@33c35230, org.springframework.security.web.access.ExceptionTranslationFilter@71e59ee0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@60b4ac77]
+2021-12-11 23:00:31.318  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:00:31.715  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:00:32.543  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 11.702 seconds (JVM running for 14.4)
+2021-12-11 23:02:17.472  INFO 9208 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 23:02:17.472  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-11 23:02:17.482  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2021-12-11 23:02:17.512  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:02:17.842  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights to post a new flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@4ed14f66.
+2021-12-11 23:02:17.842  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:02:17.842  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:02:17.859  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Saving flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@4ed14f66
+2021-12-11 23:02:17.859  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:02:17.862 ERROR 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Arrival and departure times are not valid.
+2021-12-11 23:02:17.872  INFO 9208 --- [http-nio-8080-exec-2] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:02:17.927  WARN 9208 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:05:16.033  INFO 9208 --- [Thread-4] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:16.038  INFO 9208 --- [Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-12-11 23:05:16.078  INFO 9208 --- [Thread-4] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-12-11 23:05:16.366  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:05:16.366  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:05:17.913  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:05:18.018  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 101 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:05:18.990  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:05:19.037  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:05:19.037  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:05:19.133  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:05:19.178  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2805 ms
+2021-12-11 23:05:19.422  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:05:19.432  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-12-11 23:05:19.522  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-12-11 23:05:19.557  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:05:20.102  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:05:20.102  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:20.126  WARN 9208 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'flightController' defined in file [C:\Users\amari\Desktop\java-internship-final-project\target\classes\com\lhind\application\controller\v1\FlightController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.lhind.application.service.FlightService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2021-12-11 23:05:20.133  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:20.133  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2021-12-11 23:05:20.177  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2021-12-11 23:05:20.192  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-12-11 23:05:20.205  INFO 9208 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 23:05:20.254 ERROR 9208 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.lhind.application.controller.v1.FlightController required a bean of type 'com.lhind.application.service.FlightService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.lhind.application.service.FlightService' in your configuration.
+
+2021-12-11 23:05:23.013  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:05:23.013  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:05:24.046  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:05:24.148  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 91 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:05:24.578  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:05:24.581  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:05:24.581  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:05:24.630  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:05:24.633  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1615 ms
+2021-12-11 23:05:24.758  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:05:24.768  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2021-12-11 23:05:24.813  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2021-12-11 23:05:24.818  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:05:25.318  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:05:25.318  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:25.851  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:05:26.343  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@781473ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@68c63d6, org.springframework.security.web.header.HeaderWriterFilter@71176c31, org.springframework.security.web.authentication.logout.LogoutFilter@1fc2a1b3, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@7e51d4a9, com.lhind.application.security.jwt.JwtTokenVerifierFilter@5af969fc, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ceb22c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5657b380, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@56e2ed32, org.springframework.security.web.session.SessionManagementFilter@12bf6181, org.springframework.security.web.access.ExceptionTranslationFilter@4f5aa4f3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3297d009]
+2021-12-11 23:05:26.516  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:05:26.724  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:05:27.143  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 4.204 seconds (JVM running for 308.995)
+2021-12-11 23:05:27.148  INFO 9208 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-11 23:05:32.973  INFO 9208 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 23:05:32.987  INFO 9208 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-11 23:05:32.987  INFO 9208 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-12-11 23:05:32.995  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:05:33.061  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights to post a new flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@4cf2ce0a.
+2021-12-11 23:05:33.061  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:05:33.061  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:05:33.073  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Saving flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@4cf2ce0a
+2021-12-11 23:05:33.075  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:05:33.075  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:05:33.075  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:05:33.075  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:05:33.075 ERROR 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Arrival and departure times are not valid.
+2021-12-11 23:05:33.075  INFO 9208 --- [http-nio-8080-exec-1] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:05:33.093  WARN 9208 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:05:45.248  INFO 9208 --- [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:45.253  INFO 9208 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2021-12-11 23:05:45.547  INFO 9208 --- [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
+2021-12-11 23:05:46.022  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:05:46.022  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:05:47.342  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:05:47.443  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 101 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:05:47.953  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:05:47.953  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:05:47.953  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:05:48.087  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:05:48.138  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2111 ms
+2021-12-11 23:05:48.348  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:05:48.363  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Starting...
+2021-12-11 23:05:48.397  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Start completed.
+2021-12-11 23:05:48.397  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:05:49.426  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:05:49.426  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:49.467  WARN 9208 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'flightController' defined in file [C:\Users\amari\Desktop\java-internship-final-project\target\classes\com\lhind\application\controller\v1\FlightController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.lhind.application.service.FlightService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2021-12-11 23:05:49.467  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:49.473  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
+2021-12-11 23:05:49.502  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2021-12-11 23:05:49.506  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-12-11 23:05:49.517  INFO 9208 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 23:05:49.528 ERROR 9208 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.lhind.application.controller.v1.FlightController required a bean of type 'com.lhind.application.service.FlightService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.lhind.application.service.FlightService' in your configuration.
+
+2021-12-11 23:05:54.553  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:05:54.553  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:05:55.138  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:05:55.244  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:05:55.638  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:05:55.648  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:05:55.663  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:05:55.708  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:05:55.708  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1150 ms
+2021-12-11 23:05:56.000  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:05:56.013  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2021-12-11 23:05:56.058  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2021-12-11 23:05:56.058  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:05:56.624  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:05:56.628  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:05:57.383  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:05:57.893  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e58221e, org.springframework.security.web.context.SecurityContextPersistenceFilter@67ecb1a9, org.springframework.security.web.header.HeaderWriterFilter@45f7839c, org.springframework.security.web.authentication.logout.LogoutFilter@22891e7e, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@6edfd889, com.lhind.application.security.jwt.JwtTokenVerifierFilter@3277085d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1ed9ac73, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@674b2757, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f31d843, org.springframework.security.web.session.SessionManagementFilter@251c4f52, org.springframework.security.web.access.ExceptionTranslationFilter@45278d7a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2bc0c57d]
+2021-12-11 23:05:58.503  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:05:59.253  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:06:01.963  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 7.453 seconds (JVM running for 343.816)
+2021-12-11 23:06:02.212  INFO 9208 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-11 23:06:40.743  INFO 9208 --- [Thread-14] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:06:40.748  INFO 9208 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown initiated...
+2021-12-11 23:06:40.758  INFO 9208 --- [Thread-14] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Shutdown completed.
+2021-12-11 23:06:41.003  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:06:41.003  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:06:42.072  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:06:42.153  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 81 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:06:43.096  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:06:43.128  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:06:43.138  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:06:43.343  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:06:43.438  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2429 ms
+2021-12-11 23:06:43.683  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:06:43.693  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Starting...
+2021-12-11 23:06:43.736  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Start completed.
+2021-12-11 23:06:43.743  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:06:44.984  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:06:44.984  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:06:45.008  WARN 9208 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'flightController' defined in file [C:\Users\amari\Desktop\java-internship-final-project\target\classes\com\lhind\application\controller\v1\FlightController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.lhind.application.service.FlightService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2021-12-11 23:06:45.013  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:06:45.013  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2021-12-11 23:06:45.073  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2021-12-11 23:06:45.073  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-12-11 23:06:45.083  INFO 9208 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 23:06:45.096 ERROR 9208 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.lhind.application.controller.v1.FlightController required a bean of type 'com.lhind.application.service.FlightService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.lhind.application.service.FlightService' in your configuration.
+
+2021-12-11 23:06:47.927  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:06:47.929  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:06:48.813  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:06:48.868  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:06:49.348  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:06:49.348  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:06:49.348  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:06:49.398  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:06:49.403  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1470 ms
+2021-12-11 23:06:49.633  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:06:49.643  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2021-12-11 23:06:49.683  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2021-12-11 23:06:49.688  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:06:49.958  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:06:49.958  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:06:50.628  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:06:51.083  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a7466d1, org.springframework.security.web.context.SecurityContextPersistenceFilter@62b17d73, org.springframework.security.web.header.HeaderWriterFilter@644e0b32, org.springframework.security.web.authentication.logout.LogoutFilter@2dd2491b, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@5e49780f, com.lhind.application.security.jwt.JwtTokenVerifierFilter@55642fea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ea81e23, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1a2b835f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4cb2ebc8, org.springframework.security.web.session.SessionManagementFilter@4183e2e1, org.springframework.security.web.access.ExceptionTranslationFilter@47256a0c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@203798f]
+2021-12-11 23:06:51.283  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:06:51.498  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:06:51.897  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 4.023 seconds (JVM running for 393.753)
+2021-12-11 23:06:51.905  INFO 9208 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-11 23:07:23.316  INFO 9208 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 23:07:23.323  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-11 23:07:23.323  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-12-11 23:07:23.323  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:07:23.365  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights to post a new flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@7ad43ab.
+2021-12-11 23:07:23.365  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:07:23.365  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:07:23.372  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Saving flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@7ad43ab
+2021-12-11 23:07:23.372  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:07:23.372  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:07:23.372  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:07:23.372  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:07:23.572  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Returning new added flight.
+2021-12-11 23:07:30.078  INFO 9208 --- [http-nio-8080-exec-3] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:07:30.123  INFO 9208 --- [http-nio-8080-exec-3] l.a.c.RestResponseEntityExceptionHandler : Handling method argument not valid exception.
+2021-12-11 23:07:30.155  WARN 9208 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.lhind.application.utility.model.flightdto.FlightResponseDto> com.lhind.application.controller.v1.FlightController.save(com.lhind.application.utility.model.flightdto.FlightRequestDto): [Field error in object 'flightRequestDto' on field 'to': rejected value [null]; codes [NotBlank.flightRequestDto.to,NotBlank.to,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightRequestDto.to,to]; arguments []; default message [to]]; default message [Arrival city is mandatory]] ]
+2021-12-11 23:07:35.558  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:07:35.570  INFO 9208 --- [http-nio-8080-exec-5] l.a.c.RestResponseEntityExceptionHandler : Handling method argument not valid exception.
+2021-12-11 23:07:35.573  WARN 9208 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public org.springframework.http.ResponseEntity<com.lhind.application.utility.model.flightdto.FlightResponseDto> com.lhind.application.controller.v1.FlightController.save(com.lhind.application.utility.model.flightdto.FlightRequestDto): [Field error in object 'flightRequestDto' on field 'arrivalDate': rejected value [null]; codes [FutureDate.flightRequestDto.arrivalDate,FutureDate.arrivalDate,FutureDate.java.sql.Date,FutureDate]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightRequestDto.arrivalDate,arrivalDate]; arguments []; default message [arrivalDate]]; default message [Date must be in the future.]] ]
+2021-12-11 23:08:12.322  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:08:12.329  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights to post a new flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@2380d854.
+2021-12-11 23:08:12.332  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:08:12.332  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:08:12.332  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Saving flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@2380d854
+2021-12-11 23:08:12.332  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:08:12.332  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:08:12.332 ERROR 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Arrival and departure dates and times are not provided.
+2021-12-11 23:08:12.332  INFO 9208 --- [http-nio-8080-exec-7] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:08:12.332  WARN 9208 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:08:27.187  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:08:27.204  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights to post a new flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@3fa194a9.
+2021-12-11 23:08:27.204  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:08:27.209  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:08:27.213  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Saving flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@3fa194a9
+2021-12-11 23:08:27.213  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:08:27.213  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:08:27.213 ERROR 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Arrival and departure dates and times are not provided.
+2021-12-11 23:08:27.218  INFO 9208 --- [http-nio-8080-exec-9] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:08:27.219  WARN 9208 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:08:35.915  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:08:36.023  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights to post a new flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@3ef6f6a6.
+2021-12-11 23:08:36.107  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:08:36.107  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:08:36.178  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Saving flight: com.lhind.application.utility.model.flightdto.FlightRequestDto@3ef6f6a6
+2021-12-11 23:08:36.179  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:08:36.179  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:08:36.179  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:08:36.243 ERROR 9208 --- [http-nio-8080-exec-1] c.l.a.service.FlightServiceImpl          : Arrival and departure dates are not valid.
+2021-12-11 23:08:36.248  INFO 9208 --- [http-nio-8080-exec-1] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:08:36.252  WARN 9208 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:08:59.266  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:08:59.283  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to update flight by id.
+2021-12-11 23:08:59.283  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:08:59.283  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:08:59.289  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Updating flight with id: 45
+2021-12-11 23:08:59.289  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight exists.
+2021-12-11 23:08:59.329  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:08:59.329  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:08:59.329  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:08:59.345  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:08:59.358  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:08:59.383  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Returning updated flight.
+2021-12-11 23:09:05.043  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:05.062  INFO 9208 --- [http-nio-8080-exec-4] l.a.c.RestResponseEntityExceptionHandler : Handling method argument not valid exception.
+2021-12-11 23:09:05.072  WARN 9208 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.lhind.application.utility.model.flightdto.FlightResponseDto> com.lhind.application.controller.v1.FlightController.update(java.lang.Long,com.lhind.application.utility.model.flightdto.FlightRequestDto): [Field error in object 'flightRequestDto' on field 'to': rejected value [null]; codes [NotBlank.flightRequestDto.to,NotBlank.to,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightRequestDto.to,to]; arguments []; default message [to]]; default message [Arrival city is mandatory]] ]
+2021-12-11 23:09:10.383  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:10.403  INFO 9208 --- [http-nio-8080-exec-5] l.a.c.RestResponseEntityExceptionHandler : Handling method argument not valid exception.
+2021-12-11 23:09:10.415  WARN 9208 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [1] in public org.springframework.http.ResponseEntity<com.lhind.application.utility.model.flightdto.FlightResponseDto> com.lhind.application.controller.v1.FlightController.update(java.lang.Long,com.lhind.application.utility.model.flightdto.FlightRequestDto): [Field error in object 'flightRequestDto' on field 'departureDate': rejected value [null]; codes [FutureDate.flightRequestDto.departureDate,FutureDate.departureDate,FutureDate.java.sql.Date,FutureDate]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [flightRequestDto.departureDate,departureDate]; arguments []; default message [departureDate]]; default message [Date must be in the future.]] ]
+2021-12-11 23:09:18.417  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:18.441  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to update flight by id.
+2021-12-11 23:09:18.441  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:18.449  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:18.449  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Updating flight with id: 45
+2021-12-11 23:09:18.449  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating flight exists.
+2021-12-11 23:09:18.456  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:09:18.457  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:09:18.457 ERROR 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Arrival and departure dates and times are not provided.
+2021-12-11 23:09:18.457  INFO 9208 --- [http-nio-8080-exec-7] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:09:18.465  WARN 9208 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:09:24.614  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:24.622  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to update flight by id.
+2021-12-11 23:09:24.673  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:24.673  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:24.687  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Updating flight with id: 45
+2021-12-11 23:09:24.687  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Validating flight exists.
+2021-12-11 23:09:24.705  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:09:24.705  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:09:24.705  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:09:24.705 ERROR 9208 --- [http-nio-8080-exec-9] c.l.a.service.FlightServiceImpl          : Arrival and departure dates are not valid.
+2021-12-11 23:09:24.713  INFO 9208 --- [http-nio-8080-exec-9] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:09:24.713  WARN 9208 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:09:29.175  INFO 9208 --- [http-nio-8080-exec-1] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:29.199  INFO 9208 --- [http-nio-8080-exec-1] l.a.c.RestResponseEntityExceptionHandler : Handling http message not readable exception.
+2021-12-11 23:09:29.207  WARN 9208 --- [http-nio-8080-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `java.sql.Date` from String "2021-1-25": not a valid representation (error: Failed to parse Date value '2021-1-25': Cannot parse date "2021-1-25": while it seems to fit format 'yyyy-MM-dd', parsing fails (leniency? null)); nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `java.sql.Date` from String "2021-1-25": not a valid representation (error: Failed to parse Date value '2021-1-25': Cannot parse date "2021-1-25": while it seems to fit format 'yyyy-MM-dd', parsing fails (leniency? null))<LF> at [Source: (PushbackInputStream); line: 4, column: 22] (through reference chain: com.lhind.application.utility.model.flightdto.FlightRequestDto["departureDate"])]
+2021-12-11 23:09:31.776  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:31.793  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to update flight by id.
+2021-12-11 23:09:31.793  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:31.793  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:31.793  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Updating flight with id: 45
+2021-12-11 23:09:31.793  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight exists.
+2021-12-11 23:09:31.800  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's date and time are valid.
+2021-12-11 23:09:31.800  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating both date and times are provided.
+2021-12-11 23:09:31.800  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:09:31.800  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:09:31.800  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:09:31.803  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Returning updated flight.
+2021-12-11 23:09:35.086  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:09:35.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:09:35.119  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:09:35.119  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:09:35.123  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:09:39.986  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:40.003  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:09:40.003  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:40.003  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:40.008  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:09:40.008  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:09:40.008  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:09:40.008  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:09:40.008  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:09:40.012  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:09:40.012  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:09:40.012  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:09:44.953  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:44.963  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:09:44.963  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:44.963  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:44.963  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:09:44.968  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:09:44.968  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:09:44.968  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:09:44.968  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:09:44.971  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:09:44.971  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:09:44.973  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:09:55.627  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:09:55.635  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:16:57.537  INFO 9208 --- [Thread-21] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:16:57.537  INFO 9208 --- [Thread-21] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2021-12-11 23:16:57.555  INFO 9208 --- [Thread-21] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2021-12-11 23:16:57.802  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:16:57.802  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:16:58.978  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:16:59.143  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 104 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:16:59.792  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:16:59.797  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:16:59.799  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:16:59.877  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-3].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:16:59.887  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2079 ms
+2021-12-11 23:17:00.397  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:17:00.405  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2021-12-11 23:17:00.527  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2021-12-11 23:17:00.527  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:17:01.477  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:17:01.477  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:17:01.497  WARN 9208 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'flightController' defined in file [C:\Users\amari\Desktop\java-internship-final-project\target\classes\com\lhind\application\controller\v1\FlightController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.lhind.application.service.FlightService' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2021-12-11 23:17:01.552  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:17:01.557  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2021-12-11 23:17:01.669  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2021-12-11 23:17:01.669  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-12-11 23:17:01.702  INFO 9208 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 23:17:01.727 ERROR 9208 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in com.lhind.application.controller.v1.FlightController required a bean of type 'com.lhind.application.service.FlightService' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.lhind.application.service.FlightService' in your configuration.
+
+2021-12-11 23:17:05.743  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:17:05.743  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:17:06.588  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:17:06.682  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 89 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:17:07.032  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:17:07.037  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:17:07.037  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:17:07.082  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-4].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:17:07.088  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1342 ms
+2021-12-11 23:17:07.347  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:17:07.359  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2021-12-11 23:17:07.387  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2021-12-11 23:17:07.387  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:17:07.627  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:17:07.627  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:17:08.272  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:17:08.847  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5adc428e, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c82f317, org.springframework.security.web.header.HeaderWriterFilter@17fecd56, org.springframework.security.web.authentication.logout.LogoutFilter@5df473d8, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@47dcbbea, com.lhind.application.security.jwt.JwtTokenVerifierFilter@47125002, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1f0c3472, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7e79deb8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c6965c, org.springframework.security.web.session.SessionManagementFilter@543e44b5, org.springframework.security.web.access.ExceptionTranslationFilter@4ac73752, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@21bcc5f1]
+2021-12-11 23:17:09.002  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:17:09.247  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:17:09.757  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 4.092 seconds (JVM running for 1011.611)
+2021-12-11 23:17:09.762  INFO 9208 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-11 23:17:33.447  INFO 9208 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat-4].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 23:17:33.447  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-11 23:17:33.452  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2021-12-11 23:17:33.452  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:17:33.482  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:17:33.482  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:17:33.482  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:17:33.492  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:17:33.492  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:17:33.492 ERROR 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : One of the dates in not provided to patch.
+2021-12-11 23:17:33.497  INFO 9208 --- [http-nio-8080-exec-2] l.a.c.RestResponseEntityExceptionHandler : Handling validation exception.
+2021-12-11 23:17:33.507  WARN 9208 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [javax.validation.ValidationException: Both date should be provided.]
+2021-12-11 23:17:43.742  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:17:43.758  INFO 9208 --- [http-nio-8080-exec-4] l.a.c.RestResponseEntityExceptionHandler : Handling http message not readable exception.
+2021-12-11 23:17:43.763  WARN 9208 --- [http-nio-8080-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name<LF> at [Source: (PushbackInputStream); line: 6, column: 2]]
+2021-12-11 23:17:47.038  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:17:47.055  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:17:47.055  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:17:47.055  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:17:47.059  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:17:47.059  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:17:47.059  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:17:47.059  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:17:47.063  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:17:47.077  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:17:47.077  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:17:47.087  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:17:50.402  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:17:50.413  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:17:50.413  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:17:50.413  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:17:50.413  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:17:50.413  INFO 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:17:50.413 ERROR 9208 --- [http-nio-8080-exec-7] c.l.a.service.FlightServiceImpl          : One of the dates in not provided to patch.
+2021-12-11 23:17:50.413  INFO 9208 --- [http-nio-8080-exec-7] l.a.c.RestResponseEntityExceptionHandler : Handling validation exception.
+2021-12-11 23:17:50.413  WARN 9208 --- [http-nio-8080-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [javax.validation.ValidationException: Both date should be provided.]
+2021-12-11 23:17:55.882  INFO 9208 --- [http-nio-8080-exec-9] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:17:55.892  INFO 9208 --- [http-nio-8080-exec-9] l.a.c.RestResponseEntityExceptionHandler : Handling http message not readable exception.
+2021-12-11 23:17:55.898  WARN 9208 --- [http-nio-8080-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('}' (code 125)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('}' (code 125)): was expecting double-quote to start field name<LF> at [Source: (PushbackInputStream); line: 5, column: 2]]
+2021-12-11 23:17:59.556  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:17:59.572  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:17:59.572  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:17:59.572  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:17:59.572  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:17:59.572  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:17:59.572 ERROR 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : One of the times in not provided to patch.
+2021-12-11 23:17:59.572  INFO 9208 --- [http-nio-8080-exec-10] l.a.c.RestResponseEntityExceptionHandler : Handling validation exception.
+2021-12-11 23:17:59.572  WARN 9208 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [javax.validation.ValidationException: Both times should be provided.]
+2021-12-11 23:18:05.967  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:18:05.978  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:18:05.978  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:18:05.978  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:18:05.982  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:18:05.982  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:18:05.982  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:18:05.982 ERROR 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Arrival and departure dates are not valid.
+2021-12-11 23:18:05.982  INFO 9208 --- [http-nio-8080-exec-2] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:18:05.986  WARN 9208 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:18:19.152  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:18:19.194  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:18:19.194  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:18:19.203  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:18:19.203  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:18:19.203  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:18:19.203  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:18:19.203  INFO 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:18:19.203 ERROR 9208 --- [http-nio-8080-exec-5] c.l.a.service.FlightServiceImpl          : Arrival and departure times are not valid.
+2021-12-11 23:18:19.208  INFO 9208 --- [http-nio-8080-exec-5] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:18:19.211  WARN 9208 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:18:25.113  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:18:25.127  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:18:25.127  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:18:25.127  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:18:25.129  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:18:25.129  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:18:25.129  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:18:25.129  INFO 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:18:25.129 ERROR 9208 --- [http-nio-8080-exec-6] c.l.a.service.FlightServiceImpl          : Arrival and departure times are not valid.
+2021-12-11 23:18:25.129  INFO 9208 --- [http-nio-8080-exec-6] l.a.c.RestResponseEntityExceptionHandler : Handling Invalid DateTime Exception.
+2021-12-11 23:18:25.132  WARN 9208 --- [http-nio-8080-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.lhind.application.exception.InvalidDateTimeException]
+2021-12-11 23:18:30.952  INFO 9208 --- [http-nio-8080-exec-8] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:18:30.972  INFO 9208 --- [http-nio-8080-exec-8] l.a.c.RestResponseEntityExceptionHandler : Handling http message not readable exception.
+2021-12-11 23:18:30.982  WARN 9208 --- [http-nio-8080-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.sql.Time`, problem: `java.lang.IllegalArgumentException`; nested exception is com.fasterxml.jackson.databind.exc.ValueInstantiationException: Cannot construct instance of `java.sql.Time`, problem: `java.lang.IllegalArgumentException`<LF> at [Source: (PushbackInputStream); line: 3, column: 22] (through reference chain: com.lhind.application.utility.model.flightdto.FlightPatchDto["departureTime"])]
+2021-12-11 23:18:35.186  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:18:35.192  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:18:35.202  INFO 9208 --- [http-nio-8080-exec-10] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:19:39.097  INFO 9208 --- [Thread-28] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:19:39.097  INFO 9208 --- [Thread-28] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2021-12-11 23:19:39.102  INFO 9208 --- [Thread-28] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2021-12-11 23:19:39.427  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:19:39.427  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:19:40.497  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:19:40.595  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 97 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:19:41.407  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:19:41.417  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:19:41.417  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:19:41.502  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-4].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:19:41.507  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2075 ms
+2021-12-11 23:19:41.682  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:19:41.697  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2021-12-11 23:19:41.768  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2021-12-11 23:19:41.768  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:19:41.978  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:19:41.978  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:19:41.997  WARN 9208 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flightController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.lhind.application.controller.v1.FlightController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@148e5e95]
+2021-12-11 23:19:41.997  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:19:41.997  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2021-12-11 23:19:42.112  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2021-12-11 23:19:42.116  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-12-11 23:19:42.127  INFO 9208 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 23:19:42.138 ERROR 9208 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flightController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.lhind.application.controller.v1.FlightController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@148e5e95]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1302) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-2.6.1.jar:2.6.1]
+	at com.lhind.application.TripApplication.main(TripApplication.java:25) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.1.jar:2.6.1]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.lhind.application.controller.v1.FlightController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@148e5e95]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:481) ~[spring-core-5.3.13.jar:5.3.13]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321) ~[spring-core-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267) ~[spring-beans-5.3.13.jar:5.3.13]
+	... 23 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/lhind/application/utility/model/flightdto/FlightRequestDto
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2504) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:463) ~[spring-core-5.3.13.jar:5.3.13]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.lhind.application.utility.model.flightdto.FlightRequestDto
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:467) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:145) ~[spring-boot-devtools-2.6.1.jar:2.6.1]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	... 29 common frames omitted
+
+2021-12-11 23:19:44.811  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:19:44.811  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:19:45.269  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:19:45.327  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:19:45.644  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:19:45.652  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:19:45.652  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:19:45.702  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-5].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:19:45.708  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 896 ms
+2021-12-11 23:19:45.932  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:19:45.937  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2021-12-11 23:19:45.965  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2021-12-11 23:19:45.965  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:19:46.132  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:19:46.137  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:19:46.892  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:19:47.447  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3aa179d6, org.springframework.security.web.context.SecurityContextPersistenceFilter@2950bba7, org.springframework.security.web.header.HeaderWriterFilter@3c5a917f, org.springframework.security.web.authentication.logout.LogoutFilter@50fbbc8c, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@7e9a2599, com.lhind.application.security.jwt.JwtTokenVerifierFilter@7562f38a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@ca98000, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64902983, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3fc7157f, org.springframework.security.web.session.SessionManagementFilter@1d38a86d, org.springframework.security.web.access.ExceptionTranslationFilter@5d8f0a7f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4551e7ce]
+2021-12-11 23:19:47.632  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:19:47.982  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:19:48.582  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 3.863 seconds (JVM running for 1170.434)
+2021-12-11 23:19:48.604  INFO 9208 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-11 23:20:36.372  INFO 9208 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat-5].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 23:20:36.372  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-11 23:20:36.377  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2021-12-11 23:20:36.379  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:20:36.427  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:20:36.427  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:20:36.427  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:20:36.432  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:20:36.432  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:20:36.432  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:20:36.432  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:20:36.432  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:20:36.437  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:20:36.437  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:20:36.452  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:20:42.220  INFO 9208 --- [http-nio-8080-exec-3] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:20:42.235  INFO 9208 --- [http-nio-8080-exec-3] l.a.c.RestResponseEntityExceptionHandler : Handling http message not readable exception.
+2021-12-11 23:20:42.243  WARN 9208 --- [http-nio-8080-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.sql.Time`, problem: `java.lang.IllegalArgumentException`; nested exception is com.fasterxml.jackson.databind.exc.ValueInstantiationException: Cannot construct instance of `java.sql.Time`, problem: `java.lang.IllegalArgumentException`<LF> at [Source: (PushbackInputStream); line: 3, column: 22] (through reference chain: com.lhind.application.utility.model.flightdto.FlightPatchDto["departureTime"])]
+2021-12-11 23:21:05.924  INFO 9208 --- [Thread-35] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:21:05.932  INFO 9208 --- [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2021-12-11 23:21:05.972  INFO 9208 --- [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+2021-12-11 23:21:06.257  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:21:06.257  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:21:07.344  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:21:07.397  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:21:08.907  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:21:08.927  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:21:08.967  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:21:09.047  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-5].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:21:09.087  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2820 ms
+2021-12-11 23:21:09.217  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:21:09.227  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Starting...
+2021-12-11 23:21:09.267  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Start completed.
+2021-12-11 23:21:09.317  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:21:10.912  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:21:10.912  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:21:10.932  WARN 9208 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flightController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.lhind.application.controller.v1.FlightController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@63bda0de]
+2021-12-11 23:21:10.932  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:21:10.932  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown initiated...
+2021-12-11 23:21:10.947  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-12 - Shutdown completed.
+2021-12-11 23:21:10.947  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2021-12-11 23:21:10.955  INFO 9208 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2021-12-11 23:21:10.962 ERROR 9208 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flightController': Lookup method resolution failed; nested exception is java.lang.IllegalStateException: Failed to introspect Class [com.lhind.application.controller.v1.FlightController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@63bda0de]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:289) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.determineConstructorsFromBeanPostProcessors(AbstractAutowireCapableBeanFactory.java:1302) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:944) ~[spring-beans-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.13.jar:5.3.13]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:730) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:412) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301) ~[spring-boot-2.6.1.jar:2.6.1]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1290) ~[spring-boot-2.6.1.jar:2.6.1]
+	at com.lhind.application.TripApplication.main(TripApplication.java:25) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.1.jar:2.6.1]
+Caused by: java.lang.IllegalStateException: Failed to introspect Class [com.lhind.application.controller.v1.FlightController] from ClassLoader [org.springframework.boot.devtools.restart.classloader.RestartClassLoader@63bda0de]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:481) ~[spring-core-5.3.13.jar:5.3.13]
+	at org.springframework.util.ReflectionUtils.doWithLocalMethods(ReflectionUtils.java:321) ~[spring-core-5.3.13.jar:5.3.13]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.determineCandidateConstructors(AutowiredAnnotationBeanPostProcessor.java:267) ~[spring-beans-5.3.13.jar:5.3.13]
+	... 23 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: com/lhind/application/utility/model/flightdto/FlightRequestDto
+	at java.base/java.lang.Class.getDeclaredMethods0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402) ~[na:na]
+	at java.base/java.lang.Class.getDeclaredMethods(Class.java:2504) ~[na:na]
+	at org.springframework.util.ReflectionUtils.getDeclaredMethods(ReflectionUtils.java:463) ~[spring-core-5.3.13.jar:5.3.13]
+	... 25 common frames omitted
+Caused by: java.lang.ClassNotFoundException: com.lhind.application.utility.model.flightdto.FlightRequestDto
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[na:na]
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[na:na]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	at java.base/java.lang.Class.forName0(Native Method) ~[na:na]
+	at java.base/java.lang.Class.forName(Class.java:467) ~[na:na]
+	at org.springframework.boot.devtools.restart.classloader.RestartClassLoader.loadClass(RestartClassLoader.java:145) ~[spring-boot-devtools-2.6.1.jar:2.6.1]
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520) ~[na:na]
+	... 29 common frames omitted
+
+2021-12-11 23:21:12.572  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Starting TripApplication using Java 17.0.1 on HP-NOTEBOOK-15 with PID 9208 (C:\Users\amari\Desktop\java-internship-final-project\target\classes started by amari in C:\Users\amari\Desktop\java-internship-final-project)
+2021-12-11 23:21:12.572  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : No active profile set, falling back to default profiles: default
+2021-12-11 23:21:13.442  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-11 23:21:13.522  INFO 9208 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 77 ms. Found 4 JPA repository interfaces.
+2021-12-11 23:21:14.027  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-12-11 23:21:14.027  INFO 9208 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-12-11 23:21:14.027  INFO 9208 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-11 23:21:14.107  INFO 9208 --- [restartedMain] o.a.c.c.C.[Tomcat-6].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2021-12-11 23:21:14.153  INFO 9208 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1576 ms
+2021-12-11 23:21:14.272  INFO 9208 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-11 23:21:14.287  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Starting...
+2021-12-11 23:21:14.317  INFO 9208 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Start completed.
+2021-12-11 23:21:14.317  INFO 9208 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-12-11 23:21:14.542  INFO 9208 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-11 23:21:14.542  INFO 9208 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:21:15.182  WARN 9208 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-11 23:21:15.607  INFO 9208 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b5e74f, org.springframework.security.web.context.SecurityContextPersistenceFilter@685a38d4, org.springframework.security.web.header.HeaderWriterFilter@4f71dec0, org.springframework.security.web.authentication.logout.LogoutFilter@32fa6a2c, com.lhind.application.security.jwt.JwtUsernameAndPasswordAuthenticationFilter@6cf7e744, com.lhind.application.security.jwt.JwtTokenVerifierFilter@43b58c96, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7faa0617, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3eec40fc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@39a5a1f2, org.springframework.security.web.session.SessionManagementFilter@1768e14, org.springframework.security.web.access.ExceptionTranslationFilter@ac3b49c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7f50a75d]
+2021-12-11 23:21:15.735  INFO 9208 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-12-11 23:21:16.062  INFO 9208 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-12-11 23:21:16.462  INFO 9208 --- [restartedMain] com.lhind.application.TripApplication    : Started TripApplication in 3.938 seconds (JVM running for 1258.315)
+2021-12-11 23:21:16.467  INFO 9208 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2021-12-11 23:21:47.657  INFO 9208 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat-6].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-11 23:21:47.708  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-12-11 23:21:47.732  INFO 9208 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 20 ms
+2021-12-11 23:21:47.737  INFO 9208 --- [http-nio-8080-exec-2] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:21:47.752  INFO 9208 --- [http-nio-8080-exec-2] l.a.c.RestResponseEntityExceptionHandler : Handling http message not readable exception.
+2021-12-11 23:21:47.752  WARN 9208 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot construct instance of `java.sql.Time`, problem: `java.lang.IllegalArgumentException`; nested exception is com.fasterxml.jackson.databind.exc.ValueInstantiationException: Cannot construct instance of `java.sql.Time`, problem: `java.lang.IllegalArgumentException`<LF> at [Source: (PushbackInputStream); line: 3, column: 22] (through reference chain: com.lhind.application.utility.model.flightdto.FlightPatchDto["departureTime"])]
+2021-12-11 23:21:51.265  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.security.jwt.JwtProvider           : Validating token is not for a logged out user.
+2021-12-11 23:21:51.296  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.controller.v1.FlightController     : Accessing endpoint /api/v1/flights/45 to patch flight by id.
+2021-12-11 23:21:51.296  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.s.AuthenticatedUserServiceImpl     : Getting logged username.
+2021-12-11 23:21:51.296  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.s.AuthenticatedUserServiceImpl     : Logged user with username 'john' is accessing the endpoint.
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Patching flight with id: 45
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Validating flight's patch date and time are valid.
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Validating date is valid.
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Validating time is valid.
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Retrieving flight.
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Flight found in the database.
+2021-12-11 23:21:51.305  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.service.FlightServiceImpl          : Saving updated flight.
+2021-12-11 23:21:51.317  INFO 9208 --- [http-nio-8080-exec-4] c.l.a.controller.v1.FlightController     : Returning patched flight.
+2021-12-11 23:22:16.277  INFO 9208 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-12-11 23:22:16.277  INFO 9208 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown initiated...
+2021-12-11 23:22:16.287  INFO 9208 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-13 - Shutdown completed.

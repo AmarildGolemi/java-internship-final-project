@@ -15,9 +15,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TripUpdateDto {
-
-    private Long id;
+public class TripRequestDto {
 
     @Reason
     private TripReason tripReason;

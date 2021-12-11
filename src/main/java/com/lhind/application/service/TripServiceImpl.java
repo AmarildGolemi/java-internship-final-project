@@ -5,7 +5,7 @@ import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
 import com.lhind.application.utility.mapper.TripMapper;
 import com.lhind.application.utility.model.Status;
-import com.lhind.application.utility.model.tripdto.TripDto;
+import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class TripServiceImpl implements TripService {
     private final TripRepository tripRepository;
 
     @Override
-    public TripDto findById(Long id) {
+    public TripResponseDto findById(Long id) {
         log.info("Finding waiting for approval trip with id: {}", id);
 
         Trip foundTrip = getTrip(id);
@@ -32,7 +32,7 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public List<TripDto> findAllWaitingForApproval() {
+    public List<TripResponseDto> findAllWaitingForApproval() {
         log.info("Finding all trips waiting for approval.");
 
         List<Trip> foundTrips = tripRepository.findAllByStatus(Status.WAITING_FOR_APPROVAL);
@@ -106,7 +106,7 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public TripDto approve(Long tripId) {
+    public TripResponseDto approve(Long tripId) {
         log.info("Approving trip with id: {}", tripId);
 
         Trip tripToApprove = getTrip(tripId);
@@ -118,7 +118,7 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public TripDto reject(Long tripId) {
+    public TripResponseDto reject(Long tripId) {
         log.info("Rejecting trip with id: {}", tripId);
 
         Trip tripToReject = getTrip(tripId);

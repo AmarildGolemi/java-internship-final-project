@@ -10,7 +10,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TripDto {
+public class TripResponseDto {
 
     private Long id;
     private TripReason tripReason;

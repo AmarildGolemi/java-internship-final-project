@@ -3,16 +3,23 @@ package com.lhind.application.service;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.entity.User;
 import com.lhind.application.exception.BadRequestException;
+import com.lhind.application.exception.InvalidDateTimeException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.utility.mapper.TripMapper;
 import com.lhind.application.utility.model.Status;
 import com.lhind.application.utility.model.TripReason;
-import com.lhind.application.utility.model.tripdto.*;
+import com.lhind.application.utility.model.tripdto.TripFilterDto;
+import com.lhind.application.utility.model.tripdto.TripPatchDto;
+import com.lhind.application.utility.model.tripdto.TripRequestDto;
+import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ValidationException;
+import java.sql.Date;
+import java.time.Period;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -30,19 +37,19 @@ public class UserTripServiceImpl implements UserTripService {
     private final TripService tripService;
 
     @Override
-    public List<TripDto> findAll(String loggedUsername) {
+    public List<TripResponseDto> findAll(String loggedUsername) {
         log.info("Finding all trips for user with username: {}", loggedUsername);
 
         User foundUser = getUser(loggedUsername);
         List<Trip> trips = foundUser.getTrips();
-        
+
         log.info("Retrieving trips.");
 
         return TripMapper.tripToTripDto(trips);
     }
 
     @Override
-    public TripDto findById(String loggedUsername, Long tripId) {
+    public TripResponseDto findById(String loggedUsername, Long tripId) {
         User foundUser = getUser(loggedUsername);
 
         Trip foundTrip = foundUser.getTrips().stream()
@@ -61,7 +68,7 @@ public class UserTripServiceImpl implements UserTripService {
     }
 
     @Override
-    public List<TripDto> findAllFilteredTrips(String loggedUsername, TripFilterDto tripDto) {
+    public List<TripResponseDto> findAllFilteredTrips(String loggedUsername, TripFilterDto tripDto) {
         log.info("Finding all trips by filter.");
 
         User foundUser = getUser(loggedUsername);
@@ -90,39 +97,39 @@ public class UserTripServiceImpl implements UserTripService {
         return tripReason != null && status == null;
     }
 
-    private List<TripDto> findAllByTripReason(User foundUser, TripReason tripReason) {
+    private List<TripResponseDto> findAllByTripReason(User foundUser, TripReason tripReason) {
         log.info("Returning all trips with reason: {}", tripReason);
 
         List<Trip> trips = foundUser.getTrips().stream()
                 .filter(trip -> trip.getTripReason().equals(tripReason))
                 .collect(Collectors.toList());
-        
+
         return TripMapper.tripToTripDto(trips);
     }
 
-    private List<TripDto> findAllByStatus(User foundUser, Status status) {
+    private List<TripResponseDto> findAllByStatus(User foundUser, Status status) {
         log.info("Returning all trips with status: {}", status);
 
         List<Trip> trips = foundUser.getTrips().stream()
                 .filter(trip -> trip.getStatus().equals(status))
                 .collect(Collectors.toList());
-        
+
         return TripMapper.tripToTripDto(trips);
     }
 
-    private List<TripDto> findAllByTripReasonAndStatus(User foundUser, TripReason tripReason, Status status) {
+    private List<TripResponseDto> findAllByTripReasonAndStatus(User foundUser, TripReason tripReason, Status status) {
         log.info("Returning all trips with reason: {} and status: {}", tripReason, status);
 
         List<Trip> trips = foundUser.getTrips().stream()
                 .filter(trip -> trip.getTripReason().equals(tripReason) && trip.getStatus().equals(status))
                 .collect(Collectors.toList());
-        
+
         return TripMapper.tripToTripDto(trips);
     }
 
     @Override
     @Transactional
-    public TripDto addTrip(String loggedUsername, TripPostDto trip) {
+    public TripResponseDto addTrip(String loggedUsername, TripRequestDto trip) {
         log.info("Adding trip: {} to user with username: {}", trip, loggedUsername);
 
         User userToPatch = getUser(loggedUsername);
@@ -156,55 +163,109 @@ public class UserTripServiceImpl implements UserTripService {
 
     @Override
     @Transactional
-    public TripDto update(String loggedUsername, Long tripId, TripUpdateDto trip) {
+    public TripResponseDto update(String loggedUsername, Long tripId, TripRequestDto trip) {
         log.info("Updating trip: {} of user with username: {}", tripId, loggedUsername);
 
-        validateTripId(trip);
+        validateTripRequestDate(trip);
 
         User foundUser = getUser(loggedUsername);
         Trip foundTrip = getCreatedTrip(tripId, foundUser);
 
+        Trip tripToUpdate = getTripToUpdate(trip, foundTrip);
+        tripToUpdate.setUser(foundUser);
+
+        Trip updatedTrip = tripService.update(tripToUpdate);
+
+        return TripMapper.tripToTripDto(updatedTrip);
+    }
+
+    private void validateTripRequestDate(TripRequestDto tripDto) {
+        log.info("Validating trips's request dates are valid.");
+
+        Date departureDate = tripDto.getDepartureDate();
+        Date arrivalDate = tripDto.getArrivalDate();
+
+        validateDatesAreProvided(departureDate, arrivalDate);
+
+        validateTripDates(departureDate, arrivalDate);
+    }
+
+    private void validateDatesAreProvided(Date departureDate, Date arrivalDate) {
+        log.info("Validating both dates are provided.");
+
+        if (departureDate == null || arrivalDate == null) {
+            log.error("Arrival and departure dates are not provided.");
+
+            throw new InvalidDateTimeException();
+        }
+    }
+
+    private Trip getTripToUpdate(TripRequestDto trip, Trip foundTrip) {
         Trip tripToUpdate = TripMapper.tripDtoToTrip(trip);
         tripToUpdate.setId(foundTrip.getId());
-        tripToUpdate.setUser(foundUser);
-        Trip updatedTrip = tripService.update(tripToUpdate);
-        
-        return TripMapper.tripToTripDto(updatedTrip);
+
+        return tripToUpdate;
     }
 
     @Override
     @Transactional
-    public TripDto patch(String loggedUsername, Long tripId, TripPatchDto trip) {
+    public TripResponseDto patch(String loggedUsername, Long tripId, TripPatchDto trip) {
         log.info("Patching trip: {} of user with username: {}", tripId, loggedUsername);
-        
+
+        validateTripPatchDate(trip);
+
         User foundUser = getUser(loggedUsername);
         Trip foundTrip = getCreatedTrip(tripId, foundUser);
-        
+
         Trip tripToPatch = TripMapper.tripDtoToTrip(trip);
         Trip patchedTrip = tripService.patch(foundTrip, tripToPatch);
-        
+
         return TripMapper.tripToTripDto(patchedTrip);
     }
 
-    private void validateTripId(TripUpdateDto trip) {
-        log.info("Validating trip id is not provided.");
+    private void validateTripPatchDate(TripPatchDto tripDto) {
+        log.info("Validating trips's patch dates are valid.");
 
-        if (trip.getId() != null) {
-            log.error("Trip id: {} is provided.", trip.getId());
+        Date departureDate = tripDto.getDepartureDate();
+        Date arrivalDate = tripDto.getArrivalDate();
 
-            throw new BadRequestException("Id should not be provided.");
+        validateTripDates(departureDate, arrivalDate);
+
+        validateOneDateIsProvided(departureDate, arrivalDate);
+
+    }
+
+    private void validateTripDates(Date departureDate, Date arrivalDate) {
+        if (departureDate != null && arrivalDate != null) {
+            Period dateDifference = Period.between(
+                    departureDate.toLocalDate(), arrivalDate.toLocalDate());
+
+            if (dateDifference.getDays() < 0) {
+                log.error("Arrival and departure dates are not valid.");
+
+                throw new InvalidDateTimeException();
+            }
+        }
+    }
+
+    private void validateOneDateIsProvided(Date departureDate, Date arrivalDate) {
+        if ((departureDate != null && arrivalDate == null)
+                || (departureDate == null && arrivalDate != null)) {
+            log.error("One of the dates in not provided to patch.");
+
+            throw new ValidationException("Both date should be provided.");
         }
     }
 
     @Override
     @Transactional
-    public TripDto sendForApproval(String loggedUsername, Long tripId) {
+    public TripResponseDto sendForApproval(String loggedUsername, Long tripId) {
         log.info("Sending trip: {} of user with username: {} for approval.", tripId, loggedUsername);
 
         User foundUser = getUser(loggedUsername);
         Trip tripToSend = getCreatedTrip(tripId, foundUser);
         Trip approvedTrip = tripService.sendForApproval(tripToSend);
-        
+
         return TripMapper.tripToTripDto(approvedTrip);
     }
 
@@ -222,7 +283,7 @@ public class UserTripServiceImpl implements UserTripService {
     private User getUser(String loggedUsername) {
         return userService.getByUsername(loggedUsername);
     }
-    
+
     private Trip getCreatedTrip(Long tripId, User foundUser) {
         log.info("Getting trip: {} from user: {}", tripId, foundUser);
 

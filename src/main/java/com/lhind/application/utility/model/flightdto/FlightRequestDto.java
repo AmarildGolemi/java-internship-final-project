@@ -28,12 +28,13 @@ public class FlightRequestDto {
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date departureDate;
 
+    @DateTimeFormat(pattern = "hh:mm:ss")
     private Time departureTime;
 
     @FutureDate
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date arrivalDate;
 
+    @DateTimeFormat(pattern = "hh:mm:ss")
     private Time arrivalTime;
 
     @NotBlank(message = "Arrival city is mandatory")

@@ -59,7 +59,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     public ResponseEntity<Object> handleValidationException(Exception e, WebRequest request) {
         logger.info("Handling validation exception.");
 
-        ObjectError error = new ObjectError("validatingDates", "Both dates should be provided.");
+        ObjectError error = new ObjectError("validatingDates", e.getMessage());
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 

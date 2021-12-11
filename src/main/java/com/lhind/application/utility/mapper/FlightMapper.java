@@ -2,7 +2,10 @@ package com.lhind.application.utility.mapper;
 
 
 import com.lhind.application.entity.Flight;
-import com.lhind.application.utility.model.flightdto.*;
+import com.lhind.application.utility.model.flightdto.FlightFilterDto;
+import com.lhind.application.utility.model.flightdto.FlightPatchDto;
+import com.lhind.application.utility.model.flightdto.FlightRequestDto;
+import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import lombok.experimental.UtilityClass;
 
 import java.sql.Time;

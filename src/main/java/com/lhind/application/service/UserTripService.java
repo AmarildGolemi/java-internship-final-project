@@ -1,32 +1,35 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.Trip;
-import com.lhind.application.utility.model.tripdto.*;
+import com.lhind.application.utility.model.tripdto.TripFilterDto;
+import com.lhind.application.utility.model.tripdto.TripPatchDto;
+import com.lhind.application.utility.model.tripdto.TripRequestDto;
+import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface UserTripService {
 
-    List<TripDto> findAll(String loggedUsername);
+    List<TripResponseDto> findAll(String loggedUsername);
 
-    TripDto findById(String loggedUsername, Long tripId);
+    TripResponseDto findById(String loggedUsername, Long tripId);
 
     Trip findApprovedTrip(String loggedUsername, Long tripId);
 
-    List<TripDto> findAllFilteredTrips(String loggedUsername, TripFilterDto tripDto);
+    List<TripResponseDto> findAllFilteredTrips(String loggedUsername, TripFilterDto tripDto);
 
     @Transactional
-    TripDto addTrip(String loggedUsername, TripPostDto tripToAdd);
+    TripResponseDto addTrip(String loggedUsername, TripRequestDto tripToAdd);
 
     @Transactional
-    TripDto update(String loggedUsername, Long tripId, TripUpdateDto trip);
+    TripResponseDto update(String loggedUsername, Long tripId, TripRequestDto trip);
 
     @Transactional
-    TripDto patch(String loggedUsername, Long tripId, TripPatchDto trip);
+    TripResponseDto patch(String loggedUsername, Long tripId, TripPatchDto trip);
 
     @Transactional
-    TripDto sendForApproval(String loggedUsername, Long tripId);
+    TripResponseDto sendForApproval(String loggedUsername, Long tripId);
 
     @Transactional
     String delete(String loggedUsername, Long tripId);
