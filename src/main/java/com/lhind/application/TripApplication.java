@@ -6,11 +6,9 @@ import com.lhind.application.entity.User;
 import com.lhind.application.repository.FlightRepository;
 import com.lhind.application.repository.UserRepository;
 import com.lhind.application.service.RoleService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.context.annotation.Bean;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -27,21 +25,21 @@ public class TripApplication {
         SpringApplication.run(TripApplication.class, args);
     }
 
-    @Bean
-    CommandLineRunner run(UserRepository userRepository, RoleService roleService, FlightRepository flightRepository){
-        return args -> {
-
-            Role admin = getRoleAdmin(roleService);
-
-            Role user = getRoleUser(roleService);
-
-            createUsers(userRepository, admin, user);
-
-            createDummyFlights(flightRepository, "2021-12-25");
-            createDummyFlights(flightRepository, "2021-12-30");
-
-        };
-    }
+//    @Bean
+//    CommandLineRunner run(UserRepository userRepository, RoleService roleService, FlightRepository flightRepository){
+//        return args -> {
+//
+//            Role admin = getRoleAdmin(roleService);
+//
+//            Role user = getRoleUser(roleService);
+//
+//            createUsers(userRepository, admin, user);
+//
+//            createDummyFlights(flightRepository, "2021-12-25");
+//            createDummyFlights(flightRepository, "2021-12-30");
+//
+//        };
+//    }
 
     private Role getRoleUser(RoleService roleService) {
         Role user = new Role();
@@ -109,7 +107,7 @@ public class TripApplication {
             r = (int) (Math.random() * cities.size());
             String to = cities.get(r);
 
-            if(from.equals(to)){
+            if (from.equals(to)) {
                 continue;
             }
 

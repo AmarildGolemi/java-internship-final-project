@@ -35,7 +35,7 @@ public class JwtTokenVerifierFilter extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader(jwtProvider.getAuthorizationHeader());
 
         if (Strings.isNullOrEmpty(authorizationHeader)
-                || !authorizationHeader.startsWith(jwtProvider.getTokenPrefix())){
+                || !authorizationHeader.startsWith(jwtProvider.getTokenPrefix())) {
             filterChain.doFilter(request, response);
 
             return;
@@ -43,7 +43,7 @@ public class JwtTokenVerifierFilter extends OncePerRequestFilter {
 
         String token = authorizationHeader.replace(jwtProvider.getTokenPrefix(), "");
 
-        if(!jwtProvider.validateTokenIsForALoggedOutUser(token)){
+        if (!jwtProvider.validateTokenIsForALoggedOutUser(token)) {
             filterChain.doFilter(request, response);
 
             return;

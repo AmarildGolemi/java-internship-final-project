@@ -10,7 +10,7 @@ public class FutureDateValidation implements ConstraintValidator<FutureDate, Dat
 
     @Override
     public boolean isValid(Date date, ConstraintValidatorContext constraintValidatorContext) {
-        if (date == null){
+        if (date == null) {
             return false;
         }
 

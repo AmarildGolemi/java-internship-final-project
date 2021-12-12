@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @NoArgsConstructor
@@ -29,7 +28,7 @@ public class UserRequestDto {
     @Size(min = 3, max = 20, message = "Password should be between 3 and 20 characters")
     private String password;
 
-    @NotNull
+    @NotBlank(message = "Role is mandatory")
     private String role;
 
 }

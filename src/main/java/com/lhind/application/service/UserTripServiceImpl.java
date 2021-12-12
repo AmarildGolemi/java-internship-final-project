@@ -76,6 +76,10 @@ public class UserTripServiceImpl implements UserTripService {
         TripReason tripReason = tripDto.getTripReason();
         Status status = tripDto.getStatus();
 
+        if (tripReason == null && status == null) {
+            throw new BadRequestException("Not a valid filter");
+        }
+
         if (filterByTripReason(tripReason, status)) {
             log.info("Find all trips by status: {}", status);
             return findAllByTripReason(foundUser, tripReason);
@@ -163,15 +167,15 @@ public class UserTripServiceImpl implements UserTripService {
 
     @Override
     @Transactional
-    public TripResponseDto update(String loggedUsername, Long tripId, TripRequestDto trip) {
+    public TripResponseDto update(String loggedUsername, Long tripId, TripRequestDto tripDto) {
         log.info("Updating trip: {} of user with username: {}", tripId, loggedUsername);
 
-        validateTripRequestDate(trip);
+        validateTripRequestDate(tripDto);
 
         User foundUser = getUser(loggedUsername);
         Trip foundTrip = getCreatedTrip(tripId, foundUser);
 
-        Trip tripToUpdate = getTripToUpdate(trip, foundTrip);
+        Trip tripToUpdate = getTripToUpdate(tripDto, foundTrip);
         tripToUpdate.setUser(foundUser);
 
         Trip updatedTrip = tripService.update(tripToUpdate);
@@ -232,7 +236,6 @@ public class UserTripServiceImpl implements UserTripService {
         validateTripDates(departureDate, arrivalDate);
 
         validateOneDateIsProvided(departureDate, arrivalDate);
-
     }
 
     private void validateTripDates(Date departureDate, Date arrivalDate) {

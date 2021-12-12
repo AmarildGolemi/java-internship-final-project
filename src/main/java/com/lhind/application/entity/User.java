@@ -1,8 +1,6 @@
 package com.lhind.application.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
@@ -13,9 +11,7 @@ import java.util.List;
 @Entity
 @SQLDelete(sql = "UPDATE user SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class User {
 
     @Id
@@ -57,6 +53,5 @@ public class User {
     public void delete() {
         this.isDeleted = true;
     }
-
 
 }

@@ -162,7 +162,7 @@ public class FlightServiceImpl implements FlightService {
 
         patchFlight(flight, flightToPatch);
 
-        log.info("Saving updated flight.");
+        log.info("Saving patched flight.");
 
         Flight patchedFlight = flightRepository.save(flightToPatch);
 
@@ -252,6 +252,16 @@ public class FlightServiceImpl implements FlightService {
         if (flight.getArrivalDate() != null) {
             flightToPatch.setArrivalDate(flight.getArrivalDate());
         }
+
+        if (flight.getDepartureTime() != null) {
+            flightToPatch.setDepartureTime(flight.getDepartureTime());
+        }
+
+        if (flight.getArrivalTime() != null) {
+            flightToPatch.setArrivalTime(flight.getArrivalTime());
+        }
+
+
     }
 
     @Override

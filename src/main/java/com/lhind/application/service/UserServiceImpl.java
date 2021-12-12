@@ -167,6 +167,8 @@ public class UserServiceImpl implements UserService {
     }
 
     private User getUserByUsername(String username) {
+        log.info("Finding user by username in the database.");
+
         Optional<User> userOptional = userRepository.findByUsername(username);
 
         if (userOptional.isEmpty()) {

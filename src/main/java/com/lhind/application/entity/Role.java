@@ -1,15 +1,13 @@
 package com.lhind.application.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
+@Data
 public class Role {
 
     @Id

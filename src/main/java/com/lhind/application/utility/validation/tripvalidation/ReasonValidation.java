@@ -15,7 +15,7 @@ public class ReasonValidation implements ConstraintValidator<Reason, TripReason>
 
     @Override
     public boolean isValid(TripReason tripReason, ConstraintValidatorContext constraintValidatorContext) {
-        if(tripReason == null){
+        if (tripReason == null) {
             return true;
         }
 

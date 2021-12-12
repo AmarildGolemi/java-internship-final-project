@@ -72,7 +72,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     }
 
     @ExceptionHandler({InvalidTokenException.class})
-    public ResponseEntity<Object> handleInvalidTokenRequestException(Exception e){
+    public ResponseEntity<Object> handleInvalidTokenRequestException(Exception e) {
         log.info("Handling invalid token request exception");
 
         ObjectError error = new ObjectError("invalidToken", e.getMessage());

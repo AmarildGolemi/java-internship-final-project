@@ -10,7 +10,7 @@ public class PatchFutureDateValidation implements ConstraintValidator<PatchFutur
 
     @Override
     public boolean isValid(Date date, ConstraintValidatorContext constraintValidatorContext) {
-        if (date == null){
+        if (date == null) {
             return true;
         }
 

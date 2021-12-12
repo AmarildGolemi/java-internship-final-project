@@ -1,6 +1,6 @@
 package com.lhind.application.exception;
 
-public class UserNotLoggedInException extends RuntimeException{
+public class UserNotLoggedInException extends RuntimeException {
     public UserNotLoggedInException() {
         super();
     }

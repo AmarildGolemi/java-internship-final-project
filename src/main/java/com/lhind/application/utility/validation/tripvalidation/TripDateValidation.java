@@ -11,7 +11,7 @@ public class TripDateValidation implements ConstraintValidator<TripAvailableDate
 
     @Override
     public boolean isValid(TripRequestDto tripDto, ConstraintValidatorContext constraintValidatorContext) {
-        if(tripDto.getDepartureDate() != null && tripDto.getArrivalDate() != null){
+        if (tripDto.getDepartureDate() != null && tripDto.getArrivalDate() != null) {
             Period p = Period.between(tripDto.getDepartureDate().toLocalDate(), tripDto.getArrivalDate().toLocalDate());
 
             return p.getDays() >= 0;

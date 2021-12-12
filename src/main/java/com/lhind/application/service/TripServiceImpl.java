@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.lhind.application.utility.model.Status.CREATED;
+import static com.lhind.application.utility.model.Status.WAITING_FOR_APPROVAL;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -35,7 +38,7 @@ public class TripServiceImpl implements TripService {
     public List<TripResponseDto> findAllWaitingForApproval() {
         log.info("Finding all trips waiting for approval.");
 
-        List<Trip> foundTrips = tripRepository.findAllByStatus(Status.WAITING_FOR_APPROVAL);
+        List<Trip> foundTrips = tripRepository.findAllByStatus(WAITING_FOR_APPROVAL);
 
         log.info("Returning list of trips.");
 
@@ -96,12 +99,23 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Trip sendForApproval(Trip tripToSend) {
-        log.info("Sending trip: {} for approval.", tripToSend);
+    public Trip sendForApproval(Trip trip) {
+        log.info("Sending trip: {} for approval.", trip);
 
-        tripToSend.setStatus(Status.WAITING_FOR_APPROVAL);
+        Trip tripToSend = getTripToSendForApproval(trip.getId());
+        tripToSend.setStatus(WAITING_FOR_APPROVAL);
 
         return tripRepository.save(tripToSend);
+    }
+
+    private Trip getTripToSendForApproval(Long id) {
+        return tripRepository.findById(id)
+                .filter(trip -> trip.getStatus().equals(CREATED))
+                .orElseThrow(() -> {
+                    log.error("Trip with id: {} status is not created.", id);
+
+                    throw new ResourceNotFoundException();
+                });
     }
 
     @Override
@@ -131,7 +145,7 @@ public class TripServiceImpl implements TripService {
 
     private Trip getTrip(Long id) {
         return tripRepository.findById(id)
-                .filter(trip -> trip.getStatus().equals(Status.WAITING_FOR_APPROVAL))
+                .filter(trip -> trip.getStatus().equals(WAITING_FOR_APPROVAL))
                 .orElseThrow(() -> {
                     log.error("Trip with id: {} not found.", id);
 

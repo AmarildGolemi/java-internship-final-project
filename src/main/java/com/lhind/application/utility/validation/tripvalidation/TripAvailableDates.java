@@ -14,8 +14,8 @@ public @interface TripAvailableDates {
 
     String message() default "Departure date must be before arrival date";
 
-    Class<?>[] groups() default { };
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload() default { };
+    Class<? extends Payload>[] payload() default {};
 
 }
