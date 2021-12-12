@@ -6,8 +6,6 @@ import com.lhind.application.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class RoleServiceImpl implements RoleService {
@@ -21,18 +19,13 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public Role findByName(String name) {
-        Optional<Role> roleOptional = roleRepository.findByName(name);
+        Role role = roleRepository.findByName(name);
 
-        return getRole(roleOptional);
-    }
-
-    private Role getRole(Optional<Role> roleOptional) {
-        if (roleOptional.isEmpty()) {
+        if (role == null) {
             throw new ResourceNotFoundException();
         }
 
-        return roleOptional.get();
+        return role;
     }
-
 
 }

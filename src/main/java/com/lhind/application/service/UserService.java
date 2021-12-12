@@ -1,28 +1,28 @@
 package com.lhind.application.service;
 
 import com.lhind.application.entity.User;
-import com.lhind.application.utility.model.userdto.UserDto;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
-import com.lhind.application.utility.model.userdto.UserPostDto;
+import com.lhind.application.utility.model.userdto.UserRequestDto;
+import com.lhind.application.utility.model.userdto.UserResponseDto;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<UserDto> findAll();
+    List<UserResponseDto> findAll();
 
-    UserDto findById(Long id);
+    UserResponseDto findById(Long id);
 
-    UserDto findByUsername(String username);
+    UserResponseDto findByUsername(String username);
 
     User getByUsername(String username);
 
     @Transactional
-    UserDto save(UserPostDto user);
+    UserResponseDto save(UserRequestDto user);
 
     @Transactional
-    UserDto patch(String username, UserPatchDto user);
+    UserResponseDto patch(String username, UserPatchDto user);
 
     @Transactional
     void saveUserAfterAddingNewTrip(User user);

@@ -40,14 +40,28 @@ public class TripFlightController {
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
 
-    @GetMapping("/suggested")
+    @GetMapping("/departure")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<List<FlightResponseDto>> findFlights(@PathVariable @Min(1) Long tripId) {
-        log.info("Accessing endpoint {}/suggested to find all suggested flights for trip: {}.", BASE_URL, tripId);
+    public ResponseEntity<List<FlightResponseDto>> findDepartureFlights(@PathVariable @Min(1) Long tripId) {
+        log.info("Accessing endpoint {}/departure to find all suggested flights for trip: {}.", BASE_URL, tripId);
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        List<FlightResponseDto> flights = tripFlightService.findFlights(loggedUsername, tripId);
+        List<FlightResponseDto> flights = tripFlightService.findDepartureFlights(loggedUsername, tripId);
+
+        log.info("Returning list of flights.");
+
+        return new ResponseEntity<>(flights, HttpStatus.OK);
+    }
+
+    @GetMapping("/arrival")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    public ResponseEntity<List<FlightResponseDto>> findArrivalFlights(@PathVariable @Min(1) Long tripId) {
+        log.info("Accessing endpoint {}/arrival to find all suggested flights for trip: {}.", BASE_URL, tripId);
+
+        String loggedUsername = authenticatedUserService.getLoggedUsername();
+
+        List<FlightResponseDto> flights = tripFlightService.findArrivalFlights(loggedUsername, tripId);
 
         log.info("Returning list of flights.");
 

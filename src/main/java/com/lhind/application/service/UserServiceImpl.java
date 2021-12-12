@@ -1,13 +1,15 @@
 package com.lhind.application.service;
 
+import com.lhind.application.entity.Role;
 import com.lhind.application.entity.User;
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
+import com.lhind.application.repository.RoleRepository;
 import com.lhind.application.repository.UserRepository;
 import com.lhind.application.utility.mapper.UserMapper;
-import com.lhind.application.utility.model.userdto.UserDto;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
-import com.lhind.application.utility.model.userdto.UserPostDto;
+import com.lhind.application.utility.model.userdto.UserRequestDto;
+import com.lhind.application.utility.model.userdto.UserResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,10 +25,11 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public List<UserDto> findAll() {
+    public List<UserResponseDto> findAll() {
         log.info("Finding all users.");
 
         List<User> users = userRepository.findAll();
@@ -41,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findById(Long id) {
+    public UserResponseDto findById(Long id) {
         log.info("Finding user with id: {}", id);
 
         User foundUser = getUserById(id);
@@ -61,7 +64,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto findByUsername(String username) {
+    public UserResponseDto findByUsername(String username) {
         log.info("Finding user by username.");
 
         User foundUser = getUserByUsername(username);
@@ -84,14 +87,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto save(UserPostDto user) {
-        log.info("Saving user: {}.", user);
+    public UserResponseDto save(UserRequestDto userDto) {
+        log.info("Saving user: {}.", userDto);
 
-        User userToSave = UserMapper.userDtoToUser(user);
+        User userToSave = UserMapper.userDtoToUser(userDto);
+        userToSave.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
         checkUserAlreadyExists(userToSave);
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        String roleToSet = userDto.getRole();
+        Role role = roleRepository.findByName(roleToSet);
+        userToSave.setRoles(List.of(role));
 
         User savedUser = userRepository.save(userToSave);
 
@@ -99,9 +105,9 @@ public class UserServiceImpl implements UserService {
     }
 
     private void checkUserAlreadyExists(User user) {
-        log.info("Checking is user already exists.");
+        log.info("Checking if user already exists.");
 
-        Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
+        Optional<User> existingUser = userRepository.findAllByUsername(user.getUsername());
 
         if (existingUser.isPresent()) {
             log.error("User already exists.");
@@ -112,12 +118,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public UserDto patch(String username, UserPatchDto user) {
+    public UserResponseDto patch(String username, UserPatchDto userDto) {
         log.info("Patching user with username: {}.", username);
 
         User userToPatch = getUserByUsername(username);
 
-        patchUser(user, userToPatch);
+        patchUser(userDto, userToPatch);
 
         log.info("Saving patched user.");
 
@@ -126,20 +132,18 @@ public class UserServiceImpl implements UserService {
         return UserMapper.userToUserDto(patchedUser);
     }
 
-    private void patchUser(UserPatchDto user, User userToPatch) {
-        if (user.getFirstName() != null) {
-            userToPatch.setFirstName(user.getFirstName());
+    private void patchUser(UserPatchDto userDto, User userToPatch) {
+        if (userDto.getFirstName() != null) {
+            userToPatch.setFirstName(userDto.getFirstName());
         }
 
-        if (user.getLastName() != null) {
-            userToPatch.setLastName(user.getLastName());
+        if (userDto.getLastName() != null) {
+            userToPatch.setLastName(userDto.getLastName());
         }
 
-        if (user.getPassword() != null) {
-            userToPatch.setPassword(user.getPassword());
+        if (userDto.getPassword() != null) {
+            userToPatch.setPassword(passwordEncoder.encode(userDto.getPassword()));
         }
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
     }
 
     @Override
@@ -163,8 +167,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private User getUserByUsername(String username) {
-        log.info("Finding user in the database.");
-
         Optional<User> userOptional = userRepository.findByUsername(username);
 
         if (userOptional.isEmpty()) {

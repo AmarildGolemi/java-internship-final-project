@@ -19,12 +19,15 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
             "on a.to_city = b.from_city " +
             "where a.from_city like ?1 " +
             "and b.to_city like ?2 " +
-            "and a.departure_date LIKE ?3 UNION ";
+            "and a.departure_date LIKE ?3 " +
+            "AND a.arrival_time < b.departure_time " +
+            "UNION ";
     String querySecondConnectedFlight = "SELECT b.* FROM flight a join flight b " +
             "on a.to_city = b.from_city " +
             "where a.from_city like ?1 " +
             "and b.to_city like ?2 " +
-            "and a.departure_date LIKE ?3 ";
+            "and a.departure_date LIKE ?3 " +
+            "and a.arrival_time < b.departure_time";
 
     @Query(
             value = queryDirectFlight + queryFirstConnectedFlight + querySecondConnectedFlight,

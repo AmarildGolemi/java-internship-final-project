@@ -6,9 +6,11 @@ import com.lhind.application.entity.User;
 import com.lhind.application.repository.FlightRepository;
 import com.lhind.application.repository.UserRepository;
 import com.lhind.application.service.RoleService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
+import org.springframework.context.annotation.Bean;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -24,20 +26,22 @@ public class TripApplication {
     public static void main(String[] args) {
         SpringApplication.run(TripApplication.class, args);
     }
-//
-//    @Bean
-//    CommandLineRunner run(UserService userService, RoleService roleService, FlightService flightService){
-//        return args -> {
-//
-//            Role admin = getRoleAdmin(roleService);
-//
-//            Role user = getRoleUser(roleService);
-//
-//            createUsers(userService, admin, user);
-//
-//            createDummyFlights(flightService);
-//        };
-//    }
+
+    @Bean
+    CommandLineRunner run(UserRepository userRepository, RoleService roleService, FlightRepository flightRepository){
+        return args -> {
+
+            Role admin = getRoleAdmin(roleService);
+
+            Role user = getRoleUser(roleService);
+
+            createUsers(userRepository, admin, user);
+
+            createDummyFlights(flightRepository, "2021-12-25");
+            createDummyFlights(flightRepository, "2021-12-30");
+
+        };
+    }
 
     private Role getRoleUser(RoleService roleService) {
         Role user = new Role();
@@ -71,7 +75,7 @@ public class TripApplication {
         userRepository.save(jane);
     }
 
-    private void createDummyFlights(FlightRepository flightRepository) {
+    private void createDummyFlights(FlightRepository flightRepository, String date) {
 
         Random random = new Random();
 
@@ -84,7 +88,7 @@ public class TripApplication {
         System.out.println("Starting...\n");
 
         int r;
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 1000; i++) {
 
             System.out.println("Adding flight: " + i);
 
@@ -99,18 +103,22 @@ public class TripApplication {
             if (timeElapsed.isNegative() || timeElapsed.toHours() > 5 || timeElapsed.toHours() < 1)
                 continue;
 
-            Flight flight = new Flight();
-            flight.setArrivalDate(Date.valueOf("2021-12-25"));
-            flight.setDepartureDate(Date.valueOf("2021-12-25"));
-            flight.setDepartureTime(departureTime);
-            flight.setArrivalTime(arrivalTime);
-
             r = (int) (Math.random() * cities.size());
             String from = cities.get(r);
-            flight.setFrom(from);
 
             r = (int) (Math.random() * cities.size());
             String to = cities.get(r);
+
+            if(from.equals(to)){
+                continue;
+            }
+
+            Flight flight = new Flight();
+            flight.setArrivalDate(Date.valueOf(date));
+            flight.setDepartureDate(Date.valueOf(date));
+            flight.setDepartureTime(departureTime);
+            flight.setArrivalTime(arrivalTime);
+            flight.setFrom(from);
             flight.setTo(to);
 
             r = (int) (Math.random() * airlines.size());

@@ -293,7 +293,7 @@ public class UserTripServiceImpl implements UserTripService {
                 .orElseThrow(() -> {
                     log.error("Trip: {} of user: {} is not valid.", tripId, foundUser);
 
-                    throw new BadRequestException();
+                    throw new BadRequestException("Trip status is not created.");
                 });
     }
 
@@ -306,7 +306,7 @@ public class UserTripServiceImpl implements UserTripService {
                 .orElseThrow(() -> {
                     log.error("Trip: {} of user: {} is not valid.", tripId, foundUser);
 
-                    throw new BadRequestException();
+                    throw new BadRequestException("Trip is not approved by the admin.");
                 });
     }
 

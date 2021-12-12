@@ -1,6 +1,5 @@
 package com.lhind.application.utility.model.userdto;
 
-import com.lhind.application.entity.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserPostDto {
+public class UserRequestDto {
 
     @NotBlank(message = "First name is mandatory")
     @Size(min = 3, max = 20)
@@ -31,6 +30,6 @@ public class UserPostDto {
     private String password;
 
     @NotNull
-    private Role role;
+    private String role;
 
 }

@@ -1,5 +1,6 @@
 package com.lhind.application.utility.model.tripdto;
 
+import com.lhind.application.utility.model.Status;
 import com.lhind.application.utility.model.TripReason;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,6 @@ public class TripResponseDto {
     private String to;
     private Date departureDate;
     private Date arrivalDate;
+    private Status status;
 
 }

@@ -26,6 +26,7 @@ public class TripMapper {
         tripResponseDto.setTo(trip.getTo());
         tripResponseDto.setDepartureDate(trip.getDepartureDate());
         tripResponseDto.setArrivalDate(trip.getArrivalDate());
+        tripResponseDto.setStatus(trip.getStatus());
 
         return tripResponseDto;
     }

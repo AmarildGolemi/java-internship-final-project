@@ -12,7 +12,9 @@ public interface TripFlightService {
 
     FlightResponseDto findById(String loggedUsername, Long tripId, Long flightId);
 
-    List<FlightResponseDto> findFlights(String loggedUsername, Long tripId);
+    List<FlightResponseDto> findDepartureFlights(String loggedUsername, Long tripId);
+
+    List<FlightResponseDto> findArrivalFlights(String loggedUsername, Long tripId);
 
     @Transactional
     FlightResponseDto addFlight(String loggedUsername, Long tripId, Long flightId);

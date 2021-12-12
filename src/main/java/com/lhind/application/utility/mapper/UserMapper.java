@@ -1,9 +1,9 @@
 package com.lhind.application.utility.mapper;
 
 import com.lhind.application.entity.User;
-import com.lhind.application.utility.model.userdto.UserDto;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
-import com.lhind.application.utility.model.userdto.UserPostDto;
+import com.lhind.application.utility.model.userdto.UserRequestDto;
+import com.lhind.application.utility.model.userdto.UserResponseDto;
 import lombok.experimental.UtilityClass;
 
 import java.util.List;
@@ -12,31 +12,30 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class UserMapper {
 
-    public UserDto userToUserDto(User user) {
+    public UserResponseDto userToUserDto(User user) {
         if (user == null) {
             return null;
         }
 
-        UserDto userDto = new UserDto();
+        UserResponseDto userResponseDto = new UserResponseDto();
 
-        userDto.setFirstName(user.getFirstName());
-        userDto.setLastName(user.getLastName());
-        userDto.setUsername(user.getUsername());
+        userResponseDto.setFirstName(user.getFirstName());
+        userResponseDto.setLastName(user.getLastName());
+        userResponseDto.setUsername(user.getUsername());
 
-        return userDto;
+        return userResponseDto;
     }
 
-    public User userDtoToUser(UserPostDto userPostDto) {
-        if (userPostDto == null) {
+    public User userDtoToUser(UserRequestDto userRequestDto) {
+        if (userRequestDto == null) {
             return null;
         }
 
         User user = new User();
 
-        user.setFirstName(userPostDto.getFirstName());
-        user.setLastName(userPostDto.getLastName());
-        user.setUsername(userPostDto.getUsername());
-        user.setPassword(userPostDto.getPassword());
+        user.setFirstName(userRequestDto.getFirstName());
+        user.setLastName(userRequestDto.getLastName());
+        user.setUsername(userRequestDto.getUsername());
 
         return user;
     }
@@ -55,7 +54,7 @@ public class UserMapper {
         return user;
     }
 
-    public List<UserDto> userToUserDto(List<User> users) {
+    public List<UserResponseDto> userToUserDto(List<User> users) {
         return users.stream()
                 .map(UserMapper::userToUserDto)
                 .collect(Collectors.toList());
