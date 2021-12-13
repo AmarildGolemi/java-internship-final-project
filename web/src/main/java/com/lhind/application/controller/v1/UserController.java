@@ -2,9 +2,11 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.UserService;
+import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
 import com.lhind.application.utility.model.userdto.UserRequestDto;
 import com.lhind.application.utility.model.userdto.UserResponseDto;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping(UserController.BASE_URL)
 @RequiredArgsConstructor
+@Api(tags = {SwaggerConstant.USER_API_TAG})
 public class UserController {
 
     public static final String BASE_URL = "/api/v1/users";

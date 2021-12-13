@@ -2,7 +2,9 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.TripService;
+import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.tripdto.TripResponseDto;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping(TripController.BASE_URL)
 @RequiredArgsConstructor
+@Api(tags = {SwaggerConstant.TRIP_API_TAG})
 public class TripController {
 
     public static final String BASE_URL = "/api/v1/trips";

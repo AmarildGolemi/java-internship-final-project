@@ -29,6 +29,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AuthenticationService authenticationService;
     private final JwtProvider jwtProvider;
 
+    private static final String[] PUBLIC_URLS = {
+            "/v2/api-docs",
+            "/swagger-resources/**",
+            "/swagger-ui/**",
+            "/webjars/**"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         JwtUsernameAndPasswordAuthenticationFilter jwtUsernameAndPasswordAuthenticationFilter =
@@ -42,10 +49,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilter(jwtUsernameAndPasswordAuthenticationFilter)
                 .addFilterAfter(new JwtTokenVerifierFilter(jwtProvider), JwtUsernameAndPasswordAuthenticationFilter.class);
 
-        http.authorizeRequests()
-                .antMatchers("/swagger-ui/index.html").permitAll();
-        http.authorizeRequests()
-                .antMatchers("/v2/api-docs").permitAll();
+        http.authorizeRequests().antMatchers(PUBLIC_URLS).permitAll();
         http.authorizeRequests()
                 .antMatchers("/api/v1/login").permitAll();
 
