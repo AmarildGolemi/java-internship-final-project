@@ -49,7 +49,7 @@ class FlightServiceImplTest {
     }
 
     @Test
-    void canFindById() {
+    void canFindFlightById() {
         //given
         Long id = 1L;
 
@@ -76,7 +76,7 @@ class FlightServiceImplTest {
     }
 
     @Test
-    void canGetById() {
+    void canGetFlightById() {
         //given
         Long id = 1L;
 

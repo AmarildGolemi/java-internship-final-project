@@ -1,9 +1,7 @@
 package com.lhind.application.utility.model.flightdto;
 
 import com.lhind.application.utility.validation.datevalidation.FutureDate;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotBlank;
@@ -13,6 +11,7 @@ import java.sql.Date;
 @NoArgsConstructor
 @Getter
 @Setter
+@Data
 public class FlightFilterDto {
 
     @NotBlank(message = "Departing city is mandatory")

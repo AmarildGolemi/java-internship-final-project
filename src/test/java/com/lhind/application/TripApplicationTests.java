@@ -1,4 +1,4 @@
-package com.lhind.tripapplication;
+package com.lhind.application;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
