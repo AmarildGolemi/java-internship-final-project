@@ -25,16 +25,15 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @RequiredArgsConstructor
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final PasswordEncoder passwordEncoder;
-    private final AuthenticationService authenticationService;
-    private final JwtProvider jwtProvider;
-
     private static final String[] PUBLIC_URLS = {
             "/v2/api-docs",
             "/swagger-resources/**",
             "/swagger-ui/**",
             "/webjars/**"
     };
+    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationService authenticationService;
+    private final JwtProvider jwtProvider;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

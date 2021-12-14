@@ -93,7 +93,7 @@ public class TripFlightServiceImpl implements TripFlightService {
 
     @Override
     @Transactional
-    public FlightResponseDto addFlight(String loggedUsername, Long tripId, Long flightId) {
+    public FlightResponseDto bookFlight(String loggedUsername, Long tripId, Long flightId) {
         log.info("Adding flight with id: {} on trip with id: {} for user: {}", flightId, tripId, loggedUsername);
 
         Trip tripToPatch = userTripService.findApprovedTrip(loggedUsername, tripId);

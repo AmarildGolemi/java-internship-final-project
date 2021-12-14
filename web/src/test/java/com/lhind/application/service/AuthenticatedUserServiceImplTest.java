@@ -1,7 +1,5 @@
 package com.lhind.application.service;
 
-import com.lhind.application.service.AuthenticatedUserService;
-import com.lhind.application.service.AuthenticatedUserServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.core.Authentication;
@@ -56,7 +54,9 @@ class AuthenticatedUserServiceImplTest {
             @Override
             public String getName() {
                 return "john";
-            }            @Override
+            }
+
+            @Override
             public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
 
             }
@@ -104,7 +104,9 @@ class AuthenticatedUserServiceImplTest {
             @Override
             public String getName() {
                 return null;
-            }            @Override
+            }
+
+            @Override
             public void setAuthenticated(boolean isAuthenticated) throws IllegalArgumentException {
 
             }

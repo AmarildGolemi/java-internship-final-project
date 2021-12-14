@@ -7,6 +7,7 @@ import com.lhind.application.utility.model.userdto.UserPatchDto;
 import com.lhind.application.utility.model.userdto.UserRequestDto;
 import com.lhind.application.utility.model.userdto.UserResponseDto;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ public class UserController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Find all available users", response = UserResponseDto.class)
     public ResponseEntity<List<UserResponseDto>> findAll() {
         log.info("Accessing endpoint {} to find all users.", BASE_URL);
 
@@ -45,6 +47,7 @@ public class UserController {
 
     @GetMapping("/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Find existing flight by username", response = UserResponseDto.class)
     public ResponseEntity<UserResponseDto> findByUsername(@PathVariable String username) {
         log.info("Accessing endpoint {}/{} to find user by username.", BASE_URL, username);
 
@@ -59,6 +62,7 @@ public class UserController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Add new user", response = UserResponseDto.class)
     public ResponseEntity<UserResponseDto> save(@Valid @RequestBody UserRequestDto userDto) {
         log.info("Accessing endpoint {} to post new user: {}.", BASE_URL, userDto);
 
@@ -73,6 +77,7 @@ public class UserController {
 
     @PatchMapping("/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Patch an existing user", response = UserResponseDto.class)
     public ResponseEntity<UserResponseDto> patch(@PathVariable String username,
                                                  @Valid @RequestBody UserPatchDto userDto) {
         log.info("Accessing endpoint {}/{} to patch user by username.", BASE_URL, username);
@@ -88,6 +93,7 @@ public class UserController {
 
     @DeleteMapping("/{username}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Delete an existing user", response = String.class)
     public ResponseEntity<String> delete(@PathVariable String username) {
         log.info("Accessing endpoint {}/{} to delete user by username.", BASE_URL, username);
 

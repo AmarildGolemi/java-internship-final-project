@@ -5,6 +5,7 @@ import com.lhind.application.service.TripFlightService;
 import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,8 +32,9 @@ public class TripFlightController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find all flights booked by a trip", response = FlightResponseDto.class)
     public ResponseEntity<List<FlightResponseDto>> findAll(@PathVariable @Min(1) Long tripId) {
-        log.info("Accessing endpoint {} to find all flights of trip: {}.", BASE_URL, tripId);
+        log.info("Accessing endpoint {} to find all flights booked by trip: {}.", BASE_URL, tripId);
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
@@ -45,6 +47,7 @@ public class TripFlightController {
 
     @GetMapping("/departure")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find all suggested departure flights booked by a trip", notes = "Trip status must be approved", response = FlightResponseDto.class)
     public ResponseEntity<List<FlightResponseDto>> findDepartureFlights(@PathVariable @Min(1) Long tripId) {
         log.info("Accessing endpoint {}/departure to find all suggested flights for trip: {}.", BASE_URL, tripId);
 
@@ -59,6 +62,7 @@ public class TripFlightController {
 
     @GetMapping("/arrival")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find all suggested arrival flights booked by a trip", notes = "Trip status must be approved", response = FlightResponseDto.class)
     public ResponseEntity<List<FlightResponseDto>> findArrivalFlights(@PathVariable @Min(1) Long tripId) {
         log.info("Accessing endpoint {}/arrival to find all suggested flights for trip: {}.", BASE_URL, tripId);
 
@@ -73,6 +77,7 @@ public class TripFlightController {
 
     @GetMapping("/{flightId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find a flight booked by a trip by Id", notes = "Trip status must be approved", response = FlightResponseDto.class)
     public ResponseEntity<FlightResponseDto> findById(@PathVariable @Min(1) Long tripId,
                                                       @PathVariable @Min(1) Long flightId) {
         log.info("Accessing endpoint {}/{} to find flight on trip: {} by id.", BASE_URL, flightId, tripId);
@@ -88,13 +93,14 @@ public class TripFlightController {
 
     @PatchMapping("/{flightId}")
     @PreAuthorize("hasRole('ROLE_USER')")
-    public ResponseEntity<FlightResponseDto> addFlight(@PathVariable @Min(1) Long tripId,
-                                                       @PathVariable @Min(1) Long flightId) {
-        log.info("Accessing endpoint {}/{} to add flight on trip: {} by id.", BASE_URL, flightId, tripId);
+    @ApiOperation(value = "Book a flight for a given trip", notes = "Trip status must be approved", response = FlightResponseDto.class)
+    public ResponseEntity<FlightResponseDto> bookFlight(@PathVariable @Min(1) Long tripId,
+                                                        @PathVariable @Min(1) Long flightId) {
+        log.info("Accessing endpoint {}/{} to book a flight on trip: {} by id.", BASE_URL, flightId, tripId);
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
-        FlightResponseDto addedFlight = tripFlightService.addFlight(loggedUsername, tripId, flightId);
+        FlightResponseDto addedFlight = tripFlightService.bookFlight(loggedUsername, tripId, flightId);
 
         log.info("Returning added flight.");
 

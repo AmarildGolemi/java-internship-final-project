@@ -6,11 +6,9 @@ import com.lhind.application.repository.FlightRepository;
 import com.lhind.application.service.RoleService;
 import com.lhind.application.service.UserService;
 import com.lhind.application.utility.model.userdto.UserRequestDto;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.context.annotation.Bean;
 
 import java.sql.Date;
 import java.sql.Time;

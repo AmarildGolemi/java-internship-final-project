@@ -6,8 +6,6 @@ import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.RoleRepository;
 import com.lhind.application.repository.UserRepository;
-import com.lhind.application.service.UserService;
-import com.lhind.application.service.UserServiceImpl;
 import com.lhind.application.utility.mapper.UserMapper;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
 import com.lhind.application.utility.model.userdto.UserRequestDto;

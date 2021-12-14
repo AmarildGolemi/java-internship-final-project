@@ -5,6 +5,7 @@ import com.lhind.application.service.TripService;
 import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,7 @@ public class TripController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Find all trips waiting for approval", response = TripResponseDto.class)
     public ResponseEntity<List<TripResponseDto>> findAllWaitingForApproval() {
         log.info("Accessing endpoint {} to find all trips waiting for approval.", BASE_URL);
 
@@ -45,6 +47,7 @@ public class TripController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Find existing trip waiting for approval by id", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> findById(@PathVariable @Min(1) Long id) {
         log.info("Accessing endpoint {}/{} to find trips waiting for approval by id.", BASE_URL, id);
 
@@ -59,6 +62,7 @@ public class TripController {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Approve a trip", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> approve(@PathVariable @Min(1) Long id) {
         log.info("Accessing endpoint {}/{} to approve trip by id.", BASE_URL, id);
 
@@ -73,6 +77,7 @@ public class TripController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @ApiOperation(value = "Reject a trip", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> reject(@PathVariable @Min(1) Long id) {
         log.info("Accessing endpoint {}/{} to reject trip by id.", BASE_URL, id);
 

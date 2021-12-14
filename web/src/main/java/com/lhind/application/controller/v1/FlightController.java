@@ -36,7 +36,7 @@ public class FlightController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "Find all available flights", notes = "Find all the flights available in the database.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Find all available flights", response = FlightResponseDto.class)
     public ResponseEntity<List<FlightResponseDto>> findAll() {
         log.info("Accessing endpoint {} to find all available flights.", BASE_URL);
 
@@ -51,7 +51,7 @@ public class FlightController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "Find flight by Id", notes = "Find flight by Id in the database.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Find existing flight by Id", response = FlightResponseDto.class)
     public ResponseEntity<FlightResponseDto> findById(@PathVariable @Min(1) Long id) {
         log.info("Accessing endpoint {}/{} to find flight by id.", BASE_URL, id);
 
@@ -66,7 +66,7 @@ public class FlightController {
 
     @PostMapping("/filter")
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
-    @ApiOperation(value = "Find flight by filter", notes = "Find flights by the filter provided.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Find flight by filter", response = FlightResponseDto.class)
     public ResponseEntity<List<FlightResponseDto>> findFlights(@Valid @RequestBody FlightFilterDto flightDto) {
         log.info("Accessing endpoint {}/find to find flight by filters: {}.", BASE_URL, flightDto);
 
@@ -81,7 +81,7 @@ public class FlightController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "Add new flight", notes = "Add new flight in the database.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Add new flight", response = FlightResponseDto.class)
     public ResponseEntity<FlightResponseDto> save(@Valid @RequestBody FlightRequestDto flightDto) {
         log.info("Accessing endpoint {} to post a new flight: {}.", BASE_URL, flightDto);
 
@@ -96,7 +96,7 @@ public class FlightController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "Update a flight", notes = "Update a flight by provided Id.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Update an existing flight", response = FlightResponseDto.class)
     public ResponseEntity<FlightResponseDto> update(@PathVariable Long id,
                                                     @Valid @RequestBody FlightRequestDto flightDto) {
         log.info("Accessing endpoint {}/{} to update flight by id.", BASE_URL, id);
@@ -112,7 +112,7 @@ public class FlightController {
 
     @PatchMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "Patch a flight", notes = "Patch a flight by provided Id.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Patch an existing flight", response = FlightResponseDto.class)
     public ResponseEntity<FlightResponseDto> patch(@PathVariable Long id,
                                                    @Valid @RequestBody FlightPatchDto flightDto) {
         log.info("Accessing endpoint {}/{} to patch flight by id.", BASE_URL, id);
@@ -128,7 +128,7 @@ public class FlightController {
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @ApiOperation(value = "Delete a flight", notes = "Delete a flight by provided Id.", response = FlightResponseDto.class)
+    @ApiOperation(value = "Delete an existing flight", response = String.class)
     public ResponseEntity<String> delete(@PathVariable Long id) {
         log.info("Accessing endpoint {}/{} to delete flight by id.", BASE_URL, id);
 

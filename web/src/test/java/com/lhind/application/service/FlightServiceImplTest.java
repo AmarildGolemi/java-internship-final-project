@@ -4,8 +4,6 @@ import com.lhind.application.entity.Flight;
 import com.lhind.application.exception.InvalidDateTimeException;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.FlightRepository;
-import com.lhind.application.service.FlightService;
-import com.lhind.application.service.FlightServiceImpl;
 import com.lhind.application.utility.mapper.FlightMapper;
 import com.lhind.application.utility.model.flightdto.FlightFilterDto;
 import com.lhind.application.utility.model.flightdto.FlightPatchDto;

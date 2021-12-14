@@ -3,8 +3,6 @@ package com.lhind.application.service;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
-import com.lhind.application.service.TripService;
-import com.lhind.application.service.TripServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

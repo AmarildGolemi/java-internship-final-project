@@ -4,6 +4,7 @@ import com.lhind.application.security.logout.OnUserLogoutSuccessEvent;
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.swagger.SwaggerConstant;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -31,6 +32,7 @@ public class LogoutController {
 
     @PutMapping
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
+    @ApiOperation(value = "Log Out", response = String.class)
     public ResponseEntity<String> logoutUser(@RequestHeader(name = "Authorization") String bearerToken) {
         log.info("Accessing endpoint {} to log out the user.", BASE_URL);
 

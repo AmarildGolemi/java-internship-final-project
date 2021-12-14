@@ -4,7 +4,6 @@ import com.lhind.application.entity.Flight;
 import com.lhind.application.entity.Trip;
 import com.lhind.application.exception.BadRequestException;
 import com.lhind.application.exception.ResourceNotFoundException;
-import com.lhind.application.service.*;
 import com.lhind.application.utility.model.flightdto.FlightFilterDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +18,7 @@ import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -156,7 +155,7 @@ class TripFlightServiceImplTest {
         given(flightService.getById(flightId)).willReturn(flightToAdd);
 
         //when
-        underTest.addFlight(loggedUsername, tripId, flightId);
+        underTest.bookFlight(loggedUsername, tripId, flightId);
 
         //then
         ArgumentCaptor<Trip> tripArgumentCaptor =
@@ -185,7 +184,7 @@ class TripFlightServiceImplTest {
 
         //when
         //then
-        assertThatThrownBy(() -> underTest.addFlight(loggedUsername, tripId, flightId))
+        assertThatThrownBy(() -> underTest.bookFlight(loggedUsername, tripId, flightId))
                 .isInstanceOf(BadRequestException.class);
     }
 

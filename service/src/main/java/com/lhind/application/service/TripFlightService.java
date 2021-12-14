@@ -17,5 +17,5 @@ public interface TripFlightService {
     List<FlightResponseDto> findArrivalFlights(String loggedUsername, Long tripId);
 
     @Transactional
-    FlightResponseDto addFlight(String loggedUsername, Long tripId, Long flightId);
+    FlightResponseDto bookFlight(String loggedUsername, Long tripId, Long flightId);
 }

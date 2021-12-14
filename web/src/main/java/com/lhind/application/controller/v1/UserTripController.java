@@ -8,6 +8,7 @@ import com.lhind.application.utility.model.tripdto.TripPatchDto;
 import com.lhind.application.utility.model.tripdto.TripRequestDto;
 import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -35,6 +36,7 @@ public class UserTripController {
 
     @GetMapping
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find all trips of a user", response = TripResponseDto.class)
     public ResponseEntity<List<TripResponseDto>> findAll() {
         log.info("Accessing endpoint {} to find all trips for logged user.", BASE_URL);
 
@@ -49,6 +51,7 @@ public class UserTripController {
 
     @PostMapping("/filter")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find all trips of a user by status and/or reason", response = TripResponseDto.class)
     public ResponseEntity<List<TripResponseDto>> findAllFilteredTrips(@Valid @RequestBody TripFilterDto tripDto) {
         log.info("Accessing endpoint {}/filter to find all trips for logged user by filter: {}.", BASE_URL, tripDto);
 
@@ -63,6 +66,7 @@ public class UserTripController {
 
     @GetMapping("/{tripId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Find all trips of a user by Id", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> findById(@PathVariable @Min(1) Long tripId) {
         log.info("Accessing endpoint {}/{} to find trip of logged user by id.", BASE_URL, tripId);
 
@@ -77,6 +81,7 @@ public class UserTripController {
 
     @PostMapping
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Add a new trip for a user", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> addTrip(@Valid @RequestBody TripRequestDto tripDto) {
         log.info("Accessing endpoint {} to post new trip on logged user.", BASE_URL);
 
@@ -89,6 +94,7 @@ public class UserTripController {
 
     @PutMapping("/{tripId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Update an existing trip of a user", notes = "Trip status must be created", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> update(@PathVariable @Min(1) Long tripId,
                                                   @Valid @RequestBody TripRequestDto tripDto) {
         log.info("Accessing endpoint {}/{} to update trip of logged user.", BASE_URL, tripId);
@@ -102,6 +108,7 @@ public class UserTripController {
 
     @PatchMapping("/{tripId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Patch an existing trip of a user", notes = "Trip status must be created", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> patch(@PathVariable @Min(1) Long tripId,
                                                  @Valid @RequestBody TripPatchDto tripDto) {
         log.info("Accessing endpoint {}/{} to patch trip of logged user.", BASE_URL, tripId);
@@ -115,6 +122,7 @@ public class UserTripController {
 
     @PostMapping("/{tripId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Send an existing trip of a user for approval", notes = "Trip status must be created", response = TripResponseDto.class)
     public ResponseEntity<TripResponseDto> sendForApproval(@PathVariable @Min(1) Long tripId) {
         log.info("Accessing endpoint {}/{} to send trip of logged user for approval.", BASE_URL, tripId);
 
@@ -129,6 +137,7 @@ public class UserTripController {
 
     @DeleteMapping("/{tripId}")
     @PreAuthorize("hasRole('ROLE_USER')")
+    @ApiOperation(value = "Delete an existing trip of a user", notes = "Trip status must be created", response = TripResponseDto.class)
     public ResponseEntity<String> delete(@PathVariable @Min(1) Long tripId) {
         log.info("Accessing endpoint {}/{} to delete trip of logged user.", BASE_URL, tripId);
 
