@@ -8,13 +8,14 @@ public class SwaggerConstant {
     public static final String CONTACT_URL = "https://www.contact.com";
     public static final String CONTACT_NAME = "Trip Management API Support";
     public static final String API_TITLE = "Trip Management open API";
-    public static final String API_DESCRIPTION = "In the description property, in addition to describing your " +
-            "overall API, you might want to provide some basic instructions to users on how to use Swagger UI. " +
-            "If there’s a test account they should use, you can provide the information they need in this space. " +
-            "In the description property, in addition to describing your " +
-            "overall API, you might want to provide some basic instructions to users on how to use Swagger UI. " +
-            "If there’s a test account they should use, you can provide the information they need in this space. " +
-            "</br></br><h3> **Note**: This API requires an `API KEY`, please log into your account to access your key <a target='_blank' href=\"http://localhost:4200/api/v1/login\">here</a> </h3>.";
+    public static final String API_DESCRIPTION = "System to manage a user's trips and the flights approved by said trip. " +
+            "Based on user's role, different APIs are authorized to be used to preserve the integrity of the data. " +
+            "Only the admin can make CRUD operations on the users and flights, which are provided by some dummy data during initialization. " +
+            "Also the admin can approve or reject submitted trips. In contrast the user can log in with the username provided beforehand, " +
+            "and has the possibility of managing it's trips. CRUD operations can be performed on the trips whilst they're statues are still CREATED. " +
+            "Once SEND FOR APPROVAL, and APPROVED by the admin, the user may not be able to modify this trip's data anymore, but can book flights for said trip. " +
+            "The flights are available to be found by a filter, or suggested automatically by the API by the specific trip data." +
+            "</br></br><h3> **Note**: This API requires an API KEY, please log into your account to access your key.";
     public static final String TERM_OF_SERVICE = "Your term of service will go here";
     public static final String API_VERSION = "1.1";
     public static final String LICENSE = "Apache License 2.1.0";
