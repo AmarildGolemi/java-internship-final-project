@@ -2,7 +2,6 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.UserService;
-import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.userdto.UserPatchDto;
 import com.lhind.application.utility.model.userdto.UserRequestDto;
 import com.lhind.application.utility.model.userdto.UserResponseDto;
@@ -18,11 +17,14 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.lhind.application.controller.v1.UserController.BASE_URL;
+import static com.lhind.application.swagger.SwaggerConstant.USER_API_TAG;
+
 @Slf4j
 @RestController
-@RequestMapping(UserController.BASE_URL)
+@RequestMapping(BASE_URL)
 @RequiredArgsConstructor
-@Api(tags = {SwaggerConstant.USER_API_TAG})
+@Api(tags = {USER_API_TAG})
 public class UserController {
 
     public static final String BASE_URL = "/api/v1/users";
@@ -40,7 +42,7 @@ public class UserController {
 
         List<UserResponseDto> users = userService.findAll();
 
-        log.info("Returning list of users.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
@@ -55,7 +57,7 @@ public class UserController {
 
         UserResponseDto existingUser = userService.findByUsername(username);
 
-        log.info("Returning user.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(existingUser, HttpStatus.OK);
     }
@@ -70,7 +72,7 @@ public class UserController {
 
         UserResponseDto savedUser = userService.save(userDto);
 
-        log.info("Returning new added user.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
@@ -86,7 +88,7 @@ public class UserController {
 
         UserResponseDto patchedUser = userService.patch(username, userDto);
 
-        log.info("Returning patched user.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(patchedUser, HttpStatus.OK);
     }
@@ -99,9 +101,11 @@ public class UserController {
 
         authenticatedUserService.getLoggedUsername();
 
-        log.info("Returning confirmation message.");
+        String deleteConfirmationMessage = userService.delete(username);
 
-        return new ResponseEntity<>(userService.delete(username), HttpStatus.OK);
+        log.info("Returning Response Entity.");
+
+        return new ResponseEntity<>(deleteConfirmationMessage, HttpStatus.OK);
     }
 
 }

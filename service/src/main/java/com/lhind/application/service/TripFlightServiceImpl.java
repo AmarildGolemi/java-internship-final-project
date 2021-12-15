@@ -27,7 +27,7 @@ public class TripFlightServiceImpl implements TripFlightService {
 
     @Override
     public List<FlightResponseDto> findAll(String loggedUsername, Long tripId) {
-        log.info("Finding all flights on trip with id: {} for user: {}", tripId, loggedUsername);
+        log.info("Finding all booked flights on trip with id: {} for user: {}", tripId, loggedUsername);
 
         Trip foundTrip = userTripService.findApprovedTrip(loggedUsername, tripId);
 
@@ -43,15 +43,16 @@ public class TripFlightServiceImpl implements TripFlightService {
         log.info("Finding flight with id: {} on trip with id: {} for user: {}", flightId, tripId, loggedUsername);
 
         Trip foundTrip = userTripService.findApprovedTrip(loggedUsername, tripId);
-
-        log.info("Retrieving flight on the trip.");
-
         Flight foundFlight = getFlight(loggedUsername, tripId, flightId, foundTrip);
+
+        log.info("Returning found flight.");
 
         return FlightMapper.flightToFlightDto(foundFlight);
     }
 
     private Flight getFlight(String loggedUsername, Long tripId, Long flightId, Trip foundTrip) {
+        log.info("Finding flight on the trip.");
+
         return foundTrip.getFlights().stream()
                 .filter(flight -> Objects.equals(flight.getId(), flightId))
                 .findFirst()
@@ -74,7 +75,11 @@ public class TripFlightServiceImpl implements TripFlightService {
         flightToFind.setTo(foundTrip.getTo());
         flightToFind.setDepartureDate(foundTrip.getDepartureDate());
 
-        return flightService.findFlights(flightToFind);
+        List<FlightResponseDto> foundDepartureFlights = flightService.findFlightsByFilter(flightToFind);
+
+        log.info("Returning found departure flights");
+
+        return foundDepartureFlights;
     }
 
     @Override
@@ -88,13 +93,17 @@ public class TripFlightServiceImpl implements TripFlightService {
         flightToFind.setTo(foundTrip.getFrom());
         flightToFind.setDepartureDate(foundTrip.getArrivalDate());
 
-        return flightService.findFlights(flightToFind);
+        List<FlightResponseDto> foundArrivalFlights = flightService.findFlightsByFilter(flightToFind);
+
+        log.info("Returning found arrival flights.");
+
+        return foundArrivalFlights;
     }
 
     @Override
     @Transactional
     public FlightResponseDto bookFlight(String loggedUsername, Long tripId, Long flightId) {
-        log.info("Adding flight with id: {} on trip with id: {} for user: {}", flightId, tripId, loggedUsername);
+        log.info("Booking flight with id: {} for trip with id: {} for user: {}", flightId, tripId, loggedUsername);
 
         Trip tripToPatch = userTripService.findApprovedTrip(loggedUsername, tripId);
         Flight flightToAdd = flightService.getById(flightId);
@@ -105,7 +114,7 @@ public class TripFlightServiceImpl implements TripFlightService {
 
         tripService.save(tripToPatch);
 
-        log.info("Returning added flight.");
+        log.info("Returning booked flight.");
 
         return FlightMapper.flightToFlightDto(flightToAdd);
     }

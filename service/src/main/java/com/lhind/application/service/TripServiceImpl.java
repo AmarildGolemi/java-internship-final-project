@@ -4,7 +4,6 @@ import com.lhind.application.entity.Trip;
 import com.lhind.application.exception.ResourceNotFoundException;
 import com.lhind.application.repository.TripRepository;
 import com.lhind.application.utility.mapper.TripMapper;
-import com.lhind.application.utility.model.Status;
 import com.lhind.application.utility.model.tripdto.TripResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,8 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static com.lhind.application.utility.model.Status.CREATED;
-import static com.lhind.application.utility.model.Status.WAITING_FOR_APPROVAL;
+import static com.lhind.application.utility.model.Status.*;
 
 @Slf4j
 @Service
@@ -124,8 +122,10 @@ public class TripServiceImpl implements TripService {
         log.info("Approving trip with id: {}", tripId);
 
         Trip tripToApprove = getTrip(tripId);
-        tripToApprove.setStatus(Status.APPROVED);
+        tripToApprove.setStatus(APPROVED);
         Trip approvedTrip = tripRepository.save(tripToApprove);
+
+        log.info("Returning approved trip.");
 
         return TripMapper.tripToTripDto(approvedTrip);
     }
@@ -137,8 +137,10 @@ public class TripServiceImpl implements TripService {
 
         Trip tripToReject = getTrip(tripId);
 
-        tripToReject.setStatus(Status.REJECTED);
+        tripToReject.setStatus(REJECTED);
         Trip rejectedTrip = tripRepository.save(tripToReject);
+
+        log.info("Returning rejected trip.");
 
         return TripMapper.tripToTripDto(rejectedTrip);
     }
@@ -159,6 +161,8 @@ public class TripServiceImpl implements TripService {
         log.info("Deleting trip: {}", tripToDelete);
 
         tripRepository.delete(tripToDelete);
+
+        log.info("Returning confirmation message.");
 
         return "Trip deleted";
     }

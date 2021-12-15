@@ -1,18 +1,16 @@
 package com.lhind.application.service;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class AuthenticatedUserServiceImpl implements AuthenticatedUserService {
 
     @Override
     public String getLoggedUsername() {
-        log.info("Getting logged username.");
+        log.info("Getting logged user's username.");
 
         String loggedUsername = SecurityContextHolder.getContext().getAuthentication().getName();
 
@@ -26,4 +24,5 @@ public class AuthenticatedUserServiceImpl implements AuthenticatedUserService {
 
         return loggedUsername;
     }
+
 }

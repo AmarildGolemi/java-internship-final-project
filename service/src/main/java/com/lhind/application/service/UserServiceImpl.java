@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
         List<User> users = userRepository.findAll();
 
         if (users.isEmpty()) {
-            log.warn("Zero users retrieved from the database.");
+            log.warn("No users retrieved from the database.");
         }
 
         log.info("Returning the list of users.");
@@ -69,14 +69,14 @@ public class UserServiceImpl implements UserService {
 
         User foundUser = getUserByUsername(username);
 
-        log.info("Returning user.");
+        log.info("Returning found user.");
 
         return UserMapper.userToUserDto(foundUser);
     }
 
     @Override
     public User getByUsername(String username) {
-        log.info("Finding user by username.");
+        log.info("Finding user by username in the database.");
 
         User foundUser = getUserByUsername(username);
 
@@ -100,6 +100,8 @@ public class UserServiceImpl implements UserService {
         userToSave.setRoles(List.of(role));
 
         User savedUser = userRepository.save(userToSave);
+
+        log.info("Returning saved user.");
 
         return UserMapper.userToUserDto(savedUser);
     }
@@ -125,9 +127,9 @@ public class UserServiceImpl implements UserService {
 
         patchUser(userDto, userToPatch);
 
-        log.info("Saving patched user.");
-
         User patchedUser = userRepository.save(userToPatch);
+
+        log.info("Returning patched user.");
 
         return UserMapper.userToUserDto(patchedUser);
     }
@@ -167,8 +169,6 @@ public class UserServiceImpl implements UserService {
     }
 
     private User getUserByUsername(String username) {
-        log.info("Finding user by username in the database.");
-
         Optional<User> userOptional = userRepository.findByUsername(username);
 
         if (userOptional.isEmpty()) {
@@ -176,8 +176,6 @@ public class UserServiceImpl implements UserService {
 
             throw new ResourceNotFoundException();
         }
-
-        log.info("Retrieving user.");
 
         return userOptional.get();
     }

@@ -2,7 +2,6 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.TripFlightService;
-import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.flightdto.FlightResponseDto;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,12 +16,15 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.Min;
 import java.util.List;
 
+import static com.lhind.application.controller.v1.TripFlightController.BASE_URL;
+import static com.lhind.application.swagger.SwaggerConstant.TRIP_FLIGHT_API_TAG;
+
 @Slf4j
 @Validated
 @RestController
-@RequestMapping(TripFlightController.BASE_URL)
+@RequestMapping(BASE_URL)
 @RequiredArgsConstructor
-@Api(tags = {SwaggerConstant.TRIP_FLIGHT_API_TAG})
+@Api(tags = {TRIP_FLIGHT_API_TAG})
 public class TripFlightController {
 
     public static final String BASE_URL = "/api/v1/users/trips/{tripId}/flights";
@@ -40,7 +42,7 @@ public class TripFlightController {
 
         List<FlightResponseDto> flights = tripFlightService.findAll(loggedUsername, tripId);
 
-        log.info("Returning list of flights.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
@@ -55,7 +57,7 @@ public class TripFlightController {
 
         List<FlightResponseDto> flights = tripFlightService.findDepartureFlights(loggedUsername, tripId);
 
-        log.info("Returning list of flights.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
@@ -70,7 +72,7 @@ public class TripFlightController {
 
         List<FlightResponseDto> flights = tripFlightService.findArrivalFlights(loggedUsername, tripId);
 
-        log.info("Returning list of flights.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
@@ -86,7 +88,7 @@ public class TripFlightController {
 
         FlightResponseDto existingFlight = tripFlightService.findById(loggedUsername, tripId, flightId);
 
-        log.info("Returning flight.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(existingFlight, HttpStatus.OK);
     }
@@ -102,7 +104,7 @@ public class TripFlightController {
 
         FlightResponseDto addedFlight = tripFlightService.bookFlight(loggedUsername, tripId, flightId);
 
-        log.info("Returning added flight.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(addedFlight, HttpStatus.OK);
     }

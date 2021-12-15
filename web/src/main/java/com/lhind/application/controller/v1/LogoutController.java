@@ -2,7 +2,6 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.security.logout.OnUserLogoutSuccessEvent;
 import com.lhind.application.service.AuthenticatedUserService;
-import com.lhind.application.swagger.SwaggerConstant;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.lhind.application.controller.v1.LogoutController.BASE_URL;
+import static com.lhind.application.swagger.SwaggerConstant.LOGOUT_API_TAG;
 
 @Slf4j
 @RestController
 @RequestMapping(BASE_URL)
 @RequiredArgsConstructor
-@Api(tags = {SwaggerConstant.LOGOUT_API_TAG})
+@Api(tags = {LOGOUT_API_TAG})
 public class LogoutController {
 
     public static final String BASE_URL = "/api/v1/logout";

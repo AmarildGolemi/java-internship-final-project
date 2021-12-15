@@ -53,6 +53,8 @@ public class FlightServiceImpl implements FlightService {
 
         Flight foundFlight = getFlight(id);
 
+        log.info("Returning flight with flight id: {}", id);
+
         return FlightMapper.flightToFlightDto(foundFlight);
     }
 
@@ -64,14 +66,16 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
-    public List<FlightResponseDto> findFlights(FlightFilterDto flight) {
-        String from = flight.getFrom();
-        String to = flight.getTo();
-        String departureDate = flight.getDepartureDate().toString();
+    public List<FlightResponseDto> findFlightsByFilter(FlightFilterDto flightDto) {
+        String from = flightDto.getFrom();
+        String to = flightDto.getTo();
+        String departureDate = flightDto.getDepartureDate().toString();
 
         log.info("Retrieving flights from {} to {} on date {}.", from, to, departureDate);
 
-        List<Flight> foundFlights = flightRepository.findFlights(from, to, departureDate);
+        List<Flight> foundFlights = flightRepository.findFlightsByFilter(from, to, departureDate);
+
+        log.info("Returning found flights by filter.");
 
         return FlightMapper.flightToFlightDto(foundFlights);
 
@@ -87,6 +91,8 @@ public class FlightServiceImpl implements FlightService {
 
         Flight savedFlight = flightRepository.save(flightToSave);
 
+        log.info("Returning saved flight.");
+
         return FlightMapper.flightToFlightDto(savedFlight);
     }
 
@@ -101,7 +107,7 @@ public class FlightServiceImpl implements FlightService {
         Flight flightToUpdate = getFlightToUpdate(id, flight);
         Flight updatedFlight = flightRepository.save(flightToUpdate);
 
-        log.info("Saving updated flight.");
+        log.info("Returning updated flight.");
 
         return FlightMapper.flightToFlightDto(updatedFlight);
     }
@@ -162,9 +168,9 @@ public class FlightServiceImpl implements FlightService {
 
         patchFlight(flight, flightToPatch);
 
-        log.info("Saving patched flight.");
-
         Flight patchedFlight = flightRepository.save(flightToPatch);
+
+        log.info("Returning patched flight.");
 
         return FlightMapper.flightToFlightDto(patchedFlight);
     }
@@ -272,14 +278,12 @@ public class FlightServiceImpl implements FlightService {
 
         flightRepository.delete(flightToDelete);
 
-        log.info("Deleting flight with id: {}.", id);
+        log.info("Returning confirmation message.");
 
         return "Flight deleted";
     }
 
     private Flight getFlight(Long id) {
-        log.info("Retrieving flight.");
-
         Optional<Flight> flightOptional = flightRepository.findById(id);
 
         if (flightOptional.isEmpty()) {

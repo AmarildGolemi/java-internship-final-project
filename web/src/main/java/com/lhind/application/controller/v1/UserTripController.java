@@ -2,7 +2,6 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.UserTripService;
-import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.tripdto.TripFilterDto;
 import com.lhind.application.utility.model.tripdto.TripPatchDto;
 import com.lhind.application.utility.model.tripdto.TripRequestDto;
@@ -21,12 +20,15 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 
+import static com.lhind.application.controller.v1.UserTripController.BASE_URL;
+import static com.lhind.application.swagger.SwaggerConstant.USER_TRIP_API_TAG;
+
 @Slf4j
 @Validated
 @RestController
-@RequestMapping(UserTripController.BASE_URL)
+@RequestMapping(BASE_URL)
 @RequiredArgsConstructor
-@Api(tags = {SwaggerConstant.USER_TRIP_API_TAG})
+@Api(tags = {USER_TRIP_API_TAG})
 public class UserTripController {
 
     public static final String BASE_URL = "/api/v1/users/trips";
@@ -44,7 +46,7 @@ public class UserTripController {
 
         List<TripResponseDto> trips = userTripService.findAll(loggedUsername);
 
-        log.info("Returning list of trips.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
@@ -59,7 +61,7 @@ public class UserTripController {
 
         List<TripResponseDto> trips = userTripService.findAllFilteredTrips(loggedUsername, tripDto);
 
-        log.info("Returning list of trips.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
@@ -74,7 +76,7 @@ public class UserTripController {
 
         TripResponseDto foundTrip = userTripService.findById(loggedUsername, tripId);
 
-        log.info("Returning trip.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(foundTrip, HttpStatus.OK);
     }
@@ -88,6 +90,8 @@ public class UserTripController {
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
         TripResponseDto addedTrip = userTripService.addTrip(loggedUsername, tripDto);
+
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(addedTrip, HttpStatus.CREATED);
     }
@@ -103,6 +107,8 @@ public class UserTripController {
 
         TripResponseDto updatedTrip = userTripService.update(loggedUsername, tripId, tripDto);
 
+        log.info("Returning Response Entity.");
+
         return new ResponseEntity<>(updatedTrip, HttpStatus.OK);
     }
 
@@ -117,6 +123,8 @@ public class UserTripController {
 
         TripResponseDto patchedTrip = userTripService.patch(loggedUsername, tripId, tripDto);
 
+        log.info("Returning Response Entity.");
+
         return new ResponseEntity<>(patchedTrip, HttpStatus.OK);
     }
 
@@ -130,7 +138,7 @@ public class UserTripController {
 
         TripResponseDto sentTrip = userTripService.sendForApproval(loggedUsername, tripId);
 
-        log.info("Returning sent trip.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(sentTrip, HttpStatus.OK);
     }
@@ -143,9 +151,11 @@ public class UserTripController {
 
         String loggedUsername = authenticatedUserService.getLoggedUsername();
 
+        String deleteConfirmationMessage = userTripService.delete(loggedUsername, tripId);
+
         log.info("Returning confirmation message.");
 
-        return new ResponseEntity<>(userTripService.delete(loggedUsername, tripId), HttpStatus.OK);
+        return new ResponseEntity<>(deleteConfirmationMessage, HttpStatus.OK);
     }
 
 }

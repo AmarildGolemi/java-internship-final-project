@@ -113,7 +113,7 @@ class TripFlightServiceImplTest {
         underTest.findDepartureFlights(loggedUsername, tripId);
 
         //then
-        verify(flightService).findFlights(flightToFind);
+        verify(flightService).findFlightsByFilter(flightToFind);
     }
 
     @Test
@@ -138,7 +138,7 @@ class TripFlightServiceImplTest {
         underTest.findArrivalFlights(loggedUsername, tripId);
 
         //then
-        verify(flightService).findFlights(flightToFind);
+        verify(flightService).findFlightsByFilter(flightToFind);
     }
 
     @Test

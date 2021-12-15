@@ -114,10 +114,10 @@ class FlightServiceImplTest {
         flightDto.setDepartureDate(Date.valueOf(date));
 
         //when
-        underTest.findFlights(flightDto);
+        underTest.findFlightsByFilter(flightDto);
 
         //then
-        verify(flightRepository).findFlights(from, to, date);
+        verify(flightRepository).findFlightsByFilter(from, to, date);
     }
 
     @Test

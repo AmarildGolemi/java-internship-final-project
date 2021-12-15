@@ -2,7 +2,6 @@ package com.lhind.application.controller.v1;
 
 import com.lhind.application.service.AuthenticatedUserService;
 import com.lhind.application.service.FlightService;
-import com.lhind.application.swagger.SwaggerConstant;
 import com.lhind.application.utility.model.flightdto.FlightFilterDto;
 import com.lhind.application.utility.model.flightdto.FlightPatchDto;
 import com.lhind.application.utility.model.flightdto.FlightRequestDto;
@@ -21,12 +20,15 @@ import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import java.util.List;
 
+import static com.lhind.application.controller.v1.FlightController.BASE_URL;
+import static com.lhind.application.swagger.SwaggerConstant.FLIGHT_API_TAG;
+
 @Slf4j
 @Validated
 @RestController
-@RequestMapping(FlightController.BASE_URL)
+@RequestMapping(BASE_URL)
 @RequiredArgsConstructor
-@Api(tags = {SwaggerConstant.FLIGHT_API_TAG})
+@Api(tags = {FLIGHT_API_TAG})
 public class FlightController {
 
     public static final String BASE_URL = "/api/v1/flights";
@@ -44,7 +46,7 @@ public class FlightController {
 
         List<FlightResponseDto> flights = flightService.findAll();
 
-        log.info("Returning list of all available flights.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
@@ -59,7 +61,7 @@ public class FlightController {
 
         FlightResponseDto existingFlight = flightService.findById(id);
 
-        log.info("Returning flight.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(existingFlight, HttpStatus.OK);
     }
@@ -67,14 +69,14 @@ public class FlightController {
     @PostMapping("/filter")
     @PreAuthorize("hasRole('ROLE_ADMIN') OR hasRole('ROLE_USER')")
     @ApiOperation(value = "Find flight by filter", response = FlightResponseDto.class)
-    public ResponseEntity<List<FlightResponseDto>> findFlights(@Valid @RequestBody FlightFilterDto flightDto) {
-        log.info("Accessing endpoint {}/find to find flight by filters: {}.", BASE_URL, flightDto);
+    public ResponseEntity<List<FlightResponseDto>> findFlightsByFilter(@Valid @RequestBody FlightFilterDto flightDto) {
+        log.info("Accessing endpoint {}/filter to find flight by filters: {}.", BASE_URL, flightDto);
 
         authenticatedUserService.getLoggedUsername();
 
-        List<FlightResponseDto> flights = flightService.findFlights(flightDto);
+        List<FlightResponseDto> flights = flightService.findFlightsByFilter(flightDto);
 
-        log.info("Returning list of filtered flights.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(flights, HttpStatus.OK);
     }
@@ -89,7 +91,7 @@ public class FlightController {
 
         FlightResponseDto savedFlight = flightService.save(flightDto);
 
-        log.info("Returning new added flight.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(savedFlight, HttpStatus.OK);
     }
@@ -105,7 +107,7 @@ public class FlightController {
 
         FlightResponseDto updatedFlight = flightService.update(id, flightDto);
 
-        log.info("Returning updated flight.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(updatedFlight, HttpStatus.OK);
     }
@@ -121,7 +123,7 @@ public class FlightController {
 
         FlightResponseDto patchedFlight = flightService.patch(id, flightDto);
 
-        log.info("Returning patched flight.");
+        log.info("Returning Response Entity.");
 
         return new ResponseEntity<>(patchedFlight, HttpStatus.OK);
     }
@@ -134,9 +136,11 @@ public class FlightController {
 
         authenticatedUserService.getLoggedUsername();
 
-        log.info("Returning confirmation message.");
+        String deleteConfirmationMessage = flightService.delete(id);
 
-        return new ResponseEntity<>(flightService.delete(id), HttpStatus.OK);
+        log.info("Returning Response Entity.");
+
+        return new ResponseEntity<>(deleteConfirmationMessage, HttpStatus.OK);
     }
 
 }

@@ -17,7 +17,7 @@ public interface FlightService {
 
     Flight getById(Long id);
 
-    List<FlightResponseDto> findFlights(FlightFilterDto flight);
+    List<FlightResponseDto> findFlightsByFilter(FlightFilterDto flight);
 
     @Transactional
     FlightResponseDto save(FlightRequestDto flight);

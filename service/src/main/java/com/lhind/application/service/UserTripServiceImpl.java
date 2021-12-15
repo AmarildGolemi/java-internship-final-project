@@ -43,28 +43,41 @@ public class UserTripServiceImpl implements UserTripService {
         User foundUser = getUser(loggedUsername);
         List<Trip> trips = foundUser.getTrips();
 
-        log.info("Retrieving trips.");
+        log.info("Returning trips.");
 
         return TripMapper.tripToTripDto(trips);
     }
 
     @Override
     public TripResponseDto findById(String loggedUsername, Long tripId) {
+        log.info("Finding trip with id: {} of user: {}", tripId, loggedUsername);
+
         User foundUser = getUser(loggedUsername);
 
         Trip foundTrip = foundUser.getTrips().stream()
                 .filter(trip -> Objects.equals(trip.getId(), tripId))
                 .findFirst()
-                .orElseThrow(ResourceNotFoundException::new);
+                .orElseThrow(() -> {
+                    log.error("No trip found.");
+
+                    throw new ResourceNotFoundException();
+                });
+
+        log.info("Returning found trip");
 
         return TripMapper.tripToTripDto(foundTrip);
     }
 
     @Override
     public Trip findApprovedTrip(String loggedUsername, Long tripId) {
-        User foundUser = getUser(loggedUsername);
+        log.info("Finding approved trip: {} for user: {}", tripId, loggedUsername);
 
-        return getApprovedTrip(tripId, foundUser);
+        User foundUser = getUser(loggedUsername);
+        Trip foundTrip = getApprovedTrip(tripId, foundUser);
+
+        log.info("Returning found trip.");
+
+        return foundTrip;
     }
 
     @Override
@@ -76,21 +89,23 @@ public class UserTripServiceImpl implements UserTripService {
         TripReason tripReason = tripDto.getTripReason();
         Status status = tripDto.getStatus();
 
-        if (tripReason == null && status == null) {
-            throw new BadRequestException("Not a valid filter");
-        }
+        checkFilterIsValid(tripReason, status);
 
         if (filterByTripReason(tripReason, status)) {
-            log.info("Find all trips by status: {}", status);
             return findAllByTripReason(foundUser, tripReason);
         }
 
         if (filterByStatus(tripReason, status)) {
-            log.info("Find all trips by reason: {}", tripReason);
             return findAllByStatus(foundUser, status);
         }
 
         return findAllByTripReasonAndStatus(foundUser, tripReason, status);
+    }
+
+    private void checkFilterIsValid(TripReason tripReason, Status status) {
+        if (tripReason == null && status == null) {
+            throw new BadRequestException("Not a valid filter");
+        }
     }
 
     private boolean filterByStatus(TripReason tripReason, Status status) {
@@ -180,6 +195,8 @@ public class UserTripServiceImpl implements UserTripService {
 
         Trip updatedTrip = tripService.update(tripToUpdate);
 
+        log.info("Returning updated trip");
+
         return TripMapper.tripToTripDto(updatedTrip);
     }
 
@@ -223,6 +240,8 @@ public class UserTripServiceImpl implements UserTripService {
 
         Trip tripToPatch = TripMapper.tripDtoToTrip(trip);
         Trip patchedTrip = tripService.patch(foundTrip, tripToPatch);
+
+        log.info("Returning patched trip");
 
         return TripMapper.tripToTripDto(patchedTrip);
     }
@@ -268,6 +287,8 @@ public class UserTripServiceImpl implements UserTripService {
         User foundUser = getUser(loggedUsername);
         Trip tripToSend = getCreatedTrip(tripId, foundUser);
         Trip approvedTrip = tripService.sendForApproval(tripToSend);
+
+        log.info("Returning sent trip");
 
         return TripMapper.tripToTripDto(approvedTrip);
     }
