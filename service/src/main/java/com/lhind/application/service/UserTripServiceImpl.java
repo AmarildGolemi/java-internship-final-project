@@ -148,11 +148,13 @@ public class UserTripServiceImpl implements UserTripService {
 
     @Override
     @Transactional
-    public TripResponseDto addTrip(String loggedUsername, TripRequestDto trip) {
-        log.info("Adding trip: {} to user with username: {}", trip, loggedUsername);
+    public TripResponseDto addTrip(String loggedUsername, TripRequestDto tripDto) {
+        log.info("Adding trip: {} to user with username: {}", tripDto, loggedUsername);
 
         User userToPatch = getUser(loggedUsername);
-        Trip tripToAdd = TripMapper.tripDtoToTrip(trip);
+        Trip tripToAdd = TripMapper.tripDtoToTrip(tripDto);
+
+        validateTripRequestDate(tripDto);
 
         checkTripAlreadyAdded(tripToAdd, userToPatch);
 
@@ -317,7 +319,7 @@ public class UserTripServiceImpl implements UserTripService {
                 .orElseThrow(() -> {
                     log.error("Trip: {} of user: {} is not valid.", tripId, foundUser);
 
-                    throw new BadRequestException("Trip status is not created.");
+                    throw new BadRequestException("Not a valid trip to send.");
                 });
     }
 
@@ -330,7 +332,7 @@ public class UserTripServiceImpl implements UserTripService {
                 .orElseThrow(() -> {
                     log.error("Trip: {} of user: {} is not valid.", tripId, foundUser);
 
-                    throw new BadRequestException("Trip is not approved by the admin.");
+                    throw new BadRequestException("Not a valid trip.");
                 });
     }
 

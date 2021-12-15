@@ -97,23 +97,12 @@ public class TripServiceImpl implements TripService {
 
     @Override
     @Transactional
-    public Trip sendForApproval(Trip trip) {
-        log.info("Sending trip: {} for approval.", trip);
+    public Trip sendForApproval(Trip tripToSend) {
+        log.info("Sending trip: {} for approval.", tripToSend);
 
-        Trip tripToSend = getTripToSendForApproval(trip.getId());
         tripToSend.setStatus(WAITING_FOR_APPROVAL);
 
         return tripRepository.save(tripToSend);
-    }
-
-    private Trip getTripToSendForApproval(Long id) {
-        return tripRepository.findById(id)
-                .filter(trip -> trip.getStatus().equals(CREATED))
-                .orElseThrow(() -> {
-                    log.error("Trip with id: {} status is not created.", id);
-
-                    throw new ResourceNotFoundException();
-                });
     }
 
     @Override

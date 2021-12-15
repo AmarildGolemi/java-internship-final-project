@@ -142,13 +142,13 @@ class UserServiceImplTest {
         userDto.setLastName("doe");
         userDto.setUsername("john");
         userDto.setPassword("1234");
-        userDto.setRole("admin");
+        userDto.setRoles(List.of("admin"));
 
         User userToSave = UserMapper.userDtoToUser(userDto);
         userToSave.setRoles(List.of(role));
 
         given(userRepository.findAllByUsername(anyString())).willReturn(Optional.empty());
-        given(roleRepository.findByName(userDto.getRole())).willReturn(role);
+        given(roleRepository.findByName(userDto.getRoles().get(0))).willReturn(role);
 
         //when
         underTest.save(userDto);

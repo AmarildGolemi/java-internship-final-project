@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -35,8 +37,8 @@ public class UserRequestDto {
     @ApiModelProperty(notes = "Password of the user account", example = "1234", required = true)
     private String password;
 
-    @NotBlank(message = "Role is mandatory")
-    @ApiModelProperty(notes = "Role of the user", example = "ROLE_ADMIN", required = true)
-    private String role;
+    @NotEmpty(message = "Role is mandatory")
+    @ApiModelProperty(notes = "Role of the user", example = "[ROLE_ADMIN]", required = true)
+    private List<String> roles;
 
 }

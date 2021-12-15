@@ -35,7 +35,7 @@ public class FlightRequestDto {
     private Date departureDate;
 
     @DateTimeFormat(pattern = "hh:mm:ss")
-    @ApiModelProperty(notes = "Departure time of the flight", example = "12:00:00", required = true)
+    @ApiModelProperty(notes = "Departure time of the flight", dataType = "Time", example = "12:00:00", required = true)
     private Time departureTime;
 
     @FutureDate
@@ -44,7 +44,7 @@ public class FlightRequestDto {
     private Date arrivalDate;
 
     @DateTimeFormat(pattern = "hh:mm:ss")
-    @ApiModelProperty(notes = "Arrival time of the flight", example = "14:00:00", required = true)
+    @ApiModelProperty(notes = "Arrival time of the flight", dataType = "Time", example = "14:00:00", required = true)
     private Time arrivalTime;
 
     @NotBlank(message = "Arrival city is mandatory")

@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -95,15 +96,20 @@ public class UserServiceImpl implements UserService {
 
         checkUserAlreadyExists(userToSave);
 
-        String roleToSet = userDto.getRole();
-        Role role = roleRepository.findByName(roleToSet);
-        userToSave.setRoles(List.of(role));
+        List<Role> rolesToSet = getRolesToSet(userDto);
+        userToSave.setRoles(rolesToSet);
 
         User savedUser = userRepository.save(userToSave);
 
         log.info("Returning saved user.");
 
         return UserMapper.userToUserDto(savedUser);
+    }
+
+    private List<Role> getRolesToSet(UserRequestDto userDto) {
+        return userDto.getRoles().stream()
+                .map(roleRepository::findByName)
+                .collect(Collectors.toList());
     }
 
     private void checkUserAlreadyExists(User user) {
